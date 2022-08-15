@@ -2,7 +2,7 @@
 
 A collection of pre-made simple Laravel Blade form components.
 
-![Laravel Form Components](src/docs/images/Components.png)
+![Laravel Form Components](docs/images/Components.png)
 
 ## Installation & setup
 
@@ -78,15 +78,15 @@ All other attributes wil be merged directly on to the HTML component element.
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                            | label-type="row"                                         | label-type="floating"                                           |
-|----------------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------------|
-| ![Input Column Label Type](src/docs/images/Column%20Input.png) | ![Input Row Label Type](src/docs/images/Row%20Input.png) | ![Input Float Label Type](src/docs/images/Floating%20Input.gif) |
+| label-type="column"                                        | label-type="row"                                     | label-type="floating"                                       |
+|------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------|
+| ![Input Column Label Type](docs/images/Column%20Input.png) | ![Input Row Label Type](docs/images/Row%20Input.png) | ![Input Float Label Type](docs/images/Floating%20Input.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                     | label-type="row"                                                  |
-|-------------------------------------------------------------------------|-------------------------------------------------------------------|
-| ![Input Column Label Error](src/docs/images/Column%20Input%20Error.png) | ![Input Row Label Error](src/docs/images/Row%20Input%20Error.png) |
+| label-type="column"                                                 | label-type="row"                                              |
+|---------------------------------------------------------------------|---------------------------------------------------------------|
+| ![Input Column Label Error](docs/images/Column%20Input%20Error.png) | ![Input Row Label Error](docs/images/Row%20Input%20Error.png) |
 
 #### Password
 
@@ -96,15 +96,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                  | label-type="row"                                               | label-type="floating"                                                 |
-|----------------------------------------------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| ![Password Column Label Type](src/docs/images/Column%20Password.png) | ![Password Row Label Type](src/docs/images/Row%20Password.png) | ![Password Float Label Type](src/docs/images/Floating%20Password.gif) |
+| label-type="column"                                              | label-type="row"                                           | label-type="floating"                                             |
+|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------|
+| ![Password Column Label Type](docs/images/Column%20Password.png) | ![Password Row Label Type](docs/images/Row%20Password.png) | ![Password Float Label Type](docs/images/Floating%20Password.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                           | label-type="row"                                                        |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ![Password Column Label Error](src/docs/images/Column%20Password%20Error.png) | ![Password Row Label Error](src/docs/images/Row%20Password%20Error.png) |
+| label-type="column"                                                       | label-type="row"                                                    |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![Password Column Label Error](docs/images/Column%20Password%20Error.png) | ![Password Row Label Error](docs/images/Row%20Password%20Error.png) |
 
 #### Textarea
 
@@ -114,15 +114,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                  | label-type="row"                                               | label-type="floating"                                                 |
-|----------------------------------------------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| ![Textarea Column Label Type](src/docs/images/Column%20Textarea.png) | ![Textarea Row Label Type](src/docs/images/Row%20Textarea.png) | ![Textarea Float Label Type](src/docs/images/Floating%20Textarea.gif) |
+| label-type="column"                                              | label-type="row"                                           | label-type="floating"                                             |
+|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------|
+| ![Textarea Column Label Type](docs/images/Column%20Textarea.png) | ![Textarea Row Label Type](docs/images/Row%20Textarea.png) | ![Textarea Float Label Type](docs/images/Floating%20Textarea.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                           | label-type="row"                                                        |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ![Textarea Column Label Error](src/docs/images/Column%20Textarea%20Error.png) | ![Textarea Row Label Error](src/docs/images/Row%20Textarea%20Error.png) |
+| label-type="column"                                                       | label-type="row"                                                    |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![Textarea Column Label Error](docs/images/Column%20Textarea%20Error.png) | ![Textarea Row Label Error](docs/images/Row%20Textarea%20Error.png) |
 
 Textarea component comes with an option to auto-expand when typing which is by default turned off. In order to have it
 enable, use the following syntax:
@@ -133,9 +133,9 @@ enable, use the following syntax:
 
 Depending on the `label-type` choice, component will display following behaviour:
 
-| label-type="column"                                                                   | label-type="row"                                                                |
-|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| ![Textarea Column Auto Expand](src/docs/images/Column%20Textarea%20Auto%20Expand.gif) | ![Textarea Row Auto Expand](src/docs/images/Row%20Textarea%20Auto%20Expand.gif) |
+| label-type="column"                                                               | label-type="row"                                                            |
+|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| ![Textarea Column Auto Expand](docs/images/Column%20Textarea%20Auto%20Expand.gif) | ![Textarea Row Auto Expand](docs/images/Row%20Textarea%20Auto%20Expand.gif) |
 
 In case you wish auto expansion to be a default behaviour for all Textarea components, add `AUTOEXPAND_TEXTAREA=true` to
 your `.env` file.
@@ -278,15 +278,15 @@ will generate following HTML:
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                              | label-type="row"                                           | label-type="floating"                                             |
-|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------|
-| ![Select Column Label Type](src/docs/images/Column%20Select.png) | ![Select Row Label Type](src/docs/images/Row%20Select.png) | ![Select Float Label Type](src/docs/images/Floating%20Select.gif) |
+| label-type="column"                                          | label-type="row"                                       | label-type="floating"                                         |
+|--------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
+| ![Select Column Label Type](docs/images/Column%20Select.png) | ![Select Row Label Type](docs/images/Row%20Select.png) | ![Select Float Label Type](docs/images/Floating%20Select.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                       | label-type="row"                                                    |
-|---------------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![Select Column Label Error](src/docs/images/Column%20Select%20Error.png) | ![Select Row Label Error](src/docs/images/Row%20Select%20Error.png) |
+| label-type="column"                                                   | label-type="row"                                                |
+|-----------------------------------------------------------------------|-----------------------------------------------------------------|
+| ![Select Column Label Error](docs/images/Column%20Select%20Error.png) | ![Select Row Label Error](docs/images/Row%20Select%20Error.png) |
 
 #### Date
 
@@ -296,15 +296,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                          | label-type="row"                                       | label-type="floating"                                         |
-|--------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
-| ![Date Column Label Type](src/docs/images/Column%20Date.png) | ![Date Row Label Type](src/docs/images/Row%20Date.png) | ![Date Float Label Type](src/docs/images/Floating%20Date.gif) |
+| label-type="column"                                      | label-type="row"                                   | label-type="floating"                                     |
+|----------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------|
+| ![Date Column Label Type](docs/images/Column%20Date.png) | ![Date Row Label Type](docs/images/Row%20Date.png) | ![Date Float Label Type](docs/images/Floating%20Date.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                   | label-type="row"                                                |
-|-----------------------------------------------------------------------|-----------------------------------------------------------------|
-| ![Date Column Label Error](src/docs/images/Column%20Date%20Error.png) | ![Date Row Label Error](src/docs/images/Row%20Date%20Error.png) |
+| label-type="column"                                               | label-type="row"                                            |
+|-------------------------------------------------------------------|-------------------------------------------------------------|
+| ![Date Column Label Error](docs/images/Column%20Date%20Error.png) | ![Date Row Label Error](docs/images/Row%20Date%20Error.png) |
 
 #### Time
 
@@ -314,15 +314,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                          | label-type="row"                                       | label-type="floating"                                         |
-|--------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
-| ![Time Column Label Type](src/docs/images/Column%20Time.png) | ![Time Row Label Type](src/docs/images/Row%20Time.png) | ![Time Float Label Type](src/docs/images/Floating%20Time.gif) |
+| label-type="column"                                      | label-type="row"                                   | label-type="floating"                                     |
+|----------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------|
+| ![Time Column Label Type](docs/images/Column%20Time.png) | ![Time Row Label Type](docs/images/Row%20Time.png) | ![Time Float Label Type](docs/images/Floating%20Time.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                   | label-type="row"                                                |
-|-----------------------------------------------------------------------|-----------------------------------------------------------------|
-| ![Time Column Label Error](src/docs/images/Column%20Time%20Error.png) | ![Time Row Label Error](src/docs/images/Row%20Time%20Error.png) |
+| label-type="column"                                               | label-type="row"                                            |
+|-------------------------------------------------------------------|-------------------------------------------------------------|
+| ![Time Column Label Error](docs/images/Column%20Time%20Error.png) | ![Time Row Label Error](docs/images/Row%20Time%20Error.png) |
 
 #### Date-Time
 
@@ -332,15 +332,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                  | label-type="row"                                               | label-type="floating"                                                 |
-|----------------------------------------------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| ![DateTime Column Label Type](src/docs/images/Column%20DateTime.png) | ![DateTime Row Label Type](src/docs/images/Row%20DateTime.png) | ![DateTime Float Label Type](src/docs/images/Floating%20DateTime.gif) |
+| label-type="column"                                              | label-type="row"                                           | label-type="floating"                                             |
+|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------|
+| ![DateTime Column Label Type](docs/images/Column%20DateTime.png) | ![DateTime Row Label Type](docs/images/Row%20DateTime.png) | ![DateTime Float Label Type](docs/images/Floating%20DateTime.gif) |
 
 In case the field was not valid, depending on the `label-type` choice, component will look as follows:
 
-| label-type="column"                                                           | label-type="row"                                                        |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ![DateTime Column Label Error](src/docs/images/Column%20DateTime%20Error.png) | ![DateTime Row Label Error](src/docs/images/Row%20DateTime%20Error.png) |
+| label-type="column"                                                       | label-type="row"                                                    |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![DateTime Column Label Error](docs/images/Column%20DateTime%20Error.png) | ![DateTime Row Label Error](docs/images/Row%20DateTime%20Error.png) |
 
 > Date, Time and Date-Time components utilize built-in HTML elements. Additionally, you can pass a value to all three
 > fields which utilizes `Carbon` behind the scenes in order to parse the value prior to rendering the component.
@@ -355,15 +355,15 @@ In case the field was not valid, depending on the `label-type` choice, component
 
 Depending on the `position` choice, component will look as follows:
 
-| position="left"                                                           | position="center"                                                             |
-|---------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| ![Checkbox Position Left](src/docs/images/Checkbox%20Position%20Left.png) | ![Checkbox Position Center](src/docs/images/Checkbox%20Position%20Center.png) |
+| position="left"                                                       | position="center"                                                         |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------|
+| ![Checkbox Position Left](docs/images/Checkbox%20Position%20Left.png) | ![Checkbox Position Center](docs/images/Checkbox%20Position%20Center.png) |
 
 In case the field was not valid, depending on the `position` choice, component will look as follows:
 
-| position="left"                                                                         | position="center"                                                                           |
-|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ![Checkbox Position Left Error](src/docs/images/Checkbox%20Position%20Left%20Error.png) | ![Checkbox Position Center Error](src/docs/images/Checkbox%20Position%20Center%20Error.png) |
+| position="left"                                                                     | position="center"                                                                       |
+|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| ![Checkbox Position Left Error](docs/images/Checkbox%20Position%20Left%20Error.png) | ![Checkbox Position Center Error](docs/images/Checkbox%20Position%20Center%20Error.png) |
 
 #### Radio
 
@@ -373,15 +373,15 @@ In case the field was not valid, depending on the `position` choice, component w
 
 Depending on the `position` choice, component will look as follows:
 
-| position="left"                                                     | position="center"                                                       |
-|---------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ![Radio Position Left](src/docs/images/Radio%20Position%20Left.png) | ![Radio Position Center](src/docs/images/Radio%20Position%20Center.png) |
+| position="left"                                                 | position="center"                                                   |
+|-----------------------------------------------------------------|---------------------------------------------------------------------|
+| ![Radio Position Left](docs/images/Radio%20Position%20Left.png) | ![Radio Position Center](docs/images/Radio%20Position%20Center.png) |
 
 In case the field was not valid, depending on the `position` choice, component will look as follows:
 
-| position="left"                                                                   | position="center"                                                                     |
-|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| ![Radio Position Left Error](src/docs/images/Radio%20Position%20Left%20Error.png) | ![Radio Position Center Error](src/docs/images/Radio%20Position%20Center%20Error.png) |
+| position="left"                                                               | position="center"                                                                 |
+|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| ![Radio Position Left Error](docs/images/Radio%20Position%20Left%20Error.png) | ![Radio Position Center Error](docs/images/Radio%20Position%20Center%20Error.png) |
 
 ### Buttons
 
@@ -408,9 +408,9 @@ component.
 
 Depending on the `border-radius` choice, component will look as follows:
 
-| border-radius="squared"                                 | border-radius="rounded-s"                                             | border-radius="rounded-m"                                               | border-radius="rounded"                                 |
-|---------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------|
-| ![Button Squared](src/docs/images/Button%20Squared.png) | ![Button Rounded Small](src/docs/images/Button%20Rounded%20Small.png) | ![Button Rounded Medium](src/docs/images/Button%20Rounded%20Medium.png) | ![Button Rounded](src/docs/images/Button%20Rounded.png) |
+| border-radius="squared"                             | border-radius="rounded-s"                                         | border-radius="rounded-m"                                           | border-radius="rounded"                             |
+|-----------------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------|
+| ![Button Squared](docs/images/Button%20Squared.png) | ![Button Rounded Small](docs/images/Button%20Rounded%20Small.png) | ![Button Rounded Medium](docs/images/Button%20Rounded%20Medium.png) | ![Button Rounded](docs/images/Button%20Rounded.png) |
 
 ## Interactivity
 
@@ -419,7 +419,7 @@ add `interactive="true"` to your component of choice.
 If you'd like this feature to be turned on by default for all components, simply add **INTERACTIVE_COMPONENT=true**
 property to your `.env` file.
 
-![Input Interactivity](src/docs/images/Input%20Interactivity.gif)
+![Input Interactivity](docs/images/Input%20Interactivity.gif)
 
 As can be seen from the GIF above, in case the field value is empty, the validation error reappears.
 
