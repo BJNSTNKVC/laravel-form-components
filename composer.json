@@ -1,0 +1,26 @@
+{
+    "name": "bjnstnkvc/form-components",
+    "description": "Simple Laravel Form components",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bjnstnkvc\\FormComponents\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bojan Stankovic",
+            "email": "dev.bojan.stankovic@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider"
+            ]
+        }
+    }
+}
