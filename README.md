@@ -475,7 +475,7 @@ If by any chance you'd like to restore the components default settings, use the 
 
     php artisan components:restore
 
-Optionally, you can pass component name as an argument, which will publish only those components.
+Optionally, you can pass component name as an argument, which will restore only those components.
 
     php artisan components:restore Input Password Button
 
