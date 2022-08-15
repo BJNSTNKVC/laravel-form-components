@@ -169,7 +169,8 @@ In case you would like to pass option value as well as it's key, use the followi
 
 Above will generate the following options:
 
-```html<option value="1">Option A</option>
+```html
+<option value="1">Option A</option>
 <option value="2">Option B</option>
 ```
 
@@ -187,7 +188,8 @@ and following blade component settings:
 
 will generate the following options:
 
-```html<option value="0">Option A</option>
+```html
+<option value="0">Option A</option>
 <option value="1">Option B</option>
 ```
 
