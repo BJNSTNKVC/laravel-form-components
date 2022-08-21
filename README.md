@@ -440,9 +440,9 @@ add `invalidated-title="true"` to your component of choice.
 If you'd like this feature to be turned on by default for all components, simply add **INVALIDATED_TITLE=true**
 property to your `.env` file.
 
-| label-type="column"                                                                         | label-type="row"                                                                      | label-type="floating"                                                                        |
-|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| ![Invalidated Title Column Label Type](docs/images/components/column/Invalidated Title.png) | ![Invalidated Title Row Label Type](docs/images/components/row/Invalidated Title.png) | ![Invalidated Title Float Label Type](docs/images/components/floating/Invalidated Title.gif) |
+| label-type="column"                                                                           | label-type="row"                                                                        | label-type="floating"                                                                          |
+|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| ![Invalidated Title Column Label Type](docs/images/components/column/Invalidated%20Title.png) | ![Invalidated Title Row Label Type](docs/images/components/row/Invalidated%20Title.png) | ![Invalidated Title Float Label Type](docs/images/components/floating/Invalidated%20Title.gif) |
 
 ## Interactivity
     
