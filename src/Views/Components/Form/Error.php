@@ -28,6 +28,6 @@ class Error extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.error');
+        return view('form-components::form.error');
     }
 }

@@ -69,6 +69,6 @@ class Date extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.date');
+        return view('form-components::form.date');
     }
 }

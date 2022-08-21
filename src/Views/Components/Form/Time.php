@@ -69,6 +69,6 @@ class Time extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.time');
+        return view('form-components::form.time');
     }
 }

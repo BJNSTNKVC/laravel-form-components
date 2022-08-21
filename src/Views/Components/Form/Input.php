@@ -65,6 +65,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.input');
+        return view('form-components::form.input');
     }
 }

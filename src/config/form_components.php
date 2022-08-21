@@ -28,7 +28,7 @@ return [
     ],
 
     // Path used to publish component config files.
-    'publish_path'      => public_path('vendor/laravel-form-components'),
+    'publish_path'      => public_path('vendor/form-components'),
 
     // Form Components prefix (E.g. <x-form-button>).
     'prefix'            => env('COMPONENT_PREFIX', 'form'),

@@ -65,6 +65,6 @@ class Textarea extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.textarea');
+        return view('form-components::form.textarea');
     }
 }

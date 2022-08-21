@@ -65,6 +65,6 @@ class Password extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.password');
+        return view('form-components::form.password');
     }
 }

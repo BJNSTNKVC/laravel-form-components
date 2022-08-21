@@ -85,7 +85,7 @@ class Publisher
         $this->publishedNamespace = 'App\View\Components\Form';
         $this->defaultPath        = 'Bjnstnkvc\FormComponents\Views\Components\Form\\';
         $this->publishedPath      = 'App\View\Components\Form\\';
-        $this->defaultBlade       = 'laravel-form-components::form.';
+        $this->defaultBlade       = 'form-components::form.';
         $this->publishedBlade     = 'components.form.';
     }
 

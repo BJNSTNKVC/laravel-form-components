@@ -59,6 +59,6 @@ class Checkbox extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.checkbox');
+        return view('form-components::form.checkbox');
     }
 }

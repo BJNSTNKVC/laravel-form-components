@@ -125,6 +125,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.select');
+        return view('form-components::form.select');
     }
 }

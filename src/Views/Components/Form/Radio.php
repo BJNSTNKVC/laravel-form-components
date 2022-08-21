@@ -59,6 +59,6 @@ class Radio extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.radio');
+        return view('form-components::form.radio');
     }
 }

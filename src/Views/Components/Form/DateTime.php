@@ -69,6 +69,6 @@ class DateTime extends Component
      */
     public function render()
     {
-        return view('laravel-form-components::form.date-time');
+        return view('form-components::form.date-time');
     }
 }
