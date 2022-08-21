@@ -1,7 +1,7 @@
 <!-- Form Interactivity Script -->
 
 // Get all invalid inputs.
-let inputs    = document.querySelectorAll('label[invalid] > *[interactive="true"]');
+let inputs = document.querySelectorAll('label[invalid] > *[interactive="true"]');
 
 // Assign an Event Listeners to each Input.
 for (let i = 0; i < inputs.length; i++) {
@@ -13,16 +13,19 @@ for (let i = 0; i < inputs.length; i++) {
  */
 function validate() {
     let label = this.closest('label');
+    let title = label.querySelector('.form-group__title');
     let error = label.querySelector('.form-group__error');
 
     if (this.value === '' || ((this.type === 'checkbox' || this.type === 'radio') && ! this.checked)) {
         label.setAttribute('invalid', '');
+        title.classList.add('fc-is-invalid');
         error.style.display = 'block';
 
         return;
     }
 
     label.removeAttribute('invalid');
+    title.classList.remove('fc-is-invalid');
     error.style.display = 'none';
 }
 

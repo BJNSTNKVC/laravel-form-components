@@ -8,42 +8,48 @@ use Illuminate\View\Component;
 class Radio extends Component
 {
     /**
-     * A Radio name.
+     * Radio name.
      */
     public $name;
 
     /**
-     * A Radio title.
+     * Radio title.
      */
     public $title;
 
     /**
-     * A Radio id.
+     * Radio id.
      */
     public $id;
 
     /**
-     * A Radio value.
+     * Radio value.
      */
     public $value;
 
     /**
-     * A Radio position.
+     * Radio position.
      */
     public $position;
+
+    /**
+     * Radio component Title invalidation state.
+     */
+    public $invalidatedTitle;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $invalidatedTitle = null)
     {
-        $this->name     = Str::slug($name, '_');
-        $this->title    = $title ?: Str::title($name);
-        $this->id       = $id ?: $this->name;
-        $this->value    = old($this->name) ? 'checked' : null;
-        $this->position = $position ?: config('form_components.position');
+        $this->name             = Str::slug($name, '_');
+        $this->title            = $title ?: Str::title($name);
+        $this->id               = $id ?: $this->name;
+        $this->value            = old($this->name) ? 'checked' : null;
+        $this->position         = $position ?: config('form_components.position');
+        $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
@@ -53,6 +59,6 @@ class Radio extends Component
      */
     public function render()
     {
-        return view('form-components::form.radio');
+        return view('laravel-form-components::form.radio');
     }
 }

@@ -292,14 +292,18 @@
     box-shadow       : inset 0 0 0 2px rgba(115, 111, 110, 0.15);
 }
 
-.invalid-feedback {
+.fc-invalid-feedback {
     display    : inline-block;
     margin-top : 4px;
     color      : rgba(214, 45, 48, 1);
 }
 
-.is-invalid {
+.fc-is-invalid:is(input, textarea, select) {
     border : 2px solid rgba(214, 45, 48, 1);
+}
+
+.fc-is-invalid:is(span) {
+    color : rgba(214, 45, 48, 1);
 }
 
 .fc-form-group[invalid] .form-group__input:not([type=radio]),

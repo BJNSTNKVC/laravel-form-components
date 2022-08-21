@@ -13,7 +13,7 @@ return [
     */
 
     // List of all Components that are going to be loaded. Feel free to comment out the components you don't need.
-    'components'    => [
+    'components'        => [
         'button'    => Bjnstnkvc\FormComponents\Views\Components\Form\Button::class,
         'checkbox'  => Bjnstnkvc\FormComponents\Views\Components\Form\Checkbox::class,
         'date'      => Bjnstnkvc\FormComponents\Views\Components\Form\Date::class,
@@ -28,26 +28,29 @@ return [
     ],
 
     // Path used to publish component config files.
-    'publish_path'  => public_path('vendor/form-components'),
+    'publish_path'      => public_path('vendor/laravel-form-components'),
 
     // Form Components prefix (E.g. <x-form-button>).
-    'prefix'        => env('COMPONENT_PREFIX', 'form'),
+    'prefix'            => env('COMPONENT_PREFIX', 'form'),
 
     // Form Components separator (E.g. <x-form::button>).
-    'separator'     => env('COMPONENT_SEPARATOR', '::'),
+    'separator'         => env('COMPONENT_SEPARATOR', '::'),
 
     // Form Components default label type (options: column, row, floating).
-    'label_type'     => env('COMPONENT_LABEL', 'column'),
+    'label_type'        => env('COMPONENT_LABEL', 'column'),
 
     // Form Components default checkbox/radio position (options: left, center).
-    'position'      => env('CHECKBOX_POSITION', 'center'),
+    'position'          => env('CHECKBOX_POSITION', 'center'),
 
     // Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).
-    'button_radius' => env('BUTTON_RADIUS', 'rounded'),
+    'button_radius'     => env('BUTTON_RADIUS', 'rounded'),
+
+    // Determine whether the Component title would change on invalid input.
+    'invalidated_title' => env('INVALIDATED_TITLE', false),
 
     // Determine whether the validation errors should disappear on input.
-    'interactive'   => env('INTERACTIVE_COMPONENT', false) ? 'true' : 'false',
+    'interactive'       => env('INTERACTIVE_COMPONENT', false) ? 'true' : 'false',
 
     // Determine whether the Text Area height should expand with input.
-    'auto_expand'   => env('AUTOEXPAND_TEXTAREA', false) ? 'true' : 'false',
+    'auto_expand'       => env('AUTOEXPAND_TEXTAREA', false) ? 'true' : 'false',
 ];

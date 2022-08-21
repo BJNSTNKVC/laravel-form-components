@@ -8,42 +8,48 @@ use Illuminate\View\Component;
 class Checkbox extends Component
 {
     /**
-     * A Checkbox name.
+     * Checkbox component name.
      */
     public $name;
 
     /**
-     * A Checkbox title.
+     * Checkbox component title.
      */
     public $title;
 
     /**
-     * A Checkbox id.
+     * Checkbox component id.
      */
     public $id;
 
     /**
-     * A Checkbox value.
+     * Checkbox component value.
      */
     public $value;
 
     /**
-     * A Checkbox position.
+     * Checkbox component position.
      */
     public $position;
+
+    /**
+     * Checkbox component Title invalidation state.
+     */
+    public $invalidatedTitle;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $invalidatedTitle = null)
     {
-        $this->name     = Str::slug($name, '_');
-        $this->title    = $title ?: Str::title($name);
-        $this->id       = $id ?: $this->name;
-        $this->value    = old($this->name) ? 'checked' : null;
-        $this->position = $position ?: config('form_components.position');
+        $this->name             = Str::slug($name, '_');
+        $this->title            = $title ?: Str::title($name);
+        $this->id               = $id ?: $this->name;
+        $this->value            = old($this->name) ? 'checked' : null;
+        $this->position         = $position ?: config('form_components.position');
+        $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
@@ -53,6 +59,6 @@ class Checkbox extends Component
      */
     public function render()
     {
-        return view('form-components::form.checkbox');
+        return view('laravel-form-components::form.checkbox');
     }
 }

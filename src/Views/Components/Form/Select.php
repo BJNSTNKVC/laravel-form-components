@@ -9,22 +9,22 @@ use Illuminate\View\Component;
 class Select extends Component
 {
     /**
-     * The Select component name.
+     * Select component name.
      */
     public $name;
 
     /**
-     * The Select component id.
+     * Select component id.
      */
     public $id;
 
     /**
-     * The Select component title.
+     * Select component title.
      */
     public $title;
 
     /**
-     * The Select component value.
+     * Select component value.
      */
     public $values;
 
@@ -44,22 +44,27 @@ class Select extends Component
     public $modelValue;
 
     /**
-     * The Select component placeholder.
+     * Select component placeholder.
      */
     public $placeholder;
 
     /**
-     * The Select component additional label classes.
+     * Select component additional label classes.
      */
     public $label;
 
     /**
-     * The Select component label type.
+     * Select component label type.
      */
     public $labelType;
 
     /**
-     * The Select component default value.
+     * Select component Title invalidation state.
+     */
+    public $invalidatedTitle;
+
+    /**
+     * Select component default value.
      */
     public $default;
 
@@ -68,19 +73,20 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $placeholder = null, $label = null, $labelType = null, $default = null)
+    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $placeholder = null, $label = null, $labelType = null, $invalidatedTitle = null, $default = null)
     {
-        $this->name        = Str::slug($name, '_');
-        $this->id          = $id ?: $this->name;
-        $this->title       = $title ?: Str::title($name);
-        $this->values      = $this->toArray($values) ?: [];
-        $this->model       = $model;
-        $this->modelKey    = $modelKey ?: 'id';
-        $this->modelValue  = $modelValue;
-        $this->placeholder = $placeholder;
-        $this->label       = $label;
-        $this->labelType   = $labelType ?: config('form_components.label_type');
-        $this->default     = $default;
+        $this->name             = Str::slug($name, '_');
+        $this->id               = $id ?: $this->name;
+        $this->title            = $title ?: Str::title($name);
+        $this->values           = $this->toArray($values) ?: [];
+        $this->model            = $model;
+        $this->modelKey         = $modelKey ?: 'id';
+        $this->modelValue       = $modelValue;
+        $this->placeholder      = $placeholder;
+        $this->label            = $label;
+        $this->labelType        = $labelType ?: config('form_components.label_type');
+        $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->default          = $default;
     }
 
     /**
@@ -119,6 +125,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('form-components::form.select');
+        return view('laravel-form-components::form.select');
     }
 }

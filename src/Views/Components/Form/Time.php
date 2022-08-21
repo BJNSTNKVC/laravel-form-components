@@ -10,34 +10,39 @@ use Illuminate\View\Component;
 class Time extends Component
 {
     /**
-     * A Time component name.
+     * Time component name.
      */
     public $name;
 
     /**
-     * A Time component id.
+     * Time component id.
      */
     public $id;
 
     /**
-     * A Time component title.
+     * Time component title.
      */
     public $title;
 
     /**
-     * A Time component value.
+     * Time component value.
      */
     public $value;
 
     /**
-     * A Time component additional label classes.
+     * Time component additional label classes.
      */
     public $label;
 
     /**
-     * A Time component label type.
+     * Time component label type.
      */
     public $labelType;
+
+    /**
+     * Time component Title invalidation state.
+     */
+    public $invalidatedTitle;
 
     /**
      * Create a new component instance.
@@ -46,14 +51,15 @@ class Time extends Component
      *
      * @throws Exception
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $invalidatedTitle = null)
     {
-        $this->name      = Str::slug($name, '_');
-        $this->id        = $id ?: $this->name;
-        $this->title     = $title ?: Str::title($name);
-        $this->value     = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
-        $this->label     = $label;
-        $this->labelType = $labelType ?: config('form_components.label_type');
+        $this->name             = Str::slug($name, '_');
+        $this->id               = $id ?: $this->name;
+        $this->title            = $title ?: Str::title($name);
+        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
+        $this->label            = $label;
+        $this->labelType        = $labelType ?: config('form_components.label_type');
+        $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
@@ -63,6 +69,6 @@ class Time extends Component
      */
     public function render()
     {
-        return view('form-components::form.time');
+        return view('laravel-form-components::form.time');
     }
 }

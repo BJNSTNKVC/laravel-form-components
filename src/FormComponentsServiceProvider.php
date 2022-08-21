@@ -5,6 +5,7 @@ namespace Bjnstnkvc\FormComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
 use Bjnstnkvc\FormComponents\Views\Components\Form\Error;
+use Bjnstnkvc\FormComponents\Views\Components\Form\Title;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,7 +46,7 @@ class FormComponentsServiceProvider extends ServiceProvider
         parent::__construct($app);
 
         $this->components  = config('form_components.components') ?: [];
-        $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
+        $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/laravel-form-components');
         $this->assetPath   = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
         $this->prefix      = config('form_components.prefix');
         $this->separator   = config('form_components.separator');
@@ -56,7 +57,7 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -71,7 +72,7 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->bootResources();
         $this->bootBladeComponents();
@@ -84,9 +85,9 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function bootResources()
+    private function bootResources(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views/components', 'form-components');
+        $this->loadViewsFrom(__DIR__ . '/resources/views/components', 'laravel-form-components');
     }
 
     /**
@@ -94,7 +95,7 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function bootBladeComponents()
+    private function bootBladeComponents(): void
     {
         foreach ($this->components as $alias => $class) {
             Blade::component($class, $this->prefix . $this->separator . $alias);
@@ -108,7 +109,7 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function bootPublishing()
+    private function bootPublishing(): void
     {
         // Publish Form Component Config file.
         $this->publishes([
@@ -117,22 +118,22 @@ class FormComponentsServiceProvider extends ServiceProvider
 
         // Publish Form Component Styles.
         $this->publishes([
-            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/form-components.css',
-            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/form-components.min.css',
+            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/laravel-form-components.css',
+            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/laravel-form-components.min.css',
         ], 'form-styles');
 
         // Publish Form Component Scripts.
         $this->publishes([
-            __DIR__ . '/public/js/form-components.js'     => $this->publishPath . '/js/form-components.js',
-            __DIR__ . '/public/js/form-components.min.js' => $this->publishPath . '/js/form-components.min.js',
+            __DIR__ . '/public/js/form-components.js'     => $this->publishPath . '/js/laravel-form-components.js',
+            __DIR__ . '/public/js/form-components.min.js' => $this->publishPath . '/js/laravel-form-components.min.js',
         ], 'form-scripts');
 
         // Publish Form Component Styles and Scripts.
         $this->publishes([
-            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/form-components.css',
-            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/form-components.min.css',
-            __DIR__ . '/public/js/form-components.js'       => $this->publishPath . '/js/form-components.js',
-            __DIR__ . '/public/js/form-components.min.js'   => $this->publishPath . '/js/form-components.min.js',
+            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/laravel-form-components.css',
+            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/laravel-form-components.min.css',
+            __DIR__ . '/public/js/form-components.js'       => $this->publishPath . '/js/laravel-form-components.js',
+            __DIR__ . '/public/js/form-components.min.js'   => $this->publishPath . '/js/laravel-form-components.min.js',
         ], 'form-resources');
     }
 
@@ -141,18 +142,18 @@ class FormComponentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function bootDirectives()
+    private function bootDirectives(): void
     {
         Blade::directive('componentStyles', function ($type) {
             $type = str_replace(['\'', '"'], '', $type);
-            $file = $type === 'full' ? 'form-components.css' : 'form-components.min.css';
+            $file = $type === 'full' ? 'laravel-form-components.css' : 'laravel-form-components.min.css';
 
             return "<link href='" . asset($this->assetPath . '/css/' . $file) . "' rel='stylesheet'>";
         });
 
         Blade::directive('componentScripts', function ($type) {
             $type = str_replace(['\'', '"'], '', $type);
-            $file = $type === 'full' ? 'form-components.js' : 'form-components.min.js';
+            $file = $type === 'full' ? 'laravel-form-components.js' : 'laravel-form-components.min.js';
 
             return "<script src='" . asset($this->assetPath . '/js/' . $file) . "' defer></script>";
         });

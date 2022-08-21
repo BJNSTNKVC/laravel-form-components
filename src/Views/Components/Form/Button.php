@@ -53,6 +53,6 @@ class Button extends Component
      */
     public function render()
     {
-        return view('form-components::form.button');
+        return view('laravel-form-components::form.button');
     }
 }
