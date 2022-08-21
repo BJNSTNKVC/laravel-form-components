@@ -8,7 +8,7 @@ A collection of pre-made simple Laravel Blade form components.
 
 You can install the package via composer:
 
-    composer require bjnstnkvc/laravel-form-components
+    composer require bjnstnkvc/form-components
 
 The package will automatically register its service provider.
 
