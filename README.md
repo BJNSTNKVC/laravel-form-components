@@ -66,7 +66,7 @@ Add following properties to your `.env` file.
     INTERACTIVE_COMPONENT=true
     AUTOEXPAND_TEXTAREA=false
 
-Detailed explanation for each property can be found [here](#config).
+Detailed explanation for each property can be found [here](#customisation).
 
 ### Form Components
 
