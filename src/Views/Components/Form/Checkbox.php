@@ -33,6 +33,11 @@ class Checkbox extends Component
     public $position;
 
     /**
+     * Checkbox component additional abel classes.
+     */
+    public $label;
+
+    /**
      * Checkbox component Title invalidation state.
      */
     public $invalidatedTitle;
@@ -42,13 +47,14 @@ class Checkbox extends Component
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null, $invalidatedTitle = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->title            = $title ?: Str::title($name);
         $this->id               = $id ?: $this->name;
         $this->value            = old($this->name) ? 'checked' : null;
         $this->position         = $position ?: config('form_components.position');
+        $this->label            = $label;
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 

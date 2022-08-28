@@ -1,16 +1,12 @@
-<label class="fc-form-group {{ $label }} tg-caption" type="{{ $labelType }}" @error($name) invalid @enderror for="{{ $name }}">
-
-    @if(! Str::contains($labelType, 'floating'))
-        <span class="form-group__title @if($invalidatedTitle && $errors->has($name)) fc-is-invalid @endif">{!! $title !!}</span>
-    @endif
-
+<label class="fc-form-group {{ $label }} tg-caption" label-type="{{ $labelType }}" @error($name) invalid @enderror for="{{ $name }}">
     <select {{ $attributes->merge(['class' => 'form-group__select']) }}
             id="{{ $id }}"
             name="{{ $name }}"
             value="{{ old($name) ?: $default }}"
-            interactive="{{ config('form_components.interactive') }}"
-            autofocus
-    >
+            border="{{ $border }}"
+            border-radius="{{ $borderRadius }}"
+            interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
+            autofocus>
         @if($placeholder)
             <option value="">{{ $placeholder }}</option>
         @endif
@@ -27,10 +23,6 @@
             @endforeach
         @endif
     </select>
-
-    @if(Str::contains($labelType, 'floating'))
-        <span class="form-group__title @if($invalidatedTitle && $errors->has($name)) fc-is-invalid @endif">{!! $title !!}</span>
-    @endif
-
+    <span class="form-group__title @if($invalidatedTitle && $errors->has($name)) fc-is-invalid @endif">{!! $title !!}</span>
     <x-form::error name="{{ $name  }}" />
 </label>

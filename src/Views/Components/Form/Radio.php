@@ -8,29 +8,34 @@ use Illuminate\View\Component;
 class Radio extends Component
 {
     /**
-     * Radio name.
+     * Radio component name.
      */
     public $name;
 
     /**
-     * Radio title.
+     * Radio component title.
      */
     public $title;
 
     /**
-     * Radio id.
+     * Radio component id.
      */
     public $id;
 
     /**
-     * Radio value.
+     * Radio component value.
      */
     public $value;
 
     /**
-     * Radio position.
+     * Radio component position.
      */
     public $position;
+
+    /**
+     * Radio component additional abel classes.
+     */
+    public $label;
 
     /**
      * Radio component Title invalidation state.
@@ -42,13 +47,14 @@ class Radio extends Component
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null, $invalidatedTitle = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->title            = $title ?: Str::title($name);
         $this->id               = $id ?: $this->name;
         $this->value            = old($this->name) ? 'checked' : null;
         $this->position         = $position ?: config('form_components.position');
+        $this->label            = $label;
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 

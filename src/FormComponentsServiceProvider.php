@@ -5,6 +5,7 @@ namespace Bjnstnkvc\FormComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
 use Bjnstnkvc\FormComponents\Views\Components\Form\Error;
+use Bjnstnkvc\FormComponents\Views\Components\Form\Label;
 use Bjnstnkvc\FormComponents\Views\Components\Form\Title;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -101,6 +102,7 @@ class FormComponentsServiceProvider extends ServiceProvider
             Blade::component($class, $this->prefix . $this->separator . $alias);
         }
 
+        Blade::component(Label::class, 'form::label');
         Blade::component(Error::class, 'form::error');
     }
 

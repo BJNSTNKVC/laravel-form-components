@@ -8,7 +8,7 @@ A collection of pre-made simple Laravel Blade form components.
 
 You can install the package via composer:
 
-    composer require bjnstnkvc/form-components 
+    composer require bjnstnkvc/form-components
 
 The package will automatically register its service provider.
 
@@ -59,8 +59,9 @@ Add following properties to your `.env` file.
 
     COMPONENT_PREFIX=form
     COMPONENT_SEPARATOR=::
-    COMPONENT_LABEL=column
-    CHECKBOX_POSITION=center
+    COMPONENT_LABEL=floating
+    COMPONENT_RADIUS=rounded-s
+    COMPONENT_POSITION=center
     BUTTON_RADIUS=rounded
     INVALIDATED_TITLE=false
     INTERACTIVE_COMPONENT=true
@@ -82,7 +83,8 @@ Following attributes are worth mentioning:
 - **placeholder** - Placeholder of the component (when not provided the `name` will be used).
 - **value** - Value of the component, under the hood it makes use of the `old()` helper.
 - **label** - Additional classes to be attached to the component label tag.
-- **label-type** - Style in which the components are going to be displayed (by default, it's set to column).
+- **label-type** - Style in which the components are going to be displayed (by default, it's set to `column`).
+- **border-radius** - Border radius of the component (by default, it's set to `rounded-s`).
 - **invalidated-title** - Determine whether the Component title would change on invalid input (by default, set
   to `false`).
 - **interactive** - Determine whether the validation errors should disappear on input (by default, set to `false`).
@@ -433,6 +435,31 @@ Depending on the `border-radius` choice, component will look as follows:
 |--------------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------|
 | ![Button Squared](docs/images/components/button/Squared.png) | ![Button Rounded Small](docs/images/components/button/Rounded%20Small.png) | ![Button Rounded Medium](docs/images/components/button/Rounded%20Medium.png) | ![Button Rounded](docs/images/components/button/Rounded.png) |
 
+## Border
+
+All components come with two different border styles, `full` and `bottom`. In order to change component border style,
+add `border` property equal to one of the options listed above to your component of choice.
+If you'd like to set a certain border style by default for all components, simply add **COMPONENT_BORDER**
+property to your `.env` file.
+
+Depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                               | label-type="row"                                            | label-type="floating"                                                 |
+|-------------------------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------|
+| ![Border Bottom Column](docs/images/components/border/Column.png) | ![Border Bottom Row](docs/images/components/border/Row.png) | ![Border Bottom Floating](docs/images/components/border/Floating.gif) |
+
+
+## Border Radius
+
+All components come with three different border radius styles, `squared`, `rounded-s`, `rounded`. In order to change component border radius style,
+add `border-radius` property equal to one of the options listed above to your component of choice.
+If you'd like to set a certain border radius style by default for all components, simply add **COMPONENT_RADIUS**
+property to your `.env` file.
+
+| border-radius="squared"                                                      | border-radius="rounded-s"                                                                  | border-radius="rounded"                                                      |
+|------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| ![Border Radius Squared](docs/images/components/border%20radius/Squared.png) | ![Border Radius Rounded Small](docs/images/components/border%20radius/Rounded%20Small.png) | ![Border Radius Rounded](docs/images/components/border%20radius/Rounded.png) |
+
 ## Invalidated Title
 
 All components are shipped with an ability to highlight component title in case the filed was invalid. In order to turn this feature on,
@@ -472,8 +499,12 @@ property to your `.env` file.
     - Configurable via `.env` **COMPONENT_LABEL** property.
 
 
+- **component_radius** - *Form Components default border radius (options: squared, rounded-s, rounded).*
+    - Configurable via `.env` **COMPONENT_RADIUS** property.
+
+
 - **position** - *Form Components default checkbox/radio position, defaults to 'center' (options: left, center).*
-    - Configurable via `.env` **CHECKBOX_POSITION** property.
+    - Configurable via `.env` **COMPONENT_POSITION** property.
 
 
 - **button_radius** - *Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).*
@@ -490,6 +521,10 @@ property to your `.env` file.
 
 - **auto_expand** - *Determine whether the Text Area height should expand with input.*
     - Configurable via `.env` **AUTOEXPAND_TEXTAREA** property.
+
+> **Note:** You might need to clear config cache using `php artisan cache:clear` command after you make changes to `.env`
+ file.
+
 
 ### Publishing
 

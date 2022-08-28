@@ -59,6 +59,16 @@ class Select extends Component
     public $labelType;
 
     /**
+     * Select component border style.
+     */
+    public $border;
+
+    /**
+     * Select component border radius.
+     */
+    public $borderRadius;
+
+    /**
      * Select component Title invalidation state.
      */
     public $invalidatedTitle;
@@ -73,7 +83,7 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $placeholder = null, $label = null, $labelType = null, $invalidatedTitle = null, $default = null)
+    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $placeholder = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $default = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
@@ -85,6 +95,8 @@ class Select extends Component
         $this->placeholder      = $placeholder;
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
+        $this->border           = $border ?: config('form_components.component_border');
+        $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->default          = $default;
     }

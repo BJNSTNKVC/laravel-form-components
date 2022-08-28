@@ -39,8 +39,14 @@ return [
     // Form Components default label type (options: column, row, floating).
     'label_type'        => env('COMPONENT_LABEL', 'column'),
 
+    // Form Components default border style (options: bottom, full).
+    'component_border'  => env('COMPONENT_BORDER', 'full'),
+
+    // Form Components default border radius (options: squared, rounded-s, rounded).
+    'component_radius'  => env('COMPONENT_RADIUS', 'rounded-s'),
+
     // Form Components default checkbox/radio position (options: left, center).
-    'position'          => env('CHECKBOX_POSITION', 'center'),
+    'position'          => env('COMPONENT_POSITION', 'center'),
 
     // Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).
     'button_radius'     => env('BUTTON_RADIUS', 'rounded'),
@@ -49,8 +55,8 @@ return [
     'invalidated_title' => env('INVALIDATED_TITLE', false),
 
     // Determine whether the validation errors should disappear on input.
-    'interactive'       => env('INTERACTIVE_COMPONENT', false) ? 'true' : 'false',
+    'interactive'       => env('INTERACTIVE_COMPONENT', false),
 
     // Determine whether the Text Area height should expand with input.
-    'auto_expand'       => env('AUTOEXPAND_TEXTAREA', false) ? 'true' : 'false',
+    'auto_expand'       => env('AUTOEXPAND_TEXTAREA', false),
 ];

@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class Error extends Component
 {
     /**
-     * An Error name.
+     * Error component name.
      */
     public $name;
 

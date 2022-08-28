@@ -8,27 +8,27 @@ use Illuminate\View\Component;
 class Button extends Component
 {
     /**
-     * A Button name.
+     * Button component name.
      */
     public $name;
 
     /**
-     * A Button id.
+     * Button component id.
      */
     public $id;
 
     /**
-     * A Button title.
+     * Button component title.
      */
     public $title;
 
     /**
-     * A Button link.
+     * Button component link.
      */
     public $link;
 
     /**
-     * A Button border radius.
+     * Button component border radius.
      */
     public $borderRadius;
 

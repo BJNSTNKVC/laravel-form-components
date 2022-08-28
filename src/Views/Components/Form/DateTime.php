@@ -10,37 +10,47 @@ use Illuminate\View\Component;
 class DateTime extends Component
 {
     /**
-     * An DateTime component name.
+     * DateTime component name.
      */
     public $name;
 
     /**
-     * An DateTime component id.
+     * DateTime component id.
      */
     public $id;
 
     /**
-     * An DateTime component title.
+     * DateTime component title.
      */
     public $title;
 
     /**
-     * An DateTime component value.
+     * DateTime component value.
      */
     public $value;
 
     /**
-     * An DateTime component additional label classes.
+     * DateTime component additional label classes.
      */
     public $label;
 
     /**
-     * An DateTime component label type.
+     * DateTime component label type.
      */
     public $labelType;
 
     /**
-     * An DateTime component Title invalidation state.
+     * DateTime component border style.
+     */
+    public $border;
+
+    /**
+     * DateTime component border radius.
+     */
+    public $borderRadius;
+
+    /**
+     * DateTime component Title invalidation state.
      */
     public $invalidatedTitle;
 
@@ -51,7 +61,7 @@ class DateTime extends Component
      *
      * @throws Exception
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $invalidatedTitle = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
@@ -59,6 +69,8 @@ class DateTime extends Component
         $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toDateTimeLocalString() : $value);
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
+        $this->border           = $border ?: config('form_components.component_border');
+        $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
     }
 

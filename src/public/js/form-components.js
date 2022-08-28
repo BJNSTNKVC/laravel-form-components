@@ -18,7 +18,11 @@ function validate() {
 
     if (this.value === '' || ((this.type === 'checkbox' || this.type === 'radio') && ! this.checked)) {
         label.setAttribute('invalid', '');
-        title.classList.add('fc-is-invalid');
+
+        if (this.getAttribute('invalidated-title') === 'true') {
+            title.classList.add('fc-is-invalid');
+        }
+
         error.style.display = 'block';
 
         return;
