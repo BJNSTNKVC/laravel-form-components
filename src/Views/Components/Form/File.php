@@ -8,47 +8,47 @@ use Illuminate\View\Component;
 class File extends Component
 {
     /**
-     * Input component name.
+     * File component name.
      */
     public $name;
 
     /**
-     * Input component id.
+     * File component id.
      */
     public $id;
 
     /**
-     * Input component title.
+     * File component title.
      */
     public $title;
 
     /**
-     * Input component value.
+     * File component value.
      */
     public $value;
 
     /**
-     * Input component additional label classes.
+     * File component additional label classes.
      */
     public $label;
 
     /**
-     * Input component label type.
+     * File component label type.
      */
     public $labelType;
 
     /**
-     * Input component border style.
+     * File component border style.
      */
     public $border;
 
     /**
-     * Input component border radius.
+     * File component border radius.
      */
     public $borderRadius;
 
     /**
-     * Input component Title invalidation state.
+     * File component Title invalidation state.
      */
     public $invalidatedTitle;
 
