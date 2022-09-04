@@ -20,6 +20,7 @@ return [
         'time'      => Bjnstnkvc\FormComponents\Views\Components\Form\Time::class,
         'date-time' => Bjnstnkvc\FormComponents\Views\Components\Form\DateTime::class,
         'error'     => Bjnstnkvc\FormComponents\Views\Components\Form\Error::class,
+        'file'      => Bjnstnkvc\FormComponents\Views\Components\Form\File::class,
         'input'     => Bjnstnkvc\FormComponents\Views\Components\Form\Input::class,
         'password'  => Bjnstnkvc\FormComponents\Views\Components\Form\Password::class,
         'radio'     => Bjnstnkvc\FormComponents\Views\Components\Form\Radio::class,

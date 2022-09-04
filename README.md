@@ -366,6 +366,26 @@ In case the field was not valid, depending on the `label-type` choice, component
 > Date, Time and Date-Time components utilize built-in HTML elements. Additionally, you can pass a value to all three
 > fields which utilizes `Carbon` behind the scenes in order to parse the value prior to rendering the component.
 
+#### File
+
+```blade
+<x-form::file name="file" placeholder="File placeholder" />
+```
+
+Depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                               | label-type="row"                                            | label-type="floating"                                              |
+|-------------------------------------------------------------------|-------------------------------------------------------------|--------------------------------------------------------------------|
+| ![File Column Label Type](docs/images/components/column/File.png) | ![File Row Label Type](docs/images/components/row/File.png) | ![File Float Label Type](docs/images/components/floating/File.gif) |
+
+In case the field was not valid, depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                                        | label-type="row"                                                     |
+|----------------------------------------------------------------------------|----------------------------------------------------------------------|
+| ![File Column Label Error](docs/images/components/column/File%20Error.png) | ![File Row Label Error](docs/images/components/row/File%20Error.png) |
+
+> File component utilize built-in HTML element.
+
 ### Checkboxes and Radio Buttons
 
 #### Checkbox

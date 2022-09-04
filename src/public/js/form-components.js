@@ -33,6 +33,16 @@ function validate() {
     error.style.display = 'none';
 }
 
+<!-- File Element Script -->
+
+// Get all Date/DateTime elements.
+let files = document.querySelectorAll('input[type="file"]');
+
+// Assign an Event Listener to each Date/DateTime.
+for (let i = 0; i < files.length; i++) {
+    files[i].addEventListener('input', updateValue);
+}
+
 <!-- Select Element Script -->
 
 // Get all Select elements.
@@ -67,6 +77,15 @@ for (let i = 0; i < times.length; i++) {
  * Update Element value.
  */
 function updateValue() {
+    if (this.type === 'file') {
+        let label = this.closest('label');
+        let title = label.querySelector('.form-group__file-holder');
+        let file  = this.files.length >= 2 ? this.files.length + ' files' : this.value.split('\\').pop();
+
+        title.value = file;
+        title.setAttribute('value', file);
+    }
+
     this.setAttribute('value', this.value);
 }
 
@@ -85,5 +104,5 @@ for (let i = 0; i < textareas.length; i++) {
  */
 function resize() {
     this.style.height = 'auto';
-    this.style.height = this.scrollHeight + 4 + 'px';
+    this.style.height = this.scrollHeight + (this.getAttribute('border') === 'full' ? 4 : 2) + 'px';
 }
