@@ -7,60 +7,70 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Input extends Component
+class Search extends Component
 {
     /**
-     * Input component name.
+     * Search component name.
      */
     public $name;
 
     /**
-     * Input component id.
+     * Search component id.
      */
     public $id;
 
     /**
-     * Input component title.
+     * Search component title.
      */
     public $title;
 
     /**
-     * Input component value.
+     * Search component value.
      */
     public $value;
 
     /**
-     * Input component additional label classes.
+     * Search component additional label classes.
      */
     public $label;
 
     /**
-     * Input component label type.
+     * Search component label type.
      */
     public $labelType;
 
     /**
-     * Input component border style.
+     * Search component border style.
      */
     public $border;
 
     /**
-     * Input component border radius.
+     * Search component border radius.
      */
     public $borderRadius;
 
     /**
-     * Input component Title invalidation state.
+     * Search component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * Input component icon visibility state.
+     * Search component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * Input component icon.
+     * @var bool Determine Search component clearing state.
+     */
+    public $searchClearing;
+
+    /**
+     * @var string Search component 'clear' icon.
+     */
+    public $searchClearIcon;
+
+    /**
+     * Search component icon.
      */
     public $icon;
 
@@ -69,7 +79,7 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $searchClearing = null, $icon = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
@@ -81,7 +91,9 @@ class Input extends Component
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.input'));
+        $this->searchClearing  = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
+        $this->searchClearIcon = $this->renderSearchIcon(config('form_components.default_icons.search.clear'), 'clear');
+        $this->icon            = $this->renderIcon($icon ?: config('form_components.default_icons.search.icon'));
     }
 
     /**
@@ -107,12 +119,37 @@ class Input extends Component
     }
 
     /**
+     * Render component password visibility icons depending on the type.
+     *
+     * @param string $icon
+     * @param string $type
+     *
+     * @return false|string
+     */
+    public function renderSearchIcon(string $icon, string $type)
+    {
+        // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
+        if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
+            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon));
+        }
+
+        // If an icon is part of 'image_formats' array, render an icon as '<img>'
+        if (Str::contains($icon, config('form_components.image_formats'))) {
+            return '<img src="' . $icon . '" alt="' . $this->title . ' icon" class="form-group__icon--' . $type . '">';
+        }
+
+        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon);
+    }
+
+    /**
      * Get the view / contents that represent the component.
      *
      * @return View|Closure|string
      */
     public function render()
     {
-        return view('form-components::form.input');
+        return view('form-components::form.search');
     }
 }
+
+

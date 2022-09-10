@@ -5,8 +5,9 @@
             value="{{ old($name) ?: $default }}"
             border="{{ $border }}"
             border-radius="{{ $borderRadius }}"
-            interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
-            autofocus>
+            with-icon="{{ $showIcon && $icon && ! $attributes['multiple'] ? 'true' : 'false' }}"
+            interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}">
+
         @if($placeholder)
             <option value="">{{ $placeholder }}</option>
         @endif
@@ -23,6 +24,14 @@
             @endforeach
         @endif
     </select>
+
     <span class="form-group__title @if($invalidatedTitle && $errors->has($name)) fc-is-invalid @endif">{!! $title !!}</span>
+
+    @if($showIcon && $icon &&  ! $attributes['multiple'])
+        <span class="form-group__icon">
+            {!! $icon !!}
+        </span>
+    @endif
+
     <x-form::error name="{{ $name  }}" />
 </label>

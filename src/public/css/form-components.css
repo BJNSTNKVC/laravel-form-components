@@ -21,6 +21,24 @@
     border      : 2px solid currentColor;
 }
 
+.form-group__input[type=search]::-webkit-search-cancel-button {
+    display : none;
+    opacity : 0;
+}
+
+.form-group__input:is([type^='date'], [type='time'])::-webkit-inner-spin-button,
+.form-group__input:is([type^='date'], [type='time'])::-webkit-calendar-picker-indicator {
+    position           : absolute;
+    right              : 16px;
+    opacity            : 0;
+    -webkit-appearance : none;
+}
+
+.form-group__input:is([type^='date'], [type='time'])[border=bottom]::-webkit-inner-spin-button,
+.form-group__input:is([type^='date'], [type='time'])[border=bottom]::-webkit-calendar-picker-indicator {
+    right : 0;
+}
+
 .form-group__input:focus:not([type=radio]) {
     outline    : none;
     box-shadow : 0 0 4px 0 currentColor;
@@ -47,35 +65,33 @@
 }
 
 .form-group__select {
-    font-size           : inherit;
-    line-height         : inherit;
-    display             : block;
-    grid-area           : input;
-    box-sizing          : border-box;
-    width               : 100%;
-    height              : 40px;
-    margin              : 0;
-    padding             : 0 16px;
-    border              : 2px solid currentColor;
-    outline             : none;
-    background          : url('data:image/svg+xml,<svg height=\'10px\' width=\'10px\' viewBox=\'0 0 16 16\' fill=\'%23000000\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z\'/></svg>') no-repeat;
-    background-position : calc(100% - 20px) center;
-    appearance          : none;
-    -webkit-appearance  : none;
-    -moz-appearance     : none;
-    -ms-appearance      : none;
+    font-size          : inherit;
+    line-height        : inherit;
+    display            : block;
+    grid-area          : input;
+    box-sizing         : border-box;
+    width              : 100%;
+    height             : 40px;
+    margin             : 0;
+    padding            : 0 16px;
+    border             : 2px solid currentColor;
+    outline            : none;
+    appearance         : none;
+    -webkit-appearance : none;
+    -moz-appearance    : none;
+    -ms-appearance     : none;
 }
 
 .form-group__select[multiple] {
-    height              : calc(40px + 2 * 24px); /* Height + 2 Options * Options height */
-    background          : none;
-    background-position : initial;
+    overflow : auto;
+    height   : calc(40px + 2 * 24px); /* Height + 2 Options * Options height */
 }
 
 .form-group__textarea {
-    height  : auto;
-    padding : 8px 16px;
-    resize  : none;
+    height     : auto;
+    min-height : 40px;
+    padding    : 8px 16px;
+    resize     : none;
 }
 
 .form-group__textarea:focus {
@@ -86,6 +102,43 @@
 .form-group__title {
     font-weight : 600;
     grid-area   : title;
+}
+
+.form-group__icon {
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    grid-area       : input;
+    box-sizing      : border-box;
+    min-width       : 40px;
+    height          : 40px;
+    margin-left     : auto;
+    user-select     : none;
+    pointer-events  : none;
+    color           : inherit;
+    fill            : currentColor;
+}
+
+:is(.form-group__icon--clear, .form-group__icon--hide) {
+    display : none;
+}
+
+:is(.form-group__icon--show, .form-group__icon--hide, .form-group__icon--clear) {
+    pointer-events : auto;
+}
+
+:is(.form-group__input, .form-group__select, .form-group__textarea)[border=bottom] ~ .form-group__icon {
+    min-width : 24px;
+}
+
+.form-group__icon > :is(svg, img) {
+    flex-grow : 1;
+    color     : inherit;
+    fill      : currentColor;
+}
+
+.form-group__icon > :is(svg:last-of-type, img:last-of-type) {
+    padding : 0 8px;
 }
 
 .form-group__error {
@@ -111,16 +164,29 @@
     border-radius : 0;
 }
 
+.form-group__textarea[border=bottom] {
+    padding-top    : 8px;
+    padding-bottom : 8px;
+}
+
 .form-group__select[border=bottom] {
-    background-position : calc(100% - 4px) center;
+    /*  */
 }
 
 :is(.form-group__input, .form-group__select, .form-group__textarea)[border=bottom]:focus {
     box-shadow : 0 5px 5px -5px currentColor;
 }
 
-:is(.form-group__input, .form-group__select, .form-group__textarea)[icon=true] {
-    padding-right : 100px;
+:is(.form-group__input, .form-group__select, .form-group__textarea):is([with-icon=true], [with-visibility=true]) {
+    padding-right : 40px;
+}
+
+:is(.form-group__input, .form-group__select, .form-group__textarea)[border=bottom]:is([with-icon=true], [with-visibility=true]) {
+    padding-right : 40px;
+}
+
+:is(.form-group__input)[with-icon=true][with-visibility=true] {
+    padding-right : 70px;
 }
 
 .form-group__input.form-group__file {
@@ -129,7 +195,6 @@
     left     : 0;
     width    : 100%;
     height   : 100%;
-    cursor   : pointer;
     opacity  : 0;
 }
 
@@ -137,31 +202,8 @@
     display : none;
 }
 
-.form-group__input.form-group__file-holder {
-    padding-right       : 48px;
-    text-overflow       : ellipsis;
-    background          : url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12px" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M105.4 182.6c12.5 12.49 32.76 12.5 45.25 .001L224 109.3V352c0 17.67 14.33 32 32 32c17.67 0 32-14.33 32-32V109.3l73.38 73.38c12.49 12.49 32.75 12.49 45.25-.001c12.49-12.49 12.49-32.75 0-45.25l-128-128C272.4 3.125 264.2 0 256 0S239.6 3.125 233.4 9.375L105.4 137.4C92.88 149.9 92.88 170.1 105.4 182.6zM480 352h-160c0 35.35-28.65 64-64 64s-64-28.65-64-64H32c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32v-96C512 366.3 497.7 352 480 352zM432 456c-13.2 0-24-10.8-24-24c0-13.2 10.8-24 24-24s24 10.8 24 24C456 445.2 445.2 456 432 456z"/></svg>') no-repeat;
-    background-position : calc(100% - 20px) center;
-}
-
-.form-group__input.form-group__file-holder[border='bottom'] {
-    padding-right       : 32px;
-    border-radius       : 0;
-    background-position : calc(100% - 4px) center;
-}
-
-.form-group__file-button[border-radius='rounded-s'] {
-    border-radius : 0 8px 8px 0;
-}
-
-.form-group__file-button[border-radius='rounded'] {
-    border-radius : 0 100vw 100vw 0;
-}
-
-.form-group__file-button[border='bottom'] {
-    border        : none;
-    border-bottom : 2px solid rgb(0, 0, 0, 1);
-    border-radius : 0;
+.form-group__file-holder {
+    text-overflow : ellipsis;
 }
 
 .fc-form-group[label-type=column] {

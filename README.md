@@ -59,19 +59,23 @@ Add following properties to your `.env` file.
 
     COMPONENT_PREFIX=form
     COMPONENT_SEPARATOR=::
-    COMPONENT_LABEL=floating
+    COMPONENT_LABEL=column
+    COMPONENT_BORDER=full
     COMPONENT_RADIUS=rounded-s
+    COMPONENT_ICONS=true
     COMPONENT_POSITION=center
     BUTTON_RADIUS=rounded
     INVALIDATED_TITLE=false
-    INTERACTIVE_COMPONENT=true
+    PASSWORD_VISIBILITY=true
+    SEARCH_CLEARING=true
     AUTOEXPAND_TEXTAREA=false
+    INTERACTIVE_COMPONENT=false
 
 Detailed explanation for each property can be found [here](#customisation).
 
 ### Form Components
 
-In order to use the Form components, use standard Blade Component syntax from the docs. By the default, the Form
+In order to use the Form components, use standard [Blade Component syntax from the [docs](https://laravel.com/docs/9.x/blade#rendering-components). By the default, the Form
 components can be used with the `form` prefix.
 Form components are using attributes which dictate how the component will be rendered.
 
@@ -84,9 +88,12 @@ Following attributes are worth mentioning:
 - **value** - Value of the component, under the hood it makes use of the `old()` helper.
 - **label** - Additional classes to be attached to the component label tag.
 - **label-type** - Style in which the components are going to be displayed (by default, it's set to `column`).
+- **border** - Border radius of the component (by default, it's set to `rounded-s`).
 - **border-radius** - Border radius of the component (by default, it's set to `rounded-s`).
-- **invalidated-title** - Determine whether the Component title would change on invalid input (by default, set
+- **invalidated-title** - Determine whether the component title would change on invalid input (by default, set
   to `false`).
+- **show-icon** - Determine whether the component icon  errors should appear (by default, set to `true`).
+- **icon** - Component icon in case `show-icon` property is set to `true`. Note that some components have a default icon set in `form_components.php` config file (more can be found [here](#customisation)).
 - **interactive** - Determine whether the validation errors should disappear on input (by default, set to `false`).
 
 All other attributes wil be merged directly on to the HTML component element.
@@ -126,6 +133,50 @@ In case the field was not valid, depending on the `label-type` choice, component
 | label-type="column"                                                                | label-type="row"                                                             |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
 | ![Password Column Label Error](docs/images/components/column/Password%20Error.png) | ![Password Row Label Error](docs/images/components/row/Password%20Error.png) |
+
+Password components comes with 'Password Visibility' feature which is by default turned on. 
+
+![Password Visibility](docs/images/components/Password%20Visibility.gif)
+
+In case you'd like to disable it, add `password-visibility="false"` to the component. Alternatively, you can disable this feature for all password fields through the project by setting `PASSWORD_VISIBILITY=false` in your `.env` file.
+
+#### Email
+
+```blade
+<x-form::email name="email" placeholder="Email placeholder" />
+```
+
+Depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                                 | label-type="row"                                              | label-type="floating"                                                |
+|---------------------------------------------------------------------|---------------------------------------------------------------|----------------------------------------------------------------------|
+| ![Email Column Label Type](docs/images/components/column/Email.png) | ![Email Row Label Type](docs/images/components/row/Email.png) | ![Email Float Label Type](docs/images/components/floating/Email.gif) |
+
+In case the field was not valid, depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                                          | label-type="row"                                                       |
+|------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| ![Email Column Label Error](docs/images/components/column/Email%20Error.png) | ![Email Row Label Error](docs/images/components/row/Email%20Error.png) |_
+
+
+#### Search
+
+```blade
+<x-form::search name="search" placeholder="Search placeholder" />
+```
+
+Depending on the `label-type` choice, component will look as follows:
+
+| label-type="column"                                                   | label-type="row"                                                | label-type="floating"                                                  |
+|-----------------------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------|
+| ![Search Column Label Type](docs/images/components/column/Search.png) | ![Search Row Label Type](docs/images/components/row/Search.png) | ![Search Float Label Type](docs/images/components/floating/Search.gif) |
+
+Search components comes with 'Search Clearing' feature which is by default turned on.
+
+![Search Clearing](docs/images/components/Search%20Clear.gif)
+
+In case you'd like to disable it, add `search-clearing="false"` to the component. Alternatively, you can disable this feature for all Search fields through the project by setting `SEARCH_CLEARING=false` in your `.env` file.
+
 
 #### Textarea
 
@@ -492,7 +543,7 @@ property to your `.env` file.
 | ![Invalidated Title Column Label Type](docs/images/components/column/Invalidated%20Title.png) | ![Invalidated Title Row Label Type](docs/images/components/row/Invalidated%20Title.png) | ![Invalidated Title Float Label Type](docs/images/components/floating/Invalidated%20Title.gif) |
 
 ## Interactivity
-    
+
 All components are shipped with an ability to remove validation errors on input. In order to turn this feature on,
 add `interactive="true"` to your component of choice.
 If you'd like this feature to be turned on by default for all components, simply add **INTERACTIVE_COMPONENT=true**
@@ -523,6 +574,10 @@ property to your `.env` file.
     - Configurable via `.env` **COMPONENT_RADIUS** property.
 
 
+- **component_icons** - *Form Components default icon visibility state.*
+    - Configurable via `.env` **COMPONENT_ICONS** property.
+
+
 - **position** - *Form Components default checkbox/radio position, defaults to 'center' (options: left, center).*
     - Configurable via `.env` **COMPONENT_POSITION** property.
 
@@ -532,19 +587,34 @@ property to your `.env` file.
 
 
 - **invalidated_title** - *Determine whether the Component title would change on invalid input.*
-    - Configurable via `.env` **INVALIDATED_TITLE** property.
+  - Configurable via `.env` **INVALIDATED_TITLE** property.
+
+
+- **password_visibility** - *Determine whether the password visibility button is rendered.*
+    - Configurable via `.env` **PASSWORD_VISIBILITY** property.
+
+
+- **search_clearing** - *Determine whether the search clearing button is rendered.*
+    - Configurable via `.env` **SEARCH_CLEARING** property.
+
+
+- **auto_expand** - *Determine whether the Text Area height should expand with input.*
+    - Configurable via `.env` **AUTOEXPAND_TEXTAREA** property.
 
 
 - **interactive** - *Determine whether the errors should disappear on input.*
     - Configurable via `.env` **INTERACTIVE_COMPONENT** property.
 
 
-- **auto_expand** - *Determine whether the Text Area height should expand with input.*
-    - Configurable via `.env` **AUTOEXPAND_TEXTAREA** property.
+- **image_formats** - *List of image formats to be rendered as <img> tag* 
+  - Example 1 : `svg` format ***IS*** part of the array, component icon will be rendered as `<img src="...">` tag. 
+  - Example 2 : `svg` format is ***NOT*** part of the array, component icon will be rendered as `<svg>...</svg>` tag. 
+
+
+- **default_icons** - *List of default icons for each component.* 
 
 > **Note:** You might need to clear config cache using `php artisan cache:clear` command after you make changes to `.env`
- file.
-
+file.
 
 ### Publishing
 

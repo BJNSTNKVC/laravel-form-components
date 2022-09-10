@@ -5,60 +5,60 @@ namespace Bjnstnkvc\FormComponents\Views\Components\Form;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class File extends Component
+class Email extends Component
 {
     /**
-     * File component name.
+     * Email component name.
      */
     public $name;
 
     /**
-     * File component id.
+     * Email component id.
      */
     public $id;
 
     /**
-     * File component title.
+     * Email component title.
      */
     public $title;
 
     /**
-     * File component value.
+     * Email component value.
      */
     public $value;
 
     /**
-     * File component additional label classes.
+     * Email component additional label classes.
      */
     public $label;
 
     /**
-     * File component label type.
+     * Email component label type.
      */
     public $labelType;
 
     /**
-     * File component border style.
+     * Email component border style.
      */
     public $border;
 
     /**
-     * File component border radius.
+     * Email component border radius.
      */
     public $borderRadius;
 
     /**
-     * File component title invalidation state.
+     * Email component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * File component icon visibility state.
+     * Email component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * File component icon.
+     * Email component icon.
      */
     public $icon;
 
@@ -79,7 +79,7 @@ class File extends Component
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.file'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.input'));
     }
 
     /**
@@ -111,6 +111,6 @@ class File extends Component
      */
     public function render()
     {
-        return view('form-components::form.file');
+        return view('form-components::form.email');
     }
 }
