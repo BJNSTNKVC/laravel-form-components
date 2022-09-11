@@ -649,6 +649,7 @@ or
 
     php artisan components:restore Input Password Button --delete
 
+> **Note:** You might need to clear config cache using `php artisan cache:clear` command after you publish or restore the components.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.

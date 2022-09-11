@@ -40,7 +40,9 @@ class PublishesComponents extends Command
         }, $this->argument('component'));
 
         // Get 'key - value' pairs of components that the User inputted, or return all if no arguments where passed.
-        $components = $arguments ? Arr::only(config('form_components.components'), $arguments) : config('form_components.components');
+        $components = $arguments
+            ? Arr::only(config('form_components.components'), $arguments)
+            : config('form_components.components');
 
         foreach ($components as $view => $class) {
             // Get the class name from the Component config path.

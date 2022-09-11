@@ -1,6 +1,6 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
 use Illuminate\Support\Str;
 use Illuminate\View\Component;

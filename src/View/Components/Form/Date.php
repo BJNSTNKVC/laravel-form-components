@@ -1,64 +1,66 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Email extends Component
+class Date extends Component
 {
     /**
-     * Email component name.
+     * Date component name.
      */
     public $name;
 
     /**
-     * Email component id.
+     * Date component id.
      */
     public $id;
 
     /**
-     * Email component title.
+     * Date component title.
      */
     public $title;
 
     /**
-     * Email component value.
+     * Date component value.
      */
     public $value;
 
     /**
-     * Email component additional label classes.
+     * Date component additional abel classes.
      */
     public $label;
 
     /**
-     * Email component label type.
+     * Date component label type.
      */
     public $labelType;
 
     /**
-     * Email component border style.
+     * Date component border style.
      */
     public $border;
 
     /**
-     * Email component border radius.
+     * Date component border radius.
      */
     public $borderRadius;
 
     /**
-     * Email component Title invalidation state.
+     * Date component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * Email component icon visibility state.
+     * Date component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * Email component icon.
+     * Date component icon.
      */
     public $icon;
 
@@ -66,20 +68,22 @@ class Email extends Component
      * Create a new component instance.
      *
      * @return void
+     *
+     * @throws Exception
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
         $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: $value;
+        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toDateString() : $value);
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
         $this->border           = $border ?: config('form_components.component_border');
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.email'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.date'));
     }
 
     /**
@@ -111,6 +115,6 @@ class Email extends Component
      */
     public function render()
     {
-        return view('form-components::form.email');
+        return view('form-components::form.date');
     }
 }

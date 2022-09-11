@@ -1,66 +1,65 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class DateTime extends Component
+class Time extends Component
 {
     /**
-     * DateTime component name.
+     * Time component name.
      */
     public $name;
 
     /**
-     * DateTime component id.
+     * Time component id.
      */
     public $id;
 
     /**
-     * DateTime component title.
+     * Time component title.
      */
     public $title;
 
     /**
-     * DateTime component value.
+     * Time component value.
      */
     public $value;
 
     /**
-     * DateTime component additional label classes.
+     * Time component additional label classes.
      */
     public $label;
 
     /**
-     * DateTime component label type.
+     * Time component label type.
      */
     public $labelType;
 
     /**
-     * DateTime component border style.
+     * Time component border style.
      */
     public $border;
 
     /**
-     * DateTime component border radius.
+     * Time component border radius.
      */
     public $borderRadius;
 
     /**
-     * DateTime component Title invalidation state.
+     * Time component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * DateTime component icon visibility state.
+     * Date component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * DateTime component icon.
+     * Time component icon.
      */
     public $icon;
 
@@ -68,22 +67,20 @@ class DateTime extends Component
      * Create a new component instance.
      *
      * @return void
-     *
-     * @throws Exception
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
         $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toDateTimeString() : $value);
+        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
         $this->border           = $border ?: config('form_components.component_border');
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.date-time'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.time'));
     }
 
     /**
@@ -115,6 +112,6 @@ class DateTime extends Component
      */
     public function render()
     {
-        return view('form-components::form.date-time');
+        return view('form-components::form.time');
     }
 }

@@ -1,65 +1,64 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Time extends Component
+class Textarea extends Component
 {
     /**
-     * Time component name.
+     * Textarea component name.
      */
     public $name;
 
     /**
-     * Time component id.
+     * Textarea component id.
      */
     public $id;
 
     /**
-     * Time component title.
+     * Textarea component title.
      */
     public $title;
 
     /**
-     * Time component value.
+     * Textarea component value.
      */
     public $value;
 
     /**
-     * Time component additional label classes.
+     * Textarea component additional label classes.
      */
     public $label;
 
     /**
-     * Time component label type.
+     * Textarea component label type.
      */
     public $labelType;
 
     /**
-     * Time component border style.
+     * Textarea component border style.
      */
     public $border;
 
     /**
-     * Time component border radius.
+     * Textarea component border radius.
      */
     public $borderRadius;
 
     /**
-     * Time component Title invalidation state.
+     * Textarea component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * Date component icon visibility state.
+     * Textarea component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * Time component icon.
+     * Textarea component icon.
      */
     public $icon;
 
@@ -73,14 +72,14 @@ class Time extends Component
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
         $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
+        $this->value            = old($this->name) ?: $value;
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
         $this->border           = $border ?: config('form_components.component_border');
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.time'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.textarea'));
     }
 
     /**
@@ -112,6 +111,6 @@ class Time extends Component
      */
     public function render()
     {
-        return view('form-components::form.time');
+        return view('form-components::form.textarea');
     }
 }

@@ -1,44 +1,44 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Checkbox extends Component
+class Radio extends Component
 {
     /**
-     * Checkbox component name.
+     * Radio component name.
      */
     public $name;
 
     /**
-     * Checkbox component title.
+     * Radio component title.
      */
     public $title;
 
     /**
-     * Checkbox component id.
+     * Radio component id.
      */
     public $id;
 
     /**
-     * Checkbox component value.
+     * Radio component value.
      */
     public $value;
 
     /**
-     * Checkbox component position.
+     * Radio component position.
      */
     public $position;
 
     /**
-     * Checkbox component additional abel classes.
+     * Radio component additional abel classes.
      */
     public $label;
 
     /**
-     * Checkbox component Title invalidation state.
+     * Radio component Title invalidation state.
      */
     public $invalidatedTitle;
 
@@ -65,6 +65,6 @@ class Checkbox extends Component
      */
     public function render()
     {
-        return view('form-components::form.checkbox');
+        return view('form-components::form.radio');
     }
 }

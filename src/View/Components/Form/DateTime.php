@@ -1,66 +1,66 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
-use Closure;
-use Illuminate\Contracts\View\View;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Input extends Component
+class DateTime extends Component
 {
     /**
-     * Input component name.
+     * DateTime component name.
      */
     public $name;
 
     /**
-     * Input component id.
+     * DateTime component id.
      */
     public $id;
 
     /**
-     * Input component title.
+     * DateTime component title.
      */
     public $title;
 
     /**
-     * Input component value.
+     * DateTime component value.
      */
     public $value;
 
     /**
-     * Input component additional label classes.
+     * DateTime component additional label classes.
      */
     public $label;
 
     /**
-     * Input component label type.
+     * DateTime component label type.
      */
     public $labelType;
 
     /**
-     * Input component border style.
+     * DateTime component border style.
      */
     public $border;
 
     /**
-     * Input component border radius.
+     * DateTime component border radius.
      */
     public $borderRadius;
 
     /**
-     * Input component Title invalidation state.
+     * DateTime component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * Input component icon visibility state.
+     * DateTime component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * Input component icon.
+     * DateTime component icon.
      */
     public $icon;
 
@@ -68,20 +68,22 @@ class Input extends Component
      * Create a new component instance.
      *
      * @return void
+     *
+     * @throws Exception
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
         $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: $value;
+        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toDateTimeString() : $value);
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
         $this->border           = $border ?: config('form_components.component_border');
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.input'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.date-time'));
     }
 
     /**
@@ -109,10 +111,10 @@ class Input extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return View|Closure|string
+     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
     {
-        return view('form-components::form.input');
+        return view('form-components::form.date-time');
     }
 }

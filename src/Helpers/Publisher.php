@@ -2,8 +2,6 @@
 
 namespace Bjnstnkvc\FormComponents\Helpers;
 
-use Carbon\Carbon;
-
 class Publisher
 {
     /**
@@ -77,13 +75,13 @@ class Publisher
 
     public function __construct()
     {
-        $this->classRoot          = __DIR__ . '\..\Views\Components\Form\\';
+        $this->classRoot          = __DIR__ . '\..\View\Components\Form\\';
         $this->viewsRoot          = __DIR__ . '\..\resources\views\components\form\\';
         $this->configPath         = config_path('form_components.php');
         $this->viewPath           = resource_path('views\components\form\\');
-        $this->defaultNamespace   = 'Bjnstnkvc\FormComponents\Views\Components\Form';
+        $this->defaultNamespace   = 'Bjnstnkvc\FormComponents\View\Components\Form';
         $this->publishedNamespace = 'App\View\Components\Form';
-        $this->defaultPath        = 'Bjnstnkvc\FormComponents\Views\Components\Form\\';
+        $this->defaultPath        = 'Bjnstnkvc\FormComponents\View\Components\Form\\';
         $this->publishedPath      = 'App\View\Components\Form\\';
         $this->defaultBlade       = 'form-components::form.';
         $this->publishedBlade     = 'components.form.';

@@ -1,64 +1,66 @@
 <?php
 
-namespace Bjnstnkvc\FormComponents\Views\Components\Form;
+namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Textarea extends Component
+class Input extends Component
 {
     /**
-     * Textarea component name.
+     * Input component name.
      */
     public $name;
 
     /**
-     * Textarea component id.
+     * Input component id.
      */
     public $id;
 
     /**
-     * Textarea component title.
+     * Input component title.
      */
     public $title;
 
     /**
-     * Textarea component value.
+     * Input component value.
      */
     public $value;
 
     /**
-     * Textarea component additional label classes.
+     * Input component additional label classes.
      */
     public $label;
 
     /**
-     * Textarea component label type.
+     * Input component label type.
      */
     public $labelType;
 
     /**
-     * Textarea component border style.
+     * Input component border style.
      */
     public $border;
 
     /**
-     * Textarea component border radius.
+     * Input component border radius.
      */
     public $borderRadius;
 
     /**
-     * Textarea component Title invalidation state.
+     * Input component Title invalidation state.
      */
     public $invalidatedTitle;
 
     /**
-     * Textarea component icon visibility state.
+     * Input component icon visibility state.
      */
     public $showIcon;
 
     /**
-     * Textarea component icon.
+     * Input component icon.
      */
     public $icon;
 
@@ -79,7 +81,7 @@ class Textarea extends Component
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.textarea'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.input'));
     }
 
     /**
@@ -107,10 +109,10 @@ class Textarea extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
     public function render()
     {
-        return view('form-components::form.textarea');
+        return view('form-components::form.input');
     }
 }

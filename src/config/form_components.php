@@ -7,52 +7,52 @@ return [
     | Form Components
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which components you would like to user as well
+    | Here you may specify which components you would like to use as well
     | as their default behaviours.
     |
     */
 
     // List of all Components that are going to be loaded. Feel free to comment out the components you don't need.
     'components'          => [
-        'button'    => Bjnstnkvc\FormComponents\Views\Components\Form\Button::class,
-        'checkbox'  => Bjnstnkvc\FormComponents\Views\Components\Form\Checkbox::class,
-        'date'      => Bjnstnkvc\FormComponents\Views\Components\Form\Date::class,
-        'date-time' => Bjnstnkvc\FormComponents\Views\Components\Form\DateTime::class,
-        'email'     => Bjnstnkvc\FormComponents\Views\Components\Form\Email::class,
-        'error'     => Bjnstnkvc\FormComponents\Views\Components\Form\Error::class,
-        'file'      => Bjnstnkvc\FormComponents\Views\Components\Form\File::class,
-        'input'     => Bjnstnkvc\FormComponents\Views\Components\Form\Input::class,
-        'password'  => Bjnstnkvc\FormComponents\Views\Components\Form\Password::class,
-        'radio'     => Bjnstnkvc\FormComponents\Views\Components\Form\Radio::class,
-        'search'    => Bjnstnkvc\FormComponents\Views\Components\Form\Search::class,
-        'textarea'  => Bjnstnkvc\FormComponents\Views\Components\Form\Textarea::class,
-        'time'      => Bjnstnkvc\FormComponents\Views\Components\Form\Time::class,
-        'select'    => Bjnstnkvc\FormComponents\Views\Components\Form\Select::class,
+        'button'    => Bjnstnkvc\FormComponents\View\Components\Form\Button::class,
+        'checkbox'  => Bjnstnkvc\FormComponents\View\Components\Form\Checkbox::class,
+        'date'      => Bjnstnkvc\FormComponents\View\Components\Form\Date::class,
+        'date-time' => Bjnstnkvc\FormComponents\View\Components\Form\DateTime::class,
+        'email'     => Bjnstnkvc\FormComponents\View\Components\Form\Email::class,
+        'error'     => Bjnstnkvc\FormComponents\View\Components\Form\Error::class,
+        'file'      => Bjnstnkvc\FormComponents\View\Components\Form\File::class,
+        'input'     => Bjnstnkvc\FormComponents\View\Components\Form\Input::class,
+        'password'  => Bjnstnkvc\FormComponents\View\Components\Form\Password::class,
+        'radio'     => Bjnstnkvc\FormComponents\View\Components\Form\Radio::class,
+        'search'    => Bjnstnkvc\FormComponents\View\Components\Form\Search::class,
+        'textarea'  => Bjnstnkvc\FormComponents\View\Components\Form\Textarea::class,
+        'time'      => Bjnstnkvc\FormComponents\View\Components\Form\Time::class,
+        'select'    => Bjnstnkvc\FormComponents\View\Components\Form\Select::class,
     ],
 
     // Path used to publish component config files.
     'publish_path'        => public_path('vendor/form-components'),
 
     // Form Components prefix (E.g. <x-form-button>).
-    'prefix'              => env('COMPONENT_PREFIX', 'form'),
+    'prefix'              => env('FORM_COMPONENTS_PREFIX', 'form'),
 
     // Form Components separator (E.g. <x-form::button>).
-    'separator'           => env('COMPONENT_SEPARATOR', '::'),
+    'separator'           => env('FORM_COMPONENTS_SEPARATOR', '::'),
 
     // Form Components default label type (options: column, row, floating).
-    'label_type'          => env('COMPONENT_LABEL', 'column'),
+    'label_type'          => env('FORM_COMPONENTS_LABEL', 'column'),
 
     // Form Components default border style (options: bottom, full).
-    'component_border'    => env('COMPONENT_BORDER', 'full'),
+    'component_border'    => env('FORM_COMPONENTS_BORDER', 'full'),
 
     // Form Components default border radius (options: squared, rounded-s, rounded).
-    'component_radius'    => env('COMPONENT_RADIUS', 'rounded-s'),
+    'component_radius'    => env('FORM_COMPONENTS_RADIUS', 'rounded-s'),
 
     // Form Components default icon visibility state.
-    'component_icons'     => env('COMPONENT_ICONS', true),
+    'component_icons'     => env('FORM_COMPONENTS_ICONS', true),
 
     // Form Components default checkbox/radio position (options: left, center).
-    'position'            => env('COMPONENT_POSITION', 'center'),
+    'position'            => env('FORM_COMPONENTS_POSITION', 'center'),
 
     // Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).
     'button_radius'       => env('BUTTON_RADIUS', 'rounded'),
@@ -106,7 +106,7 @@ return [
         ],
         'search'    => [
             'icon'  => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.3851 15.4457C11.7348 17.5684 7.85537 17.4013 5.39858 14.9445C2.76254 12.3085 2.76254 8.03464 5.39858 5.3986C8.03462 2.76256 12.3085 2.76256 14.9445 5.3986C17.4013 7.85538 17.5684 11.7348 15.4457 14.3851L20.6014 19.5407C20.8943 19.8336 20.8943 20.3085 20.6014 20.6014C20.3085 20.8943 19.8336 20.8943 19.5407 20.6014L14.3851 15.4457ZM6.45924 13.8839C4.40899 11.8336 4.40899 8.50951 6.45924 6.45926C8.5095 4.40901 11.8336 4.40901 13.8839 6.45926C15.9326 8.50801 15.9341 11.8287 13.8884 13.8794C13.8869 13.8809 13.8854 13.8823 13.8838 13.8839C13.8823 13.8854 13.8808 13.8869 13.8794 13.8884C11.8287 15.9341 8.50799 15.9326 6.45924 13.8839Z" /></svg>',
-            'clear' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.46447 15.5355L15.5355 8.46446" stroke="black" stroke-width="1.5" stroke-linecap="round"/><path d="M8.46447 8.46447L15.5355 15.5355" stroke="black" stroke-width="1.5" stroke-linecap="round"/></svg>',
+            'clear' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.46447 15.5355L15.5355 8.46446" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.46447 8.46447L15.5355 15.5355" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
         ],
         'select'    => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 8.96967C16.8232 9.26256 16.8232 9.73744 16.5303 10.0303L12.5303 14.0303C12.2374 14.3232 11.7626 14.3232 11.4697 14.0303L7.46967 10.0303C7.17678 9.73744 7.17678 9.26256 7.46967 8.96967C7.76256 8.67678 8.23744 8.67678 8.53033 8.96967L12 12.4393L15.4697 8.96967C15.7626 8.67678 16.2374 8.67678 16.5303 8.96967Z" /></svg>',
         'textarea'  => '',

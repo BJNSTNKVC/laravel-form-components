@@ -4,7 +4,7 @@ namespace Bjnstnkvc\FormComponents;
 
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
-use Bjnstnkvc\FormComponents\Views\Components\Form\Error;
+use Bjnstnkvc\FormComponents\View\Components\Form\Error;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,16 +14,6 @@ class FormComponentsServiceProvider extends ServiceProvider
      * Form components.
      */
     public $components;
-
-    /**
-     * Form components path used to publish config files.
-     */
-    public $publishPath;
-
-    /**
-     * Form components asset path.
-     */
-    public $assetPath;
 
     /**
      * Form components prefix.
@@ -36,6 +26,16 @@ class FormComponentsServiceProvider extends ServiceProvider
     public $separator;
 
     /**
+     * Form components path used to publish config files.
+     */
+    public $publishPath;
+
+    /**
+     * Form components asset path.
+     */
+    public $assetPath;
+
+    /**
      * Create new Service Provider instance.
      *
      * @param $app
@@ -45,10 +45,10 @@ class FormComponentsServiceProvider extends ServiceProvider
         parent::__construct($app);
 
         $this->components  = config('form_components.components') ?: [];
-        $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
-        $this->assetPath   = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
         $this->prefix      = config('form_components.prefix');
         $this->separator   = config('form_components.separator');
+        $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
+        $this->assetPath   = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
     }
 
     /**
