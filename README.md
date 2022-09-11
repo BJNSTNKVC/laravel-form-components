@@ -414,8 +414,11 @@ In case the field was not valid, depending on the `label-type` choice, component
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
 | ![DateTime Column Label Error](docs/images/components/column/DateTime%20Error.png) | ![DateTime Row Label Error](docs/images/components/row/DateTime%20Error.png) |
 
-> Date, Time and Date-Time components utilize built-in HTML elements. Additionally, you can pass a value to all three
-> fields which utilizes `Carbon` behind the scenes in order to parse the value prior to rendering the component.
+> Date, Time and Date-Time components utilize built-in HTML elements.
+> 
+> Clicking on the component icon will open native browser Input UI.
+>
+> Additionally, you can pass a value to all three fields which utilizes `Carbon` behind the scenes in order to parse the value prior to rendering the component.
 
 #### File
 

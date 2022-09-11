@@ -5,7 +5,7 @@
             value="{{ old($name) ?: $default }}"
             border="{{ $border }}"
             border-radius="{{ $borderRadius }}"
-            with-icon="{{ $showIcon && $icon && ! $attributes['multiple'] ? 'true' : 'false' }}"
+            with-icon="{{ $icon && ! $attributes['multiple'] ? 'true' : 'false' }}"
             interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}">
 
         @if($placeholder)
@@ -27,7 +27,7 @@
 
     <span class="form-group__title @if($invalidatedTitle && $errors->has($name)) fc-is-invalid @endif">{!! $title !!}</span>
 
-    @if($showIcon && $icon &&  ! $attributes['multiple'])
+    @if(! $attributes['multiple'])
         <span class="form-group__icon">
             {!! $icon !!}
         </span>
