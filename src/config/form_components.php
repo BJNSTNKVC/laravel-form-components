@@ -34,43 +34,43 @@ return [
     'publish_path'        => public_path('vendor/form-components'),
 
     // Form Components prefix (E.g. <x-form-button>).
-    'prefix'              => env('FORM_COMPONENTS_PREFIX', 'form'),
+    'prefix'              => 'form',
 
     // Form Components separator (E.g. <x-form::button>).
-    'separator'           => env('FORM_COMPONENTS_SEPARATOR', '::'),
+    'separator'           => '::',
 
     // Form Components default label type (options: column, row, floating).
-    'label_type'          => env('FORM_COMPONENTS_LABEL', 'column'),
+    'label_type'          => 'column',
 
     // Form Components default border style (options: bottom, full).
-    'component_border'    => env('FORM_COMPONENTS_BORDER', 'full'),
+    'component_border'    => 'full',
 
     // Form Components default border radius (options: squared, rounded-s, rounded).
-    'component_radius'    => env('FORM_COMPONENTS_RADIUS', 'rounded-s'),
+    'component_radius'    => 'rounded-s',
 
     // Form Components default icon visibility state.
-    'component_icons'     => env('FORM_COMPONENTS_ICONS', true),
+    'component_icons'     => true,
 
     // Form Components default checkbox/radio position (options: left, center).
-    'position'            => env('FORM_COMPONENTS_POSITION', 'center'),
+    'position'            => 'center',
 
     // Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).
-    'button_radius'       => env('BUTTON_RADIUS', 'rounded'),
+    'button_radius'       => 'rounded',
 
     // Determine whether the Component title would change on invalid input.
-    'invalidated_title'   => env('INVALIDATED_TITLE', false),
+    'invalidated_title'   => false,
 
     // Determine whether the password visibility button is rendered.
-    'password_visibility' => env('PASSWORD_VISIBILITY', true),
+    'password_visibility' => true,
 
     // Determine whether the search clearing button  is rendered.
-    'search_clearing'     => env('SEARCH_CLEARING', true),
+    'search_clearing'     => true,
 
     // Determine whether the Text Area height should expand with input.
-    'auto_expand'         => env('AUTOEXPAND_TEXTAREA', false),
+    'auto_expand'         => false,
 
     // Determine whether the validation errors should disappear on input.
-    'interactive'         => env('INTERACTIVE_COMPONENT', false),
+    'interactive'         => false,
 
     // List of image formats to be rendered as <img> tag. Feel free to comment out, replace or expand the list.
     'image_formats'       => [
@@ -93,7 +93,7 @@ return [
     ],
 
     // List of default component icons. Feel free to comment out or replace these.
-    'default_icons'       => [
+    'icons'               => [
         'date'      => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 3.25C7.41421 3.25 7.75 3.58579 7.75 4V5.66763C10.5777 5.4158 13.4223 5.4158 16.25 5.66763V4C16.25 3.58579 16.5858 3.25 17 3.25C17.4142 3.25 17.75 3.58579 17.75 4V5.81644C19.243 6.02754 20.4226 7.20847 20.6222 8.71484L20.7088 9.36779C21.0728 12.1141 21.0414 14.8984 20.6154 17.6359C20.4044 18.9919 19.3028 20.0335 17.937 20.1681L16.744 20.2858C13.589 20.5969 10.411 20.5969 7.25593 20.2858L6.06292 20.1681C4.69718 20.0335 3.59552 18.9919 3.38451 17.6359C2.95855 14.8984 2.92711 12.1141 3.29115 9.36779L3.3777 8.71484C3.57738 7.20845 4.75693 6.02751 6.25 5.81643V4C6.25 3.58579 6.58579 3.25 7 3.25ZM7.44516 7.2028C10.4744 6.90408 13.5256 6.90408 16.5548 7.2028L17.4602 7.2921C18.327 7.37757 19.0208 8.04854 19.1352 8.91194L19.2218 9.56489C19.252 9.793 19.2794 10.0214 19.3039 10.25H4.69606C4.72055 10.0214 4.7479 9.79301 4.77814 9.5649L4.86469 8.91194C4.97914 8.04854 5.67296 7.37757 6.53971 7.2921L7.44516 7.2028ZM4.57683 11.75C4.47865 13.6381 4.57538 15.5332 4.86667 17.4052C4.97251 18.0854 5.52509 18.6078 6.21013 18.6754L7.40314 18.793C10.4603 19.0945 13.5397 19.0945 16.5968 18.793L17.7898 18.6754C18.4748 18.6078 19.0274 18.0854 19.1333 17.4052C19.4246 15.5332 19.5213 13.6381 19.4231 11.75H4.57683Z" /></svg>',
         'date-time' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 3.25C7.41421 3.25 7.75 3.58579 7.75 4V5.66763C10.5777 5.4158 13.4223 5.4158 16.25 5.66763V4C16.25 3.58579 16.5858 3.25 17 3.25C17.4142 3.25 17.75 3.58579 17.75 4V5.81644C19.243 6.02754 20.4226 7.20847 20.6222 8.71484L20.7088 9.36779C21.0728 12.1141 21.0414 14.8984 20.6154 17.6359C20.4044 18.9919 19.3028 20.0335 17.937 20.1681L16.744 20.2858C13.589 20.5969 10.411 20.5969 7.25593 20.2858L6.06292 20.1681C4.69718 20.0335 3.59552 18.9919 3.38451 17.6359C2.95855 14.8984 2.92711 12.1141 3.29115 9.36779L3.3777 8.71484C3.57738 7.20845 4.75693 6.02751 6.25 5.81643V4C6.25 3.58579 6.58579 3.25 7 3.25ZM7.44516 7.2028C10.4744 6.90408 13.5256 6.90408 16.5548 7.2028L17.4602 7.2921C18.327 7.37757 19.0208 8.04854 19.1352 8.91194L19.2218 9.56489C19.252 9.793 19.2794 10.0214 19.3039 10.25H4.69606C4.72055 10.0214 4.7479 9.79301 4.77814 9.5649L4.86469 8.91194C4.97914 8.04854 5.67296 7.37757 6.53971 7.2921L7.44516 7.2028ZM4.57683 11.75C4.47865 13.6381 4.57538 15.5332 4.86667 17.4052C4.97251 18.0854 5.52509 18.6078 6.21013 18.6754L7.40314 18.793C10.4603 19.0945 13.5397 19.0945 16.5968 18.793L17.7898 18.6754C18.4748 18.6078 19.0274 18.0854 19.1333 17.4052C19.4246 15.5332 19.5213 13.6381 19.4231 11.75H4.57683Z" /></svg>',
         'email'     => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.80369 8.3533C2.52355 10.9562 2.53604 13.9582 2.92586 16.5505C3.14156 17.9849 4.31223 19.0845 5.7573 19.2102L7.26753 19.3414C10.4166 19.6152 13.5834 19.6152 16.7325 19.3414L18.2427 19.2102C19.6878 19.0845 20.8585 17.9849 21.0742 16.5505C21.464 13.9582 21.4765 10.9564 21.1963 8.35345C21.1601 8.05169 21.1194 7.75034 21.0742 7.44949C20.8585 6.0151 19.6878 4.91545 18.2427 4.78983L16.7325 4.65855C13.5834 4.38481 10.4166 4.38481 7.26753 4.65855L5.7573 4.78983C4.31223 4.91545 3.14156 6.0151 2.92586 7.44949C2.88063 7.75028 2.83991 8.05159 2.80369 8.3533ZM7.39743 6.15292C10.46 5.88669 13.54 5.88669 16.6026 6.15292L18.1128 6.2842C18.8671 6.34977 19.4782 6.92379 19.5908 7.67254C19.6025 7.7503 19.6139 7.82809 19.625 7.90592L14.064 10.9954C12.7804 11.7085 11.2196 11.7085 9.93599 10.9954L4.37505 7.90596C4.38611 7.82812 4.39749 7.75031 4.40918 7.67254C4.52178 6.92379 5.13287 6.34977 5.8872 6.2842L7.39743 6.15292ZM19.8085 9.51989C20.0025 11.7876 19.9299 14.0725 19.5908 16.3274C19.4782 17.0762 18.8671 17.6502 18.1128 17.7158L16.6026 17.8471C13.54 18.1133 10.46 18.1133 7.39743 17.8471L5.8872 17.7158C5.13287 17.6502 4.52178 17.0762 4.40918 16.3274C4.07009 14.0725 3.99753 11.7877 4.1915 9.51992L9.20752 12.3066C10.9442 13.2714 13.0558 13.2714 14.7924 12.3066L19.8085 9.51989Z" /></svg>',

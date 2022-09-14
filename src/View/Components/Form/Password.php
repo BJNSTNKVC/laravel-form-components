@@ -97,9 +97,9 @@ class Password extends Component
         $this->invalidatedTitle   = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon           = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
         $this->passwordVisibility = filter_var($passwordVisibility ?: config('form_components.password_visibility'), FILTER_VALIDATE_BOOLEAN);
-        $this->showPasswordIcon   = $this->renderVisibilityIcon(config('form_components.default_icons.password.show'), 'show');
-        $this->hidePasswordIcon   = $this->renderVisibilityIcon(config('form_components.default_icons.password.hide'), 'hide');
-        $this->icon               = $this->renderIcon($icon ?: config('form_components.default_icons.password.icon'));
+        $this->showPasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.show'), 'show');
+        $this->hidePasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.hide'), 'hide');
+        $this->icon               = $this->renderIcon($icon ?: config('form_components.icons.password.icon'));
     }
 
     /**
@@ -124,6 +124,14 @@ class Password extends Component
         return $icon;
     }
 
+    /**
+     * Render component password visibility icons depending on the type.
+     *
+     * @param string $icon
+     * @param string $type
+     *
+     * @return false|string
+     */
     public function renderVisibilityIcon(string $icon, string $type)
     {
         // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.

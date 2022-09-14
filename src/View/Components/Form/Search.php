@@ -92,8 +92,8 @@ class Search extends Component
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
         $this->searchClearing  = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
-        $this->searchClearIcon = $this->renderSearchIcon(config('form_components.default_icons.search.clear'), 'clear');
-        $this->icon            = $this->renderIcon($icon ?: config('form_components.default_icons.search.icon'));
+        $this->searchClearIcon = $this->renderSearchIcon(config('form_components.icons.search.clear'), 'clear');
+        $this->icon            = $this->renderIcon($icon ?: config('form_components.icons.search.icon'));
     }
 
     /**
@@ -119,7 +119,7 @@ class Search extends Component
     }
 
     /**
-     * Render component password visibility icons depending on the type.
+     * Render component search clearing depending on the type.
      *
      * @param string $icon
      * @param string $type

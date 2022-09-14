@@ -29,7 +29,7 @@ Publish the components' resources files with:
     php artisan vendor:publish --provider="Bjnstnkvc\FormComponents\FormComponentsServiceProvider" --tag=form-resources
 
 This will publish a following files to a folder configured in ```form_components.php```. By default, that folders
-is `public/vendor/laravel-form-components`.
+is `public/vendor/form-components`. Detailed explanation for each property can be found [here](#customisation).
 
 1. *form-components.css*
 2. *form-components.min.css*
@@ -52,26 +52,6 @@ to edit published resource files, but would not like to edit minified versions, 
     @componentsScripts('full')
 
 Directives above will instruct the library to load unminified css and js files, which you can edit as you see fit.
-
-### .env
-
-Add following properties to your `.env` file.
-
-    COMPONENT_PREFIX=form
-    COMPONENT_SEPARATOR=::
-    COMPONENT_LABEL=column
-    COMPONENT_BORDER=full
-    COMPONENT_RADIUS=rounded-s
-    COMPONENT_ICONS=true
-    COMPONENT_POSITION=center
-    BUTTON_RADIUS=rounded
-    INVALIDATED_TITLE=false
-    PASSWORD_VISIBILITY=true
-    SEARCH_CLEARING=true
-    AUTOEXPAND_TEXTAREA=false
-    INTERACTIVE_COMPONENT=false
-
-Detailed explanation for each property can be found [here](#customisation).
 
 ### Form Components
 
@@ -138,7 +118,7 @@ Password components comes with 'Password Visibility' feature which is by default
 
 ![Password Visibility](docs/images/components/Password%20Visibility.gif)
 
-In case you'd like to disable it, add `password-visibility="false"` to the component. Alternatively, you can disable this feature for all password fields through the project by setting `PASSWORD_VISIBILITY=false` in your `.env` file.
+In case you'd like to disable it, add `password-visibility="false"` to the component. Alternatively, you can disable this feature for all password fields through the project by setting `password_visibility` to `false` in your published `form_components.php` file.
 
 #### Email
 
@@ -175,7 +155,7 @@ Search components comes with 'Search Clearing' feature which is by default turne
 
 ![Search Clearing](docs/images/components/Search%20Clear.gif)
 
-In case you'd like to disable it, add `search-clearing="false"` to the component. Alternatively, you can disable this feature for all Search fields through the project by setting `SEARCH_CLEARING=false` in your `.env` file.
+In case you'd like to disable it, add `search-clearing="false"` to the component. Alternatively, you can disable this feature for all Search fields through the project by setting `search_clearing` to `false`  in your published `form_components.php` file.
 
 
 #### Textarea
@@ -209,8 +189,7 @@ Depending on the `label-type` choice, component will display following behaviour
 |--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | ![Textarea Column Auto Expand](docs/images/components/column/Textarea%20Auto%20Expand.gif) | ![Textarea Row Auto Expand](docs/images/components/row/Textarea%20Auto%20Expand.gif) |
 
-In case you wish auto expansion to be a default behaviour for all Textarea components, add `AUTOEXPAND_TEXTAREA=true` to
-your `.env` file.
+In case you wish auto expansion to be a default behaviour for all Textarea components, set `auto_expand` to `true`  in your published `form_components.php` file.
 
 #### Select
 
@@ -513,8 +492,8 @@ Depending on the `border-radius` choice, component will look as follows:
 
 All components come with two different border styles, `full` and `bottom`. In order to change component border style,
 add `border` property equal to one of the options listed above to your component of choice.
-If you'd like to set a certain border style by default for all components, simply add **COMPONENT_BORDER**
-property to your `.env` file.
+
+If you'd like to set a certain border style by default for all components, simply change `component_border` in your published `form_components.php` file.
 
 Depending on the `label-type` choice, component will look as follows:
 
@@ -527,8 +506,9 @@ Depending on the `label-type` choice, component will look as follows:
 
 All components come with three different border radius styles, `squared`, `rounded-s`, `rounded`. In order to change component border radius style,
 add `border-radius` property equal to one of the options listed above to your component of choice.
-If you'd like to set a certain border radius style by default for all components, simply add **COMPONENT_RADIUS**
-property to your `.env` file.
+
+If you'd like to set a certain border radius style by default for all components, simply change `component_radius`
+property in your published `form_components.php` file.
 
 | border-radius="squared"                                                      | border-radius="rounded-s"                                                                  | border-radius="rounded"                                                      |
 |------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
@@ -538,8 +518,9 @@ property to your `.env` file.
 
 All components are shipped with an ability to highlight component title in case the filed was invalid. In order to turn this feature on,
 add `invalidated-title="true"` to your component of choice.
-If you'd like this feature to be turned on by default for all components, simply add **INVALIDATED_TITLE=true**
-property to your `.env` file.
+
+If you'd like this feature to be turned on by default for all components, simply change `invalidated_title`
+property in your published `form_components.php` file.
 
 | label-type="column"                                                                           | label-type="row"                                                                        | label-type="floating"                                                                          |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
@@ -549,8 +530,9 @@ property to your `.env` file.
 
 All components are shipped with an ability to remove validation errors on input. In order to turn this feature on,
 add `interactive="true"` to your component of choice.
-If you'd like this feature to be turned on by default for all components, simply add **INTERACTIVE_COMPONENT=true**
-property to your `.env` file.
+
+If you'd like this feature to be turned on by default for all components, simply change `interactive`
+property in your published `form_components.php` file.
 
 ![Input Interactivity](docs/images/components/Input%20Interactivity.gif)
 
@@ -562,51 +544,39 @@ property to your `.env` file.
 
 
 - **prefix** - *Form Components prefix, defaults to 'form' (E.g. <x-form-button>).*
-    - Configurable via `.env` **COMPONENT_PREFIX** property.
 
 
 - **separator** - *Form Components separator, defaults to '::' (E.g. <x-form::button>).*
-    - Configurable via `.env` **COMPONENT_SEPARATOR** property.
 
 
 - **label_type** - *Form Components label style, defaults to 'column' (options: column, row, floating).*
-    - Configurable via `.env` **COMPONENT_LABEL** property.
 
 
 - **component_radius** - *Form Components default border radius (options: squared, rounded-s, rounded).*
-    - Configurable via `.env` **COMPONENT_RADIUS** property.
 
 
 - **component_icons** - *Form Components default icon visibility state.*
-    - Configurable via `.env` **COMPONENT_ICONS** property.
 
 
 - **position** - *Form Components default checkbox/radio position, defaults to 'center' (options: left, center).*
-    - Configurable via `.env` **COMPONENT_POSITION** property.
 
 
 - **button_radius** - *Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).*
-    - Configurable via `.env` **BUTTON_RADIUS** property.
 
 
 - **invalidated_title** - *Determine whether the Component title would change on invalid input.*
-  - Configurable via `.env` **INVALIDATED_TITLE** property.
 
 
 - **password_visibility** - *Determine whether the password visibility button is rendered.*
-    - Configurable via `.env` **PASSWORD_VISIBILITY** property.
 
 
 - **search_clearing** - *Determine whether the search clearing button is rendered.*
-    - Configurable via `.env` **SEARCH_CLEARING** property.
 
 
 - **auto_expand** - *Determine whether the Text Area height should expand with input.*
-    - Configurable via `.env` **AUTOEXPAND_TEXTAREA** property.
 
 
 - **interactive** - *Determine whether the errors should disappear on input.*
-    - Configurable via `.env` **INTERACTIVE_COMPONENT** property.
 
 
 - **image_formats** - *List of image formats to be rendered as <img> tag* 

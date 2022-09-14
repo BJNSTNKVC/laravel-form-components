@@ -20,6 +20,7 @@ class Publisher
 
     /**
      * Components published config path.
+     * 
      * @var string
      */
     public $configPath;

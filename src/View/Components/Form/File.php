@@ -79,7 +79,7 @@ class File extends Component
         $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.default_icons.file'));
+        $this->icon             = $this->renderIcon($icon ?: config('form_components.icons.file'));
     }
 
     /**
