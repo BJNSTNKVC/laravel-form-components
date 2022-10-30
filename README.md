@@ -40,16 +40,16 @@ is `public/vendor/form-components`. Detailed explanation for each property can b
 
 Once config and resources have been published, add following Blade directives to your layout file.
 
-    @componentsStyles
+    @componentStyles
 
-    @componentsScripts
+    @componentStyles
 
 As the name of the directives suggests, these will add Form components minified CSS and JS files. In case you would like
 to edit published resource files, but would not like to edit minified versions, you can use the following syntax:
 
-    @componentsStyles('full')
+    @componentStyles('full')
 
-    @componentsScripts('full')
+    @componentStyles('full')
 
 Directives above will instruct the library to load unminified css and js files, which you can edit as you see fit.
 
