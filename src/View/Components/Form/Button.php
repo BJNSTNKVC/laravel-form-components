@@ -37,7 +37,7 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $link = null, $borderRadius = null)
+    public function __construct($name = null, $id = null, $title = null, $link = null, $borderRadius = null)
     {
         $this->name         = $name;
         $this->id           = $id ?: Str::camel($name);

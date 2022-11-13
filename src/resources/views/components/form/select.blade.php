@@ -18,9 +18,10 @@
             @endforeach
         @endif
 
+
         @if($model)
             @foreach ($model as $m)
-                <option value="{{ $m[$modelKey] }}" {{ Str::is($m[$modelValue], $default) && is_null(old($name)) ? 'selected' : '' }} {{ old($name) == $m[$modelKey] ? 'selected' : '' }}>{{ $m[$modelValue] }}</option>
+                <option @if($jsKey) {{ $jsSet . $m->$jsKey }} @endif value="{{ $m->$modelKey }}" {{ Str::is($m->$modelValue, $default) && is_null(old($name)) ? 'selected' : '' }} {{ old($name) == $m->$modelKey ? 'selected' : '' }}>{{ $m->$modelValue }}</option>
             @endforeach
         @endif
     </select>
