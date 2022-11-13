@@ -124,6 +124,7 @@
 
 .form-group__icon > :is(svg, img) {
     flex-grow : 1;
+    width     : auto;
     color     : inherit;
     fill      : currentColor;
 }
@@ -173,11 +174,15 @@
 }
 
 :is(.form-group__input, .form-group__select, .form-group__textarea)[border='bottom']:is([with-icon='true'], [with-visibility='true']) {
-    padding-right : 40px;
+    padding-right : 24px;
 }
 
-:is(.form-group__input)[with-icon='true'][with-visibility='true'] {
+:is(.form-group__input):is([with-icon='true'][with-visibility='true'], [with-icon='true'][with-clearing='true']) {
     padding-right : 70px;
+}
+
+:is(.form-group__input):is([border='bottom'][with-icon='true'][with-visibility='true'], [border='bottom'][with-icon='true'][with-clearing='true']) {
+    padding-right : 48px;
 }
 
 .form-group__input.form-group__file {
@@ -232,7 +237,6 @@
     transition    : 250ms linear;
     opacity       : 0;
     border-radius : 24px;
-    background    : radial-gradient(circle, #FFFFFF 80%, rgba(255, 255, 255, 0) 100%);
 }
 
 .fc-form-group[label-type='floating'] :is(.form-group__input, .form-group__select, .form-group__textarea)[border='bottom'] ~ .form-group__title {
