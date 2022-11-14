@@ -117,10 +117,10 @@ class Select extends Component
         $this->placeholder      = $placeholder;
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
-        $this->border           = $border ?: config('form_components.component_border');
-        $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
+        $this->border           = $border ?: config('form_components.border');
+        $this->borderRadius     = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
+        $this->showIcon         = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->icon             = $this->renderIcon($icon ?: config('form_components.icons.select'));
         $this->default          = $default;
     }

@@ -43,11 +43,21 @@ class Checkbox extends Component
     public $invalidatedTitle;
 
     /**
+     * Checkbox component style.
+     */
+    public $switch;
+
+    /**
+     * Checkbox component checked status.
+     */
+    public $checked;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null, $switch = null, $checked = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->title            = $title ?: Str::title($name);
@@ -56,6 +66,8 @@ class Checkbox extends Component
         $this->position         = $position ?: config('form_components.position');
         $this->label            = $label;
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->switch           = filter_var($switch  ?: config('form_components.switch'), FILTER_VALIDATE_BOOLEAN);
+        $this->checked          = filter_var($checked, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

@@ -42,14 +42,14 @@ Once config and resources have been published, add following Blade directives to
 
     @componentStyles
 
-    @componentStyles
+    @componentScripts
 
 As the name of the directives suggests, these will add Form components minified CSS and JS files. In case you would like
 to edit published resource files, but would not like to edit minified versions, you can use the following syntax:
 
     @componentStyles('full')
 
-    @componentStyles('full')
+    @componentScripts('full')
 
 Directives above will instruct the library to load unminified css and js files, which you can edit as you see fit.
 
@@ -77,6 +77,34 @@ Following attributes are worth mentioning:
 - **interactive** - Determine whether the validation errors should disappear on input (by default, set to `false`).
 
 All other attributes wil be merged directly on to the HTML component element.
+
+#### Base
+
+```blade
+<x-form::base method="PUT" action="{{ route('email.update') }}" >
+    <x-form::email name="email" placeholder="Email placeholder" />
+</x-form::base>
+```
+
+Depending on the `method` choice, component will automatically add `_method` token if needed. 
+
+Above will generate the following options:
+
+```html
+<form class="fc-form" method="POST" action="http://form-components.com/email/update">
+    <!-- CSRF Token -->
+    <input type="hidden" name="_token" value="9G8i7aDB0loPj25Xwwm2Smosz3yjAhY3tOrvc6P3">
+    <!-- Method Token -->
+    <input type="hidden" name="_method" value="PUT">
+    
+    <label class="fc-form-group  tg-caption" label-type="column" for="email">
+        <input class="form-group__input" placeholder="Email placeholder" type="email" id="email" name="email" value="" border="bottom" border-radius="rounded-s" with-icon="true" invalidated-title="false" interactive="false">
+        <span class="form-group__title ">Email</span>
+    </label>
+</form>
+```
+
+> Note that by default, Form Base component `method` attribute is set to `POST`.
 
 #### Input
 
@@ -457,6 +485,26 @@ In case the field was not valid, depending on the `position` choice, component w
 |----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | ![Radio Position Left Error](docs/images/components/radio/Position%20Left%20Error.png) | ![Radio Position Center Error](docs/images/components/radio/Position%20Center%20Error.png) |
 
+#### Switch
+
+Alternatively, if you set `switch` attribute to `true` to Checkbox or Radio component, it will look as follows:
+
+| Checkbox                                                                    | Radio                                                              |
+|-----------------------------------------------------------------------------|--------------------------------------------------------------------|
+| ![Checkbox Switcher](docs/images/components/checkbox/Checkbox%20Switch.gif) | ![Radio Switcher](docs/images/components/radio/Radio%20Switch.gif) |
+
+#### Checked 
+
+Both Checkbox and Radio component come with `checked` attribute that expects `boolean`. Depending on the result, component will be renders as checked. 
+
+```blade
+<x-form::checkbox name="checkbox" checked="{{ 2 + 2 == 4 }}" />
+```
+
+```blade
+<x-form::radio name="radio" checked="{{ ! 2 + 2 === 4 }}" />
+```
+
 ### Buttons
 
 #### Button
@@ -500,7 +548,6 @@ Depending on the `label-type` choice, component will look as follows:
 | label-type="column"                                               | label-type="row"                                            | label-type="floating"                                                 |
 |-------------------------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------|
 | ![Border Bottom Column](docs/images/components/border/Column.png) | ![Border Bottom Row](docs/images/components/border/Row.png) | ![Border Bottom Floating](docs/images/components/border/Floating.gif) |
-
 
 ## Border Radius
 
@@ -552,13 +599,16 @@ property in your published `form_components.php` file.
 - **label_type** - *Form Components label style, defaults to 'column' (options: column, row, floating).*
 
 
-- **component_radius** - *Form Components default border radius (options: squared, rounded-s, rounded).*
+- **radius** - *Form Components default border radius (options: squared, rounded-s, rounded).*
 
 
-- **component_icons** - *Form Components default icon visibility state.*
+- **icon** - *Form Components default icon visibility state.*
 
 
 - **position** - *Form Components default checkbox/radio position, defaults to 'center' (options: left, center).*
+
+
+- **switch** - *Determine whether the checkbox/radio components should be displayed as a switch.*
 
 
 - **button_radius** - *Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).*
@@ -620,6 +670,7 @@ or
     php artisan components:restore Input Password Button --delete
 
 > **Note:** You might need to clear config cache using `php artisan cache:clear` command after you publish or restore the components.
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.

@@ -92,10 +92,10 @@ class Password extends Component
         $this->value              = old($this->name) ?: $value;
         $this->label              = $label;
         $this->labelType          = $labelType ?: config('form_components.label_type');
-        $this->border             = $border ?: config('form_components.component_border');
-        $this->borderRadius       = $borderRadius ?: config('form_components.component_radius');
+        $this->border             = $border ?: config('form_components.border');
+        $this->borderRadius       = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle   = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon           = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
+        $this->showIcon           = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->passwordVisibility = filter_var($passwordVisibility ?: config('form_components.password_visibility'), FILTER_VALIDATE_BOOLEAN);
         $this->showPasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.show'), 'show');
         $this->hidePasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.hide'), 'hide');

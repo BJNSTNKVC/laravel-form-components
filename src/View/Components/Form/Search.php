@@ -87,10 +87,10 @@ class Search extends Component
         $this->value            = old($this->name) ?: $value;
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
-        $this->border           = $border ?: config('form_components.component_border');
-        $this->borderRadius     = $borderRadius ?: config('form_components.component_radius');
+        $this->border           = $border ?: config('form_components.border');
+        $this->borderRadius     = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon         = filter_var($showIcon ?: config('form_components.component_icons'), FILTER_VALIDATE_BOOLEAN);
+        $this->showIcon         = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->searchClearing  = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
         $this->searchClearIcon = $this->renderSearchIcon(config('form_components.icons.search.clear'), 'clear');
         $this->icon            = $this->renderIcon($icon ?: config('form_components.icons.search.icon'));

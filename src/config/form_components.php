@@ -14,6 +14,7 @@ return [
 
     // List of all Components that are going to be loaded. Feel free to comment out the components you don't need.
     'components'          => [
+        'base'      => Bjnstnkvc\FormComponents\View\Components\Form\Base::class,
         'button'    => Bjnstnkvc\FormComponents\View\Components\Form\Button::class,
         'checkbox'  => Bjnstnkvc\FormComponents\View\Components\Form\Checkbox::class,
         'date'      => Bjnstnkvc\FormComponents\View\Components\Form\Date::class,
@@ -43,16 +44,19 @@ return [
     'label_type'          => 'column',
 
     // Form Components default border style (options: bottom, full).
-    'component_border'    => 'full',
+    'border'              => 'bottom',
 
     // Form Components default border radius (options: squared, rounded-s, rounded).
-    'component_radius'    => 'rounded-s',
+    'radius'              => 'rounded-s',
 
     // Form Components default icon visibility state.
-    'component_icons'     => true,
+    'icon'                => true,
 
     // Form Components default checkbox/radio position (options: left, center).
     'position'            => 'center',
+
+    // Determine whether the checkbox/radio components should be displayed as a switch.
+    'switch'              => true,
 
     // Form Components default button radius (options: squared, rounded-s, rounded-m, rounded).
     'button_radius'       => 'rounded',
