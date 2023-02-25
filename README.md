@@ -293,10 +293,10 @@ will generate following HTML:
 
 You can also pass whole `Eloquent Model` to the component. Let's say we have users table with the following data:
 
-| id  | first_name | last_name | email                |
-|-----|------------|-----------|----------------------|
-| 1   | John       | Doe       | john.doe@example.com |
-| 2   | Jane       | Doe       | jane.doe@example.com |
+| id  | first_name | last_name | email                 |
+|-----|------------|-----------|-----------------------|
+| 1   | John       | Doe       | john.doe@example.com  |
+| 2   | Jane       | Does      | jane.does@example.com |
 
 passed from the controller:
 
@@ -318,11 +318,28 @@ As can be seen in an example above, in case Eloquent model has been passed, Sele
 2. *model-key* - Model key that will be used as an option value (when not provided the `id` will be used).
 3. *model-value* - Model value from which option text will be generated.
 
-This will generate following HTML:
-
 ```html
 <option value="1">John</option>
 <option value="2">Jane</option>
+```
+
+In case you would like to pass [JavaScript Data Set](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute to each generated option,
+use the following Blade Component attributes:
+
+1. *js-data-key* - The attribute key.
+2. *js-data-value* - The attribute value.
+
+> Note that the js-data-value attribute ***MUST*** match the `Eloquent Model` attribute name.
+
+```blade
+<x-form::select name="select" :model="$users" model-key="id" model-value="first_name" js-data-key="last-name" js-data-value="last_name" />
+```
+
+This will generate following HTML:
+
+```html
+<option value="1" data-last-name="Doe">John</option>
+<option value="2" data-last-name="Does">Jane</option>
 ```
 
 Same as with the other components, `placeholder` can be passed to the component which will generate placeholder option

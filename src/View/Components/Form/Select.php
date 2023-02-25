@@ -46,12 +46,12 @@ class Select extends Component
     /**
      * A Model JavaScript data attribute.
      */
-    public $jsSet;
+    public $jsDataKey;
 
     /**
      * A Model JavaScript key.
      */
-    public $jsKey;
+    public $jsDataValue;
 
     /**
      * Select component placeholder.
@@ -103,7 +103,7 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $jsSet = null, $jsKey = null, $placeholder = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null, $default = null)
+    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $jsDataKey = null, $jsDataValue = null, $placeholder = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null, $default = null)
     {
         $this->name             = Str::slug($name, '_');
         $this->id               = $id ?: $this->name;
@@ -112,8 +112,8 @@ class Select extends Component
         $this->model            = $model;
         $this->modelKey         = $modelKey ?: 'id';
         $this->modelValue       = $modelValue;
-        $this->jsSet            = 'data-' . $jsSet . '=';
-        $this->jsKey            = $jsKey;
+        $this->jsDataKey        = 'data-' . $jsDataKey . '=';
+        $this->jsDataValue      = $jsDataValue;
         $this->placeholder      = $placeholder;
         $this->label            = $label;
         $this->labelType        = $labelType ?: config('form_components.label_type');
