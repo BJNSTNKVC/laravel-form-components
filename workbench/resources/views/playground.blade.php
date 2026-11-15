@@ -15,23 +15,40 @@
     <h1>Form Components Playground</h1>
 
     @foreach (['column', 'row', 'floating'] as $labelType)
-        <section id="label-type-{{ $labelType }}">
-            <h2>{{ ucfirst($labelType) }} Labels</h2>
+        @foreach (['bottom', 'squared', 'rounded-s', 'rounded'] as $style)
+            @php($border = $style === 'bottom' ? 'bottom' : 'full')
+            @php($radius = $style === 'bottom' ? 'squared' : $style)
 
-            <x-form::base action="#" id="form-{{ $labelType }}" class="playground-grid">
-                <x-form::input name="input_{{ $labelType }}" title="Input" label-type="{{ $labelType }}" />
-                <x-form::email name="email_{{ $labelType }}" title="Email" label-type="{{ $labelType }}" />
-                <x-form::password name="password_{{ $labelType }}" title="Password" label-type="{{ $labelType }}" />
-                <x-form::search name="search_{{ $labelType }}" title="Search" label-type="{{ $labelType }}" />
-                <x-form::textarea name="textarea_{{ $labelType }}" title="Textarea" label-type="{{ $labelType }}" />
-                <x-form::select name="select_{{ $labelType }}" title="Select" label-type="{{ $labelType }}" values="Option A, Option B" />
-                <x-form::date name="date_{{ $labelType }}" title="Date" label-type="{{ $labelType }}" />
-                <x-form::time name="time_{{ $labelType }}" title="Time" label-type="{{ $labelType }}" />
-                <x-form::date-time name="date_time_{{ $labelType }}" title="Date &amp; Time" label-type="{{ $labelType }}" />
-                <x-form::file name="file_{{ $labelType }}" title="File" label-type="{{ $labelType }}" />
-            </x-form::base>
-        </section>
+            <section id="{{ $labelType }}-{{ $style }}">
+                <h2>{{ ucfirst($labelType) }} Labels, {{ $style === 'bottom' ? 'Bottom Border' : 'Full Border, '.ucfirst($radius) }}</h2>
+
+                <x-form::base action="#" id="form-{{ $labelType }}-{{ $style }}" class="playground-grid">
+                    <x-form::input name="input_{{ $labelType }}_{{ $style }}" title="Input" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::email name="email_{{ $labelType }}_{{ $style }}" title="Email" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::password name="password_{{ $labelType }}_{{ $style }}" title="Password" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::search name="search_{{ $labelType }}_{{ $style }}" title="Search" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::textarea name="textarea_{{ $labelType }}_{{ $style }}" title="Textarea" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::select name="select_{{ $labelType }}_{{ $style }}" title="Select" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" values="Option A, Option B" />
+                    <x-form::date name="date_{{ $labelType }}_{{ $style }}" title="Date" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::time name="time_{{ $labelType }}_{{ $style }}" title="Time" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::date-time name="date_time_{{ $labelType }}_{{ $style }}" title="Date &amp; Time" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                    <x-form::file name="file_{{ $labelType }}_{{ $style }}" title="File" label-type="{{ $labelType }}" border="{{ $border }}" border-radius="{{ $radius }}" />
+                </x-form::base>
+            </section>
+        @endforeach
     @endforeach
+
+    <section id="errors">
+        <h2>Validation Errors</h2>
+
+        <x-form::base action="#" id="form-errors" class="playground-grid">
+            <x-form::input name="input_error" title="Input" invalidated-title="true" />
+            <x-form::email name="email_error" title="Email" border="full" label-type="row" />
+            <x-form::select name="select_error" title="Select" label-type="floating" values="Option A, Option B" />
+            <x-form::checkbox name="checkbox_error" title="Checkbox" switch="false" position="left" />
+            <x-form::radio name="radio_error" title="Radio" switch="false" />
+        </x-form::base>
+    </section>
 
     <section id="choices">
         <h2>Checkboxes, Radios and Buttons</h2>

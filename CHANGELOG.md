@@ -16,6 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Each component is its own module folder under `src/Components`, laid out like a Laravel app with `View/Components`, `resources/views` and `Tests`.
 - Component classes moved from `Bjnstnkvc\FormComponents\View\Components\Form` to `Bjnstnkvc\FormComponents\Components\<Name>\View\Components`, e.g. `Bjnstnkvc\FormComponents\Components\Input\View\Components\Input`.
 - Component views are named `form-components::<name>` instead of `form-components::form.<name>`.
+- Component styles are rebuilt on Tailwind CSS 4 as `fc:` prefixed utility classes in each component's template, compiled into the shipped stylesheet. It has no preflight or unprefixed classes and keeps its utilities out of cascade layers, so it never resets or clashes with an app's own styles, Tailwind included.
+- Focused fields no longer glow around their border.
+
+### Fixed
+
+- File fields show their title as a placeholder, and floating File titles rise once a file is chosen.
+- The border no longer runs through the floating title of a fully bordered field, it opens a notch around the title instead.
+
+### Removed
+
+- The `label-type`, `border-radius`, `position`, `with-icon`, `with-visibility` and `with-clearing` attributes and the `form-group__*`, `form-btn`, `btn-*` and `tg-*` classes that only served the old stylesheet. Elements the script relies on keep their classes until behaviour moves to Alpine.
 
 ## [1.5.1] - 2023-02-25
 

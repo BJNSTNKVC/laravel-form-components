@@ -13,6 +13,9 @@ abstract class TestCase extends Testbench
 {
     use WithWorkbench;
 
+    /**
+     * Talk to Selenium using the W3C WebDriver protocol.
+     */
     #[Override]
     public static function setUpBeforeClass(): void
     {

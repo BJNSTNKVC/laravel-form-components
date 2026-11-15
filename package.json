@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "npm run build:css && npm run build:css:min",
+        "build:css": "tailwindcss --input src/resources/css/form-components.css --output src/public/css/form-components.css",
+        "build:css:min": "tailwindcss --input src/resources/css/form-components.css --output src/public/css/form-components.min.css --minify",
+        "watch": "tailwindcss --input src/resources/css/form-components.css --output src/public/css/form-components.css --watch"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "4.3.5",
+        "tailwindcss": "4.3.5"
+    }
+}

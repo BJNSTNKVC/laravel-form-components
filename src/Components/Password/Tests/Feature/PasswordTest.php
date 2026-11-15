@@ -17,4 +17,69 @@ class PasswordTest extends TestCase
             ->assertSee('type="password"', false)
             ->assertSee('name="password"', false);
     }
+
+    #[Test]
+    public function it_renders_a_bottom_border_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" />')
+            ->assertSee('fc:border-b-2')
+            ->assertDontSee('fc:border-2');
+    }
+
+    #[Test]
+    public function it_renders_a_full_rounded_border(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" border="full" border-radius="rounded" />')
+            ->assertSee('fc:border-2')
+            ->assertSee('fc:rounded-full')
+            ->assertDontSee('fc:border-b-2');
+    }
+
+    #[Test]
+    public function it_notches_the_border_for_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" label-type="floating" border="full" />')
+            ->assertSee('<fieldset', false)
+            ->assertSee('aria-hidden="true"', false)
+            ->assertSee('<legend><span class="fc:px-2">Password</span></legend>', false);
+    }
+
+    #[Test]
+    public function it_does_not_notch_a_border_without_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" border="full" />')
+            ->assertDontSee('<fieldset', false);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" label-type="floating" />')
+            ->assertDontSee('<fieldset', false);
+    }
+
+    #[Test]
+    public function it_hides_the_placeholder_behind_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" label-type="floating" />')
+            ->assertSee('fc:focus:placeholder:text-transparent');
+    }
+
+    #[Test]
+    public function it_makes_room_for_the_visibility_toggle_and_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee('fc:pr-12');
+    }
+
+    #[Test]
+    public function it_hides_the_hide_password_icon_until_toggled(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee('fc:*:[[class*=icon--hide]]:hidden', false);
+    }
 }
