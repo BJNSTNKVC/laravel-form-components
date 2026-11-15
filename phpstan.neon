@@ -10,7 +10,7 @@ parameters:
         - workbench
         - rector.php
     excludePaths:
-        - src/resources/views
+        - src/Components/*/resources/views
         - workbench/resources/views
     tmpDir: build/phpstan
     reportUnmatchedIgnoredErrors: true

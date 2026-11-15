@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - A changelog recording notable changes for each release.
 
+### Changed
+
+- Each component is its own module folder under `src/Components`, laid out like a Laravel app with `View/Components`, `resources/views` and `Tests`.
+- Component classes moved from `Bjnstnkvc\FormComponents\View\Components\Form` to `Bjnstnkvc\FormComponents\Components\<Name>\View\Components`, e.g. `Bjnstnkvc\FormComponents\Components\Input\View\Components\Input`.
+- Component views are named `form-components::<name>` instead of `form-components::form.<name>`.
+
 ## [1.5.1] - 2023-02-25
 
 ### Changed

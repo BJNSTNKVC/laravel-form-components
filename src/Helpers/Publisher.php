@@ -2,21 +2,16 @@
 
 namespace Bjnstnkvc\FormComponents\Helpers;
 
+use Illuminate\Support\Str;
+
 class Publisher
 {
     /**
-     * Components Class root directory.
+     * Components root directory, holding one module folder per component.
      *
      * @var string
      */
     public $classRoot;
-
-    /**
-     * Components View root directory.
-     *
-     * @var string
-     */
-    public $viewsRoot;
 
     /**
      * Components published config path.
@@ -76,15 +71,14 @@ class Publisher
 
     public function __construct()
     {
-        $this->classRoot = __DIR__.'\..\View\Components\Form\\';
-        $this->viewsRoot = __DIR__.'\..\resources\views\components\form\\';
+        $this->classRoot = __DIR__.'/../Components/';
         $this->configPath = config_path('form_components.php');
         $this->viewPath = resource_path('views\components\form\\');
-        $this->defaultNamespace = 'Bjnstnkvc\FormComponents\View\Components\Form';
+        $this->defaultNamespace = 'Bjnstnkvc\FormComponents\Components';
         $this->publishedNamespace = 'App\View\Components\Form';
-        $this->defaultPath = 'Bjnstnkvc\FormComponents\View\Components\Form\\';
+        $this->defaultPath = 'Bjnstnkvc\FormComponents\Components\\';
         $this->publishedPath = 'App\View\Components\Form\\';
-        $this->defaultBlade = 'form-components::form.';
+        $this->defaultBlade = 'form-components::';
         $this->publishedBlade = 'components.form.';
     }
 
@@ -95,7 +89,7 @@ class Publisher
      */
     public function getClass(string $class): string
     {
-        return $this->classRoot.$class.'.php';
+        return $this->classRoot.$class.'/View/Components/'.$class.'.php';
     }
 
     /**
@@ -105,7 +99,7 @@ class Publisher
      */
     public function getView(string $view): string
     {
-        return $this->viewsRoot.$view.'.blade.php';
+        return $this->classRoot.Str::studly($view).'/resources/views/'.$view.'.blade.php';
     }
 
     /**
@@ -138,7 +132,7 @@ class Publisher
     public function updateClass(string $view, string $class)
     {
         return str_replace(
-            [$this->defaultNamespace, $this->defaultBlade.$view],
+            [$this->defaultNamespace.'\\'.Str::studly($view).'\\View\\Components', $this->defaultBlade.$view],
             [$this->publishedNamespace, $this->publishedBlade.$view],
             $class
         );
@@ -154,7 +148,7 @@ class Publisher
     public function updateConfig(string $class, string $config)
     {
         return str_replace(
-            $this->defaultPath.$class.'::class',
+            $this->defaultPath.$class.'\\View\\Components\\'.$class.'::class',
             $this->publishedPath.$class.'::class',
             $config
         );
@@ -170,8 +164,8 @@ class Publisher
     public function restoreClass(string $view, string $class)
     {
         return str_replace(
-            [$this->publishedNamespace, $this->publishedBlade.$view],
-            [$this->defaultNamespace, $this->defaultBlade.$view],
+            $this->publishedPath.$view.'::class',
+            $this->defaultPath.$view.'\\View\\Components\\'.$view.'::class',
             $class
         );
     }

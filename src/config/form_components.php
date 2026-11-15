@@ -1,20 +1,20 @@
 <?php
 
-use Bjnstnkvc\FormComponents\View\Components\Form\Base;
-use Bjnstnkvc\FormComponents\View\Components\Form\Button;
-use Bjnstnkvc\FormComponents\View\Components\Form\Checkbox;
-use Bjnstnkvc\FormComponents\View\Components\Form\Date;
-use Bjnstnkvc\FormComponents\View\Components\Form\DateTime;
-use Bjnstnkvc\FormComponents\View\Components\Form\Email;
-use Bjnstnkvc\FormComponents\View\Components\Form\Error;
-use Bjnstnkvc\FormComponents\View\Components\Form\File;
-use Bjnstnkvc\FormComponents\View\Components\Form\Input;
-use Bjnstnkvc\FormComponents\View\Components\Form\Password;
-use Bjnstnkvc\FormComponents\View\Components\Form\Radio;
-use Bjnstnkvc\FormComponents\View\Components\Form\Search;
-use Bjnstnkvc\FormComponents\View\Components\Form\Select;
-use Bjnstnkvc\FormComponents\View\Components\Form\Textarea;
-use Bjnstnkvc\FormComponents\View\Components\Form\Time;
+use Bjnstnkvc\FormComponents\Components\Base\View\Components\Base;
+use Bjnstnkvc\FormComponents\Components\Button\View\Components\Button;
+use Bjnstnkvc\FormComponents\Components\Checkbox\View\Components\Checkbox;
+use Bjnstnkvc\FormComponents\Components\Date\View\Components\Date;
+use Bjnstnkvc\FormComponents\Components\DateTime\View\Components\DateTime;
+use Bjnstnkvc\FormComponents\Components\Email\View\Components\Email;
+use Bjnstnkvc\FormComponents\Components\Error\View\Components\Error;
+use Bjnstnkvc\FormComponents\Components\File\View\Components\File;
+use Bjnstnkvc\FormComponents\Components\Input\View\Components\Input;
+use Bjnstnkvc\FormComponents\Components\Password\View\Components\Password;
+use Bjnstnkvc\FormComponents\Components\Radio\View\Components\Radio;
+use Bjnstnkvc\FormComponents\Components\Search\View\Components\Search;
+use Bjnstnkvc\FormComponents\Components\Select\View\Components\Select;
+use Bjnstnkvc\FormComponents\Components\Textarea\View\Components\Textarea;
+use Bjnstnkvc\FormComponents\Components\Time\View\Components\Time;
 
 return [
 
