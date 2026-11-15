@@ -12,16 +12,22 @@
     <testsuites>
         <testsuite name="Package">
             <directory>tests</directory>
+            <directory>src/Components/*/Tests/Unit</directory>
+            <directory>src/Components/*/Tests/Feature</directory>
             <exclude>tests/Browser</exclude>
         </testsuite>
         <testsuite name="Browser">
             <directory>tests/Browser</directory>
+            <directory>src/Components/*/Tests/Browser</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>src</directory>
         </include>
+        <exclude>
+            <directory>src/Components/*/Tests</directory>
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>

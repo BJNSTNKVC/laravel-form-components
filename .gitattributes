@@ -1,5 +1,7 @@
 * text=auto eol=lf
 
+/src/Components/*/Tests export-ignore
+
 *.php text
 *.css text
 *.js text

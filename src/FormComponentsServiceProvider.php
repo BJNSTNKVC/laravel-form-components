@@ -2,9 +2,9 @@
 
 namespace Bjnstnkvc\FormComponents;
 
+use Bjnstnkvc\FormComponents\Components\Error\View\Components\Error;
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
-use Bjnstnkvc\FormComponents\View\Components\Form\Error;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -74,11 +74,11 @@ class FormComponentsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot all blade files from resources.
+     * Boot the Blade views kept in each component's resources folder.
      */
     private function bootResources(): void
     {
-        $this->loadViewsFrom(__DIR__.'/resources/views/components', 'form-components');
+        $this->loadViewsFrom(glob(__DIR__.'/Components/*/resources/views', GLOB_ONLYDIR) ?: [], 'form-components');
     }
 
     /**
