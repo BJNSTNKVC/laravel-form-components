@@ -73,7 +73,7 @@ class RestoresComponents extends Command
      */
     private function getPublishedComponents(Publisher $publisher): array
     {
-        $published_components = scandir($publisher->publishedPath);
+        $published_components = scandir($publisher->classPath);
 
         array_splice($published_components, 0, 2);
 

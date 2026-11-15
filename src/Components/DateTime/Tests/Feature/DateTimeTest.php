@@ -76,4 +76,22 @@ class DateTimeTest extends TestCase
             ->assertSee('fc:[&amp;::-webkit-calendar-picker-indicator]:opacity-0', false)
             ->assertSee('fc:[&amp;::-webkit-inner-spin-button]:opacity-0', false);
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::date-time name="starts_at" title="Starts At" icon="/icons/starts_at.png" />')
+            ->assertSee('<img src="/icons/starts_at.png" alt="Starts At icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::date-time name="starts_at" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
 }

@@ -90,7 +90,7 @@ jobs:
       - name: Install dependencies
         run: composer update --with "laravel/framework:^13.0" --prefer-dist --no-interaction --no-progress
 
-      - name: Run the Package suite with coverage
+      - name: Require full coverage of the Package suite
         run: composer test:coverage
 
   browser:

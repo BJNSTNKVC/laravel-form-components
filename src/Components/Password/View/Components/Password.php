@@ -133,7 +133,7 @@ class Password extends Component
     {
         // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
         if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
-            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon));
+            return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', (string) file_get_contents($icon));
         }
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'

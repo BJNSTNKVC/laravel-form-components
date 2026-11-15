@@ -144,11 +144,6 @@ parameters:
 			count: 1
 			path: src/FormComponentsServiceProvider.php
 
-		-
-			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/FormComponentsServiceProvider.php
 
 		-
 			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'

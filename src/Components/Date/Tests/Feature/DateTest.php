@@ -76,4 +76,22 @@ class DateTest extends TestCase
             ->assertSee('fc:[&amp;::-webkit-calendar-picker-indicator]:opacity-0', false)
             ->assertSee('fc:[&amp;::-webkit-inner-spin-button]:opacity-0', false);
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::date name="birthday" title="Birthday" icon="/icons/birthday.png" />')
+            ->assertSee('<img src="/icons/birthday.png" alt="Birthday icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::date name="birthday" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
 }

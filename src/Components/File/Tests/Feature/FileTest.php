@@ -84,4 +84,22 @@ class FileTest extends TestCase
             ->assertSee('placeholder="Choose a picture"', false)
             ->assertDontSee('placeholder="Avatar"', false);
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" title="Avatar" icon="/icons/avatar.png" />')
+            ->assertSee('<img src="/icons/avatar.png" alt="Avatar icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
 }

@@ -82,4 +82,51 @@ class PasswordTest extends TestCase
             ->blade('<x-form::password name="password" />')
             ->assertSee('fc:*:[[class*=icon--hide]]:hidden', false);
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" icon="/icons/password.png" />')
+            ->assertSee('<img src="/icons/password.png" alt="Password icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
+
+    #[Test]
+    public function it_renders_image_visibility_icons(): void
+    {
+        config([
+            'form_components.icons.password.show' => '/icons/show.png',
+            'form_components.icons.password.hide' => '/icons/hide.png',
+        ]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" />')
+            ->assertSee('<img src="/icons/show.png" alt="Password icon" class="form-group__icon--show">', false)
+            ->assertSee('<img src="/icons/hide.png" alt="Password icon" class="form-group__icon--hide">', false);
+    }
+
+    #[Test]
+    public function it_inlines_svg_visibility_icon_files(): void
+    {
+        config([
+            'form_components.image_formats' => ['.png'],
+            'form_components.icons.password.show' => $this->iconFile(),
+            'form_components.icons.password.hide' => $this->iconFile(),
+        ]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--show" ', $this->iconMarkup()), false)
+            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--hide" ', $this->iconMarkup()), false);
+    }
 }

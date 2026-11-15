@@ -46,7 +46,7 @@ class FormComponentsServiceProvider extends ServiceProvider
         $this->prefix = config('form_components.prefix');
         $this->separator = config('form_components.separator');
         $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
-        $this->assetPath = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
+        $this->assetPath = ltrim(substr($this->publishPath, strlen(public_path())), '/\\');
     }
 
     /**

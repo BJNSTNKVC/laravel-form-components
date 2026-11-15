@@ -61,7 +61,7 @@ class PublishesComponents extends Command
             $updated_config_file = $publisher->updateConfig($class, $config);
 
             // In case Class and resource folders do not exist, create them.
-            $filesystem->ensureDirectoryExists($publisher->publishedPath);
+            $filesystem->ensureDirectoryExists($publisher->classPath);
             $filesystem->ensureDirectoryExists($publisher->viewPath);
 
             // Check if the Component already exists.
