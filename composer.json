@@ -8,6 +8,11 @@
             "Bjnstnkvc\\FormComponents\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Bjnstnkvc\\FormComponents\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Bojan Stankovic",
@@ -15,7 +20,38 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.3",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/filesystem": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/view": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0|^11.0",
+        "orchestra/testbench-dusk": "^10.0|^11.0",
+        "phpunit/phpunit": "^12.0"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit --testsuite=Package"
+        ],
+        "test:coverage": [
+            "@php vendor/bin/phpunit --testsuite=Package --coverage-text --coverage-html=build/coverage"
+        ],
+        "test:browser": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpunit --testsuite=Browser"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "laravel": {
             "providers": [

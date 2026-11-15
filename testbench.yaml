@@ -1,0 +1,11 @@
+laravel: '@testbench'
+
+providers:
+  - Bjnstnkvc\FormComponents\FormComponentsServiceProvider
+
+workbench:
+  start: '/'
+  discovers:
+    config: true
+    web: true
+    views: true
