@@ -66,4 +66,22 @@ class EmailTest extends TestCase
             ->blade('<x-form::email name="email" title="Email" label-type="floating" />')
             ->assertSee('fc:focus:placeholder:text-transparent');
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::email name="email" title="Email" icon="/icons/email.png" />')
+            ->assertSee('<img src="/icons/email.png" alt="Email icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::email name="email" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
 }

@@ -82,4 +82,45 @@ class SearchTest extends TestCase
             ->blade('<x-form::search name="query" />')
             ->assertSee('fc:*:[[class*=icon--clear]]:hidden', false);
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" title="Query" icon="/icons/query.png" />')
+            ->assertSee('<img src="/icons/query.png" alt="Query icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
+
+    #[Test]
+    public function it_renders_an_image_clear_icon(): void
+    {
+        config(['form_components.icons.search.clear' => '/icons/clear.png']);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" title="Query" />')
+            ->assertSee('<img src="/icons/clear.png" alt="Query icon" class="form-group__icon--clear">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_clear_icon_file(): void
+    {
+        config([
+            'form_components.image_formats' => ['.png'],
+            'form_components.icons.search.clear' => $this->iconFile(),
+        ]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--clear" ', $this->iconMarkup()), false);
+    }
 }

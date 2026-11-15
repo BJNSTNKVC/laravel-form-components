@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - File fields show their title as a placeholder, and floating File titles rise once a file is chosen.
 - The border no longer runs through the floating title of a fully bordered field, it opens a notch around the title instead.
+- `components:publish` and `components:restore` write to `app/View/Components/Form` and `resources/views/components/form` on every platform instead of creating backslash-named files, and switch the component imports in the published config.
+- `@componentStyles` and `@componentScripts` link to `vendor/form-components` instead of a path missing its first letter.
+- Password visibility and Search clear icons loaded from an SVG file keep the class that toggles them.
 
 ### Removed
 

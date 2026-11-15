@@ -27,6 +27,7 @@
         </include>
         <exclude>
             <directory>src/Components/*/Tests</directory>
+            <directory>src/Components/*/resources</directory>
         </exclude>
     </source>
     <php>

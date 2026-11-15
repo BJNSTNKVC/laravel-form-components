@@ -49,11 +49,18 @@ class Publisher
     private $defaultPath;
 
     /**
-     * Components published class path.
+     * Components published Namespace prefix.
      *
      * @var string
      */
     public $publishedPath;
+
+    /**
+     * Directory the Component classes are published to.
+     *
+     * @var string
+     */
+    public $classPath;
 
     /**
      * Components default view/blade name.
@@ -73,11 +80,12 @@ class Publisher
     {
         $this->classRoot = __DIR__.'/../Components/';
         $this->configPath = config_path('form_components.php');
-        $this->viewPath = resource_path('views\components\form\\');
+        $this->viewPath = resource_path('views/components/form/');
         $this->defaultNamespace = 'Bjnstnkvc\FormComponents\Components';
         $this->publishedNamespace = 'App\View\Components\Form';
         $this->defaultPath = 'Bjnstnkvc\FormComponents\Components\\';
         $this->publishedPath = 'App\View\Components\Form\\';
+        $this->classPath = app_path('View/Components/Form/');
         $this->defaultBlade = 'form-components::';
         $this->publishedBlade = 'components.form.';
     }
@@ -109,7 +117,7 @@ class Publisher
      */
     public function publishClass(string $class): string
     {
-        return $this->publishedPath.$class.'.php';
+        return $this->classPath.$class.'.php';
     }
 
     /**
@@ -147,9 +155,9 @@ class Publisher
      */
     public function updateConfig(string $class, string $config)
     {
-        return str_replace(
-            $this->defaultPath.$class.'\\View\\Components\\'.$class.'::class',
-            $this->publishedPath.$class.'::class',
+        return $this->replaceClass(
+            $this->defaultPath.$class.'\\View\\Components\\'.$class,
+            $this->publishedPath.$class,
             $config
         );
     }
@@ -163,10 +171,26 @@ class Publisher
      */
     public function restoreClass(string $view, string $class)
     {
-        return str_replace(
-            $this->publishedPath.$view.'::class',
-            $this->defaultPath.$view.'\\View\\Components\\'.$view.'::class',
+        return $this->replaceClass(
+            $this->publishedPath.$view,
+            $this->defaultPath.$view.'\\View\\Components\\'.$view,
             $class
+        );
+    }
+
+    /**
+     * Swaps a Component class imported or referenced in the config.
+     *
+     * @param  string  $from  Class being replaced.
+     * @param  string  $to  Replacement class.
+     * @param  string  $config  Class config.
+     */
+    private function replaceClass(string $from, string $to, string $config): string
+    {
+        return str_replace(
+            ['use '.$from.';', $from.'::class'],
+            ['use '.$to.';', $to.'::class'],
+            $config
         );
     }
 }

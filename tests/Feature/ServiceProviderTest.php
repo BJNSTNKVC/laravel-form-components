@@ -35,6 +35,42 @@ class ServiceProviderTest extends TestCase
         }
     }
 
+    #[Test]
+    public function it_links_the_minified_stylesheet_by_default(): void
+    {
+        $this->assertSame(
+            "<link href='".asset('vendor/form-components/css/form-components.min.css')."' rel='stylesheet'>",
+            Blade::compileString('@componentStyles')
+        );
+    }
+
+    #[Test]
+    public function it_links_the_full_stylesheet_when_asked(): void
+    {
+        $this->assertSame(
+            "<link href='".asset('vendor/form-components/css/form-components.css')."' rel='stylesheet'>",
+            Blade::compileString("@componentStyles('full')")
+        );
+    }
+
+    #[Test]
+    public function it_links_the_minified_script_by_default(): void
+    {
+        $this->assertSame(
+            "<script src='".asset('vendor/form-components/js/form-components.min.js')."' defer></script>",
+            Blade::compileString('@componentScripts')
+        );
+    }
+
+    #[Test]
+    public function it_links_the_full_script_when_asked(): void
+    {
+        $this->assertSame(
+            "<script src='".asset('vendor/form-components/js/form-components.js')."' defer></script>",
+            Blade::compileString("@componentScripts('full')")
+        );
+    }
+
     /**
      * Components listed in the package configuration.
      *

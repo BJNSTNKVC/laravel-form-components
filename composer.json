@@ -32,6 +32,7 @@
     "require-dev": {
         "larastan/larastan": "^3.15",
         "laravel/pint": "^1.32",
+        "nunomaduro/collision": "^8.9",
         "orchestra/testbench": "^10.0|^11.0",
         "orchestra/testbench-dusk": "^10.0|^11.0",
         "phpunit/phpunit": "^12.0",
@@ -45,7 +46,7 @@
             "@php vendor/bin/phpunit --testsuite=Package"
         ],
         "test:coverage": [
-            "@php vendor/bin/phpunit --testsuite=Package --coverage-text --coverage-html=build/coverage"
+            "@php vendor/bin/testbench package:test --coverage --min=100 --testsuite=Package --coverage-html=build/coverage"
         ],
         "test:browser": [
             "Composer\\Config::disableProcessTimeout",

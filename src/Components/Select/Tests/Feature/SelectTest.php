@@ -78,4 +78,42 @@ class SelectTest extends TestCase
             ->assertSee('fc:h-[88px]')
             ->assertDontSee('fc:*:grow');
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::select name="country" title="Country" icon="/icons/country.png" />')
+            ->assertSee('<img src="/icons/country.png" alt="Country icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::select name="country" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
+
+    #[Test]
+    public function it_renders_no_options_without_values(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::select name="country" />')
+            ->assertSee('<select', false)
+            ->assertDontSee('<option', false);
+    }
+
+    #[Test]
+    public function it_renders_options_from_an_array(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::select name="country" :values="$values" />', ['values' => ['rs' => 'Serbia', 'es' => 'Spain']])
+            ->assertSee('value="rs"', false)
+            ->assertSee('Serbia')
+            ->assertSee('value="es"', false)
+            ->assertSee('Spain');
+    }
 }

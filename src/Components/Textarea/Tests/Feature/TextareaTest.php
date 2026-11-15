@@ -74,4 +74,22 @@ class TextareaTest extends TestCase
             ->blade('<x-form::textarea name="bio" />')
             ->assertSee('fc:h-auto fc:min-h-10 fc:py-2 fc:resize-none');
     }
+
+    #[Test]
+    public function it_renders_an_image_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::textarea name="bio" title="Bio" icon="/icons/bio.png" />')
+            ->assertSee('<img src="/icons/bio.png" alt="Bio icon">', false);
+    }
+
+    #[Test]
+    public function it_inlines_an_svg_icon_file(): void
+    {
+        config(['form_components.image_formats' => ['.png']]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::textarea name="bio" :icon="$icon" />', ['icon' => $this->iconFile()])
+            ->assertSee($this->iconMarkup(), false);
+    }
 }
