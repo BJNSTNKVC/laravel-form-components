@@ -1,0 +1,50 @@
+name: Bug Report
+description: Something in a component or the package does not work as documented.
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Give the issue a title of at most 10 words in APA title case that names the problem, such as "Keep the Selected Option After Validation Fails".
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What goes wrong, what you expected instead and why it matters. Describe the problem, not a fix.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: The Blade markup, config and steps that trigger the problem.
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: Package Version
+      placeholder: "2.0.0"
+    validations:
+      required: true
+  - type: input
+    id: laravel-version
+    attributes:
+      label: Laravel Version
+      placeholder: "13.0.0"
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      placeholder: "8.4.0"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Only needed when the problem shows in the browser.
+      placeholder: Chrome 142

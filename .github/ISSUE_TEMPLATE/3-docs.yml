@@ -1,0 +1,16 @@
+name: Documentation
+description: Something in the README or the component docs is missing, wrong or unclear.
+labels:
+  - docs
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Give the issue a title of at most 10 words in APA title case, such as "Explain How to Publish the Config File".
+  - type: textarea
+    id: why
+    attributes:
+      label: Why It Is Needed
+      description: A few sentences on what readers miss or get wrong today. Describe why, not how.
+    validations:
+      required: true
