@@ -1,1 +1,7 @@
-/vendor
+/vendor/
+/node_modules/
+/.idea/
+/.env
+/docker-compose.override.yml
+/.ai/
+/CLAUDE.md

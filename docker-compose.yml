@@ -1,0 +1,64 @@
+networks:
+    form-components:
+
+name: form-components
+
+services:
+    php:
+        container_name: form-components-php
+        build:
+            context: ./.docker
+            dockerfile: php.dockerfile
+            target: base
+            args:
+                - UID=${UID:-1000}
+                - GID=${GID:-1000}
+        init: true
+        ports:
+            - "127.0.0.1:${APP_PORT:-8000}:8000"
+        volumes:
+            - .:/var/www/html:delegated
+        networks:
+            - form-components
+
+    node:
+        container_name: form-components-node
+        build:
+            context: ./.docker
+            dockerfile: node.dockerfile
+            args:
+                - UID=${UID:-1000}
+                - GID=${GID:-1000}
+        init: true
+        volumes:
+            - .:/var/www/html:delegated
+        networks:
+            - form-components
+
+    coverage:
+        container_name: form-components-coverage
+        profiles:
+            - coverage
+        build:
+            context: ./.docker
+            dockerfile: php.dockerfile
+            target: coverage
+            args:
+                - UID=${UID:-1000}
+                - GID=${GID:-1000}
+        init: true
+        volumes:
+            - .:/var/www/html:delegated
+        networks:
+            - form-components
+
+    selenium:
+        container_name: form-components-selenium
+        image: selenium/standalone-chromium:4.52.0
+        profiles:
+            - browser
+        shm_size: 2gb
+        ports:
+            - "127.0.0.1:${SELENIUM_VNC_PORT:-7900}:7900"
+        networks:
+            - form-components
