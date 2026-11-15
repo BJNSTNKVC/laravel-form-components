@@ -86,26 +86,25 @@ class Password extends Component
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null, $passwordVisibility = null)
     {
-        $this->name               = Str::slug($name, '_');
-        $this->id                 = $id ?: $this->name;
-        $this->title              = $title ?: Str::title($name);
-        $this->value              = old($this->name) ?: $value;
-        $this->label              = $label;
-        $this->labelType          = $labelType ?: config('form_components.label_type');
-        $this->border             = $border ?: config('form_components.border');
-        $this->borderRadius       = $borderRadius ?: config('form_components.radius');
-        $this->invalidatedTitle   = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon           = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
+        $this->name = Str::slug($name, '_');
+        $this->id = $id ?: $this->name;
+        $this->title = $title ?: Str::title($name);
+        $this->value = old($this->name) ?: $value;
+        $this->label = $label;
+        $this->labelType = $labelType ?: config('form_components.label_type');
+        $this->border = $border ?: config('form_components.border');
+        $this->borderRadius = $borderRadius ?: config('form_components.radius');
+        $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->passwordVisibility = filter_var($passwordVisibility ?: config('form_components.password_visibility'), FILTER_VALIDATE_BOOLEAN);
-        $this->showPasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.show'), 'show');
-        $this->hidePasswordIcon   = $this->renderVisibilityIcon(config('form_components.icons.password.hide'), 'hide');
-        $this->icon               = $this->renderIcon($icon ?: config('form_components.icons.password.icon'));
+        $this->showPasswordIcon = $this->renderVisibilityIcon(config('form_components.icons.password.show'), 'show');
+        $this->hidePasswordIcon = $this->renderVisibilityIcon(config('form_components.icons.password.hide'), 'hide');
+        $this->icon = $this->renderIcon($icon ?: config('form_components.icons.password.icon'));
     }
 
     /**
      * Render component icon depending on the type.
      *
-     * @param null|string $icon
      *
      * @return false|string
      */
@@ -118,7 +117,7 @@ class Password extends Component
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="' . $icon . '" alt="' . $this->title . ' icon">';
+            return '<img src="'.$icon.'" alt="'.$this->title.' icon">';
         }
 
         return $icon;
@@ -127,8 +126,6 @@ class Password extends Component
     /**
      * Render component password visibility icons depending on the type.
      *
-     * @param string $icon
-     * @param string $type
      *
      * @return false|string
      */
@@ -136,15 +133,15 @@ class Password extends Component
     {
         // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
         if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
-            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon));
+            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon));
         }
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="' . $icon . '" alt="' . $this->title . ' icon" class="form-group__icon--' . $type . '">';
+            return '<img src="'.$icon.'" alt="'.$this->title.' icon" class="form-group__icon--'.$type.'">';
         }
 
-        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon);
+        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon);
     }
 
     /**
@@ -157,4 +154,3 @@ class Password extends Component
         return view('form-components::form.password');
     }
 }
-

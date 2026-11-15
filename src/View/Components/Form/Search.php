@@ -81,25 +81,24 @@ class Search extends Component
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $searchClearing = null, $icon = null)
     {
-        $this->name             = Str::slug($name, '_');
-        $this->id               = $id ?: $this->name;
-        $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: $value;
-        $this->label            = $label;
-        $this->labelType        = $labelType ?: config('form_components.label_type');
-        $this->border           = $border ?: config('form_components.border');
-        $this->borderRadius     = $borderRadius ?: config('form_components.radius');
+        $this->name = Str::slug($name, '_');
+        $this->id = $id ?: $this->name;
+        $this->title = $title ?: Str::title($name);
+        $this->value = old($this->name) ?: $value;
+        $this->label = $label;
+        $this->labelType = $labelType ?: config('form_components.label_type');
+        $this->border = $border ?: config('form_components.border');
+        $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon         = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
-        $this->searchClearing  = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
+        $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
+        $this->searchClearing = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
         $this->searchClearIcon = $this->renderSearchIcon(config('form_components.icons.search.clear'), 'clear');
-        $this->icon            = $this->renderIcon($icon ?: config('form_components.icons.search.icon'));
+        $this->icon = $this->renderIcon($icon ?: config('form_components.icons.search.icon'));
     }
 
     /**
      * Render component icon depending on the type.
      *
-     * @param null|string $icon
      *
      * @return false|string
      */
@@ -112,7 +111,7 @@ class Search extends Component
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="' . $icon . '" alt="' . $this->title . ' icon">';
+            return '<img src="'.$icon.'" alt="'.$this->title.' icon">';
         }
 
         return $icon;
@@ -121,8 +120,6 @@ class Search extends Component
     /**
      * Render component search clearing depending on the type.
      *
-     * @param string $icon
-     * @param string $type
      *
      * @return false|string
      */
@@ -130,15 +127,15 @@ class Search extends Component
     {
         // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
         if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
-            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon));
+            return file_get_contents(Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon));
         }
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="' . $icon . '" alt="' . $this->title . ' icon" class="form-group__icon--' . $type . '">';
+            return '<img src="'.$icon.'" alt="'.$this->title.' icon" class="form-group__icon--'.$type.'">';
         }
 
-        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--' . $type . '" ', $icon);
+        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon);
     }
 
     /**
@@ -151,5 +148,3 @@ class Search extends Component
         return view('form-components::form.search');
     }
 }
-
-

@@ -1,0 +1,2569 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$array of static method Illuminate\\Support\\Arr\:\:only\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$class of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:getClass\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$class of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:publishClass\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$class of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:updateConfig\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$string of static method Illuminate\\Support\\Str\:\:of\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$view of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:getView\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$view of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:publishView\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#1 \$view of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:updateClass\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Parameter \#2 \$contents of method Illuminate\\Filesystem\\Filesystem\:\:put\(\) expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Console/Commands/PublishesComponents.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\Console\\Commands\\RestoresComponents\:\:getPublishedComponents\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Parameter \#1 \$array of static method Illuminate\\Support\\Arr\:\:only\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Parameter \#1 \$class of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:publishClass\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Parameter \#1 \$string of static method Illuminate\\Support\\Str\:\:of\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Parameter \#1 \$view of method Bjnstnkvc\\FormComponents\\Helpers\\Publisher\:\:restoreClass\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Parameter \#2 \$contents of method Illuminate\\Filesystem\\Filesystem\:\:put\(\) expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Commands/RestoresComponents.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/css/'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/css/form…'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 4
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/js/'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/js/form\-components…'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 4
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Binary operation "\." between string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Parameter \#1 \$class of static method Illuminate\\Support\\Facades\\Blade\:\:component\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$assetPath has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$components has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$prefix has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$publishPath has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$separator has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/FormComponentsServiceProvider.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:__construct\(\) has parameter \$action with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:__construct\(\) has parameter \$method with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:\$action has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Base\:\:\$method has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Base.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:__construct\(\) has parameter \$link with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:camel\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:\$link has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Button\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Button.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$checked with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$position with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$switch with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$checked has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$position has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$switch has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Checkbox\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Checkbox.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$time of static method Carbon\\Carbon\:\:parse\(\) expects Carbon\\Month\|Carbon\\WeekDay\|DateTimeInterface\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Date\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Date.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$time of static method Carbon\\Carbon\:\:parse\(\) expects Carbon\\Month\|Carbon\\WeekDay\|DateTimeInterface\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\DateTime\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/DateTime.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Email\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Email.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Error\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Error.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Error\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Error.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\File\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/File.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Input\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Input.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$passwordVisibility with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:renderVisibilityIcon\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$hidePasswordIcon \(string\) does not accept string\|false\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$showPasswordIcon \(string\) does not accept string\|false\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Password\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Password.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$checked with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$position with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$switch with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$checked has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$position has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$switch has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Radio\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Radio.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$searchClearing with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:renderSearchIcon\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$searchClearIcon \(string\) does not accept string\|false\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Search\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Search.php
+
+		-
+			message: '#^Binary operation "\." between ''data\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$default with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$jsDataKey with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$jsDataValue with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$model with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$modelKey with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$modelValue with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$placeholder with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:__construct\(\) has parameter \$values with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:toArray\(\) has parameter \$values with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:toArray\(\) should return array but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$default has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$jsDataKey has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$jsDataValue has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$model has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$modelKey has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$modelValue has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$placeholder has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Select\:\:\$values has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Select.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Textarea\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Textarea.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$border with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$borderRadius with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$icon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$invalidatedTitle with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$label with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$labelType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$showIcon with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$title with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:renderIcon\(\) should return string\|false but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of static method Illuminate\\Support\\Str\:\:contains\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$time of static method Carbon\\Carbon\:\:parse\(\) expects Carbon\\Month\|Carbon\\WeekDay\|DateTimeInterface\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$title of static method Illuminate\\Support\\Str\:\:slug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:title\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$border has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$borderRadius has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$invalidatedTitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$label has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$labelType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$showIcon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php
+
+		-
+			message: '#^Property Bjnstnkvc\\FormComponents\\View\\Components\\Form\\Time\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/View/Components/Form/Time.php

@@ -64,16 +64,12 @@ class RestoresComponents extends Command
             $filesystem->put($publisher->configPath, $restored_config_file);
 
             // Display status message.
-            $this->info('Successfully restored ' . $class_name . ' component class!');
+            $this->info('Successfully restored '.$class_name.' component class!');
         }
     }
 
     /**
      * Returns an array of all published components.
-     *
-     * @param Publisher $publisher
-     *
-     * @return array
      */
     private function getPublishedComponents(Publisher $publisher): array
     {

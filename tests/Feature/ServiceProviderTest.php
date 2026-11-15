@@ -11,6 +11,7 @@ class ServiceProviderTest extends TestCase
     #[Test]
     public function it_registers_the_service_provider(): void
     {
+        $this->assertNotNull($this->app);
         $this->assertArrayHasKey(FormComponentsServiceProvider::class, $this->app->getLoadedProviders());
     }
 
