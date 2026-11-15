@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnPhpunitDeprecations="true">
+    <testsuites>
+        <testsuite name="Package">
+            <directory>tests</directory>
+            <exclude>tests/Browser</exclude>
+        </testsuite>
+        <testsuite name="Browser">
+            <directory>tests/Browser</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:jnsMmYozAgGOHAApOqbJsX4mZJSa+pkX6pug57jVSTs="/>
+        <env name="DUSK_DRIVER_URL" value="http://selenium:4444"/>
+        <env name="DUSK_SERVE_HOST" value="0.0.0.0"/>
+        <env name="DUSK_SERVE_PORT" value="8001"/>
+        <env name="DUSK_SERVE_URL" value="http://php:8001"/>
+    </php>
+</phpunit>
