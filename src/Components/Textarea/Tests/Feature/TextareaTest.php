@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Components\Textarea\Tests\Feature;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class TextareaTest extends TestCase
@@ -19,22 +20,28 @@ class TextareaTest extends TestCase
     }
 
     #[Test]
+    public function it_grows_with_its_content(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::textarea name="bio" />')
+            ->assertSee('fc:h-auto fc:min-h-10 fc:py-2 fc:resize-none');
+    }
+
+    #[Test]
+    public function it_hides_the_placeholder_behind_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::textarea name="bio" title="Bio" label-type="floating" />')
+            ->assertSee('fc:focus:placeholder:text-transparent');
+    }
+
+    #[Test]
     public function it_renders_a_bottom_border_by_default(): void
     {
         $this->withViewErrors([])
             ->blade('<x-form::textarea name="bio" title="Bio" />')
             ->assertSee('fc:border-b-2')
             ->assertDontSee('fc:border-2');
-    }
-
-    #[Test]
-    public function it_renders_a_full_rounded_border(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::textarea name="bio" title="Bio" border="full" border-radius="rounded" />')
-            ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
-            ->assertDontSee('fc:border-b-2');
     }
 
     #[Test]
@@ -48,31 +55,33 @@ class TextareaTest extends TestCase
     }
 
     #[Test]
-    public function it_does_not_notch_a_border_without_a_floating_title(): void
+    #[DataProvider('unnotchedBorders')]
+    public function it_does_not_notch_a_border_without_a_floating_title(string $attributes): void
     {
         $this->withViewErrors([])
-            ->blade('<x-form::textarea name="bio" title="Bio" border="full" />')
-            ->assertDontSee('<fieldset', false);
-
-        $this->withViewErrors([])
-            ->blade('<x-form::textarea name="bio" title="Bio" label-type="floating" />')
+            ->blade('<x-form::textarea name="bio" title="Bio" '.$attributes.' />')
             ->assertDontSee('<fieldset', false);
     }
 
-    #[Test]
-    public function it_hides_the_placeholder_behind_a_floating_title(): void
+    /**
+     * Attributes that render a border without a notch.
+     *
+     * @return iterable<string, array{string}>
+     */
+    public static function unnotchedBorders(): iterable
     {
-        $this->withViewErrors([])
-            ->blade('<x-form::textarea name="bio" title="Bio" label-type="floating" />')
-            ->assertSee('fc:focus:placeholder:text-transparent');
+        yield 'full border only' => ['border="full"'];
+        yield 'floating title only' => ['label-type="floating"'];
     }
 
     #[Test]
-    public function it_grows_with_its_content(): void
+    public function it_renders_a_full_rounded_border(): void
     {
         $this->withViewErrors([])
-            ->blade('<x-form::textarea name="bio" />')
-            ->assertSee('fc:h-auto fc:min-h-10 fc:py-2 fc:resize-none');
+            ->blade('<x-form::textarea name="bio" title="Bio" border="full" border-radius="rounded" />')
+            ->assertSee('fc:border-2')
+            ->assertSee('fc:rounded-full')
+            ->assertDontSee('fc:border-b-2');
     }
 
     #[Test]

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Components\File\Tests\Feature;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class FileTest extends TestCase
@@ -16,47 +17,6 @@ class FileTest extends TestCase
             ->blade('<x-form::file name="avatar" />')
             ->assertSee('type="file"', false)
             ->assertSee('name="avatar"', false);
-    }
-
-    #[Test]
-    public function it_renders_a_bottom_border_by_default(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::file name="avatar" title="Avatar" />')
-            ->assertSee('fc:border-b-2')
-            ->assertDontSee('fc:border-2');
-    }
-
-    #[Test]
-    public function it_renders_a_full_rounded_border(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::file name="avatar" title="Avatar" border="full" border-radius="rounded" />')
-            ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
-            ->assertDontSee('fc:border-b-2');
-    }
-
-    #[Test]
-    public function it_notches_the_border_for_a_floating_title(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::file name="avatar" title="Avatar" label-type="floating" border="full" />')
-            ->assertSee('<fieldset', false)
-            ->assertSee('aria-hidden="true"', false)
-            ->assertSee('<legend><span class="fc:px-2">Avatar</span></legend>', false);
-    }
-
-    #[Test]
-    public function it_does_not_notch_a_border_without_a_floating_title(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::file name="avatar" title="Avatar" border="full" />')
-            ->assertDontSee('<fieldset', false);
-
-        $this->withViewErrors([])
-            ->blade('<x-form::file name="avatar" title="Avatar" label-type="floating" />')
-            ->assertDontSee('<fieldset', false);
     }
 
     #[Test]
@@ -83,6 +43,55 @@ class FileTest extends TestCase
             ->blade('<x-form::file name="avatar" title="Avatar" placeholder="Choose a picture" />')
             ->assertSee('placeholder="Choose a picture"', false)
             ->assertDontSee('placeholder="Avatar"', false);
+    }
+
+    #[Test]
+    public function it_renders_a_bottom_border_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" title="Avatar" />')
+            ->assertSee('fc:border-b-2')
+            ->assertDontSee('fc:border-2');
+    }
+
+    #[Test]
+    public function it_notches_the_border_for_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" title="Avatar" label-type="floating" border="full" />')
+            ->assertSee('<fieldset', false)
+            ->assertSee('aria-hidden="true"', false)
+            ->assertSee('<legend><span class="fc:px-2">Avatar</span></legend>', false);
+    }
+
+    #[Test]
+    #[DataProvider('unnotchedBorders')]
+    public function it_does_not_notch_a_border_without_a_floating_title(string $attributes): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" title="Avatar" '.$attributes.' />')
+            ->assertDontSee('<fieldset', false);
+    }
+
+    /**
+     * Attributes that render a border without a notch.
+     *
+     * @return iterable<string, array{string}>
+     */
+    public static function unnotchedBorders(): iterable
+    {
+        yield 'full border only' => ['border="full"'];
+        yield 'floating title only' => ['label-type="floating"'];
+    }
+
+    #[Test]
+    public function it_renders_a_full_rounded_border(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" title="Avatar" border="full" border-radius="rounded" />')
+            ->assertSee('fc:border-2')
+            ->assertSee('fc:rounded-full')
+            ->assertDontSee('fc:border-b-2');
     }
 
     #[Test]

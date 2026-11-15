@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Components\Password\Tests\Feature;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class PasswordTest extends TestCase
@@ -19,22 +20,20 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
+    public function it_hides_the_placeholder_behind_a_floating_title(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" title="Password" label-type="floating" />')
+            ->assertSee('fc:focus:placeholder:text-transparent');
+    }
+
+    #[Test]
     public function it_renders_a_bottom_border_by_default(): void
     {
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" title="Password" />')
             ->assertSee('fc:border-b-2')
             ->assertDontSee('fc:border-2');
-    }
-
-    #[Test]
-    public function it_renders_a_full_rounded_border(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::password name="password" title="Password" border="full" border-radius="rounded" />')
-            ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
-            ->assertDontSee('fc:border-b-2');
     }
 
     #[Test]
@@ -48,39 +47,33 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
-    public function it_does_not_notch_a_border_without_a_floating_title(): void
+    #[DataProvider('unnotchedBorders')]
+    public function it_does_not_notch_a_border_without_a_floating_title(string $attributes): void
     {
         $this->withViewErrors([])
-            ->blade('<x-form::password name="password" title="Password" border="full" />')
-            ->assertDontSee('<fieldset', false);
-
-        $this->withViewErrors([])
-            ->blade('<x-form::password name="password" title="Password" label-type="floating" />')
+            ->blade('<x-form::password name="password" title="Password" '.$attributes.' />')
             ->assertDontSee('<fieldset', false);
     }
 
-    #[Test]
-    public function it_hides_the_placeholder_behind_a_floating_title(): void
+    /**
+     * Attributes that render a border without a notch.
+     *
+     * @return iterable<string, array{string}>
+     */
+    public static function unnotchedBorders(): iterable
     {
-        $this->withViewErrors([])
-            ->blade('<x-form::password name="password" title="Password" label-type="floating" />')
-            ->assertSee('fc:focus:placeholder:text-transparent');
+        yield 'full border only' => ['border="full"'];
+        yield 'floating title only' => ['label-type="floating"'];
     }
 
     #[Test]
-    public function it_makes_room_for_the_visibility_toggle_and_icon(): void
+    public function it_renders_a_full_rounded_border(): void
     {
         $this->withViewErrors([])
-            ->blade('<x-form::password name="password" />')
-            ->assertSee('fc:pr-12');
-    }
-
-    #[Test]
-    public function it_hides_the_hide_password_icon_until_toggled(): void
-    {
-        $this->withViewErrors([])
-            ->blade('<x-form::password name="password" />')
-            ->assertSee('fc:*:[[class*=icon--hide]]:hidden', false);
+            ->blade('<x-form::password name="password" title="Password" border="full" border-radius="rounded" />')
+            ->assertSee('fc:border-2')
+            ->assertSee('fc:rounded-full')
+            ->assertDontSee('fc:border-b-2');
     }
 
     #[Test]
@@ -99,6 +92,22 @@ class PasswordTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" :icon="$icon" />', ['icon' => $this->iconFile()])
             ->assertSee($this->iconMarkup(), false);
+    }
+
+    #[Test]
+    public function it_makes_room_for_the_visibility_toggle_and_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee('fc:pr-12');
+    }
+
+    #[Test]
+    public function it_hides_the_hide_password_icon_until_toggled(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee('fc:*:[[class*=icon--hide]]:hidden', false);
     }
 
     #[Test]
