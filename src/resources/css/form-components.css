@@ -1,0 +1,4 @@
+@import "tailwindcss/theme.css" prefix(fc);
+@import "tailwindcss/utilities.css" source(none);
+
+@source "../../Components/*/resources/views/**/*.blade.php";

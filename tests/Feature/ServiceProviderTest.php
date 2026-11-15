@@ -36,6 +36,8 @@ class ServiceProviderTest extends TestCase
     }
 
     /**
+     * Components listed in the package configuration.
+     *
      * @return array<string, class-string>
      */
     private function components(): array
