@@ -1,0 +1,33 @@
+* text=auto eol=lf
+
+*.php text
+*.css text
+*.js text
+*.json text
+*.md text
+*.xml text
+*.yml text
+*.yaml text
+*.dockerfile text
+*.sh text
+*.svg text
+.gitattributes text
+.gitignore text
+.env.example text
+LICENSE text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.gz binary
