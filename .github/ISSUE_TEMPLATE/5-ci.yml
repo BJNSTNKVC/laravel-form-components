@@ -1,0 +1,16 @@
+name: Continuous Integration
+description: Workflows, automated checks and release automation.
+labels:
+  - ci
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Give the issue a title of at most 10 words in APA title case, such as "Check Every Pull Request Automatically".
+  - type: textarea
+    id: why
+    attributes:
+      label: Why It Is Needed
+      description: A few sentences on what this catches or saves. Describe why, not how.
+    validations:
+      required: true

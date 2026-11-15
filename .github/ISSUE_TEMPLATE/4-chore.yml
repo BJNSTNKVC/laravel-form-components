@@ -1,0 +1,16 @@
+name: Maintenance
+description: Tooling, dependencies, refactoring or other upkeep with no user-facing change.
+labels:
+  - chore
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Give the issue a title of at most 10 words in APA title case, such as "Keep Code Style Consistent Without Manual Review".
+  - type: textarea
+    id: why
+    attributes:
+      label: Why It Is Needed
+      description: A few sentences on what this improves or prevents. Describe why, not how.
+    validations:
+      required: true
