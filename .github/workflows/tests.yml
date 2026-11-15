@@ -1,0 +1,169 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  package:
+    name: Package (PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.3', '8.4', '8.5']
+        laravel: ['12', '13']
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: bcmath, intl, pcntl, zip
+          tools: composer:v2
+          coverage: none
+
+      - name: Locate the Composer cache
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-package-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-package-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-
+
+      - name: Install dependencies
+        run: composer update --with "laravel/framework:^${{ matrix.laravel }}.0" --prefer-dist --no-interaction --no-progress
+
+      - name: Show the resolved Laravel version
+        run: composer show laravel/framework | grep -E '^(name|versions)'
+
+      - name: Run the Package suite
+        run: composer test
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: bcmath, intl, pcntl, zip
+          tools: composer:v2
+          coverage: pcov
+
+      - name: Locate the Composer cache
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-coverage-${{ runner.os }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-coverage-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer update --with "laravel/framework:^13.0" --prefer-dist --no-interaction --no-progress
+
+      - name: Run the Package suite with coverage
+        run: composer test:coverage
+
+  browser:
+    name: Browser (PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.3'
+            laravel: '12'
+          - php: '8.5'
+            laravel: '13'
+
+    services:
+      selenium:
+        image: selenium/standalone-chromium:4.52.0
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+          --add-host=host.docker.internal:host-gateway
+
+    env:
+      DUSK_DRIVER_URL: http://localhost:4444
+      DUSK_SERVE_HOST: 0.0.0.0
+      DUSK_SERVE_PORT: 8001
+      DUSK_SERVE_URL: http://host.docker.internal:8001
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: bcmath, intl, pcntl, zip
+          tools: composer:v2
+          coverage: none
+
+      - name: Locate the Composer cache
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-browser-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-browser-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-
+
+      - name: Install dependencies
+        run: composer update --with "laravel/framework:^${{ matrix.laravel }}.0" --prefer-dist --no-interaction --no-progress
+
+      - name: Show the resolved Laravel version
+        run: composer show laravel/framework | grep -E '^(name|versions)'
+
+      - name: Wait for Selenium
+        run: timeout 60 bash -c 'until curl -sf http://localhost:4444/status | jq -e .value.ready > /dev/null; do sleep 1; done'
+
+      - name: Run the Browser suite
+        run: composer test:browser
+
+      - name: Upload browser failure output
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}
+          path: |
+            tests/Browser/screenshots
+            tests/Browser/console
+            tests/Browser/source
+          if-no-files-found: ignore
