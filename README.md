@@ -688,6 +688,25 @@ or
 
 > **Note:** You might need to clear config cache using `php artisan cache:clear` command after you publish or restore the components.
 
+## Local development
+
+Everything needed to work on the package runs in Docker. Start the containers with:
+
+    docker compose up -d
+
+Include the browser used by browser tests with:
+
+    docker compose --profile browser up -d
+
+Open a shell in the PHP or Node container with:
+
+    docker compose exec php sh
+    docker compose exec node sh
+
+Stop the containers with:
+
+    docker compose --profile browser down
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
