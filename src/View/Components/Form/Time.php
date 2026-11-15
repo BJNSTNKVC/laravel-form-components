@@ -3,6 +3,7 @@
 namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
@@ -70,23 +71,22 @@ class Time extends Component
      */
     public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
     {
-        $this->name             = Str::slug($name, '_');
-        $this->id               = $id ?: $this->name;
-        $this->title            = $title ?: Str::title($name);
-        $this->value            = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
-        $this->label            = $label;
-        $this->labelType        = $labelType ?: config('form_components.label_type');
-        $this->border           = $border ?: config('form_components.border');
-        $this->borderRadius     = $borderRadius ?: config('form_components.radius');
+        $this->name = Str::slug($name, '_');
+        $this->id = $id ?: $this->name;
+        $this->title = $title ?: Str::title($name);
+        $this->value = old($this->name) ?: ($value ? Carbon::parse($value)->toTimeString() : $value);
+        $this->label = $label;
+        $this->labelType = $labelType ?: config('form_components.label_type');
+        $this->border = $border ?: config('form_components.border');
+        $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
-        $this->showIcon         = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
-        $this->icon             = $this->renderIcon($icon ?: config('form_components.icons.time'));
+        $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
+        $this->icon = $this->renderIcon($icon ?: config('form_components.icons.time'));
     }
 
     /**
      * Render component icon depending on the type.
      *
-     * @param null|string $icon
      *
      * @return false|string
      */
@@ -99,7 +99,7 @@ class Time extends Component
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="' . $icon . '" alt="' . $this->title . ' icon">';
+            return '<img src="'.$icon.'" alt="'.$this->title.' icon">';
         }
 
         return $icon;
@@ -108,7 +108,7 @@ class Time extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

@@ -2,6 +2,7 @@
 
 namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
@@ -39,17 +40,17 @@ class Button extends Component
      */
     public function __construct($name = null, $id = null, $title = null, $link = null, $borderRadius = null)
     {
-        $this->name         = $name;
-        $this->id           = $id ?: Str::camel($name);
-        $this->title        = $title ?: Str::title($name);
-        $this->link         = $link;
+        $this->name = $name;
+        $this->id = $id ?: Str::camel($name);
+        $this->title = $title ?: Str::title($name);
+        $this->link = $link;
         $this->borderRadius = $borderRadius ?: config('form_components.button_radius');
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

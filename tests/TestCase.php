@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bjnstnkvc\FormComponents\Tests;
 
 use Orchestra\Testbench\Concerns\WithWorkbench;

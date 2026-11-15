@@ -1,0 +1,61 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  checks:
+    name: Pint, Rector and Larastan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: bcmath, intl, pcntl, zip
+          tools: composer:v2
+          coverage: none
+
+      - name: Locate the Composer cache
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-code-quality-${{ runner.os }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-code-quality-${{ runner.os }}-
+
+      - name: Install dependencies
+        id: install
+        run: composer update --with "laravel/framework:^13.0" --prefer-dist --no-interaction --no-progress
+
+      - name: Check formatting with Pint
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: composer format:check
+
+      - name: Check refactorings with Rector
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: composer refactor:check
+
+      - name: Analyse types with Larastan
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: composer analyse

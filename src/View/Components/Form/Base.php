@@ -2,7 +2,7 @@
 
 namespace Bjnstnkvc\FormComponents\View\Components\Form;
 
-use Illuminate\Support\Str;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Base extends Component
@@ -30,14 +30,14 @@ class Base extends Component
     public function __construct($action, $id = null, $method = 'POST')
     {
         $this->action = $action;
-        $this->id     = $id;
+        $this->id = $id;
         $this->method = $method;
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

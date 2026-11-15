@@ -37,24 +37,20 @@ class FormComponentsServiceProvider extends ServiceProvider
 
     /**
      * Create new Service Provider instance.
-     *
-     * @param $app
      */
     public function __construct($app)
     {
         parent::__construct($app);
 
-        $this->components  = config('form_components.components') ?: [];
-        $this->prefix      = config('form_components.prefix');
-        $this->separator   = config('form_components.separator');
+        $this->components = config('form_components.components') ?: [];
+        $this->prefix = config('form_components.prefix');
+        $this->separator = config('form_components.separator');
         $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
-        $this->assetPath   = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
+        $this->assetPath = substr($this->publishPath, strlen(public_path('\\')), strlen($this->publishPath) - strlen(public_path('\\')));
     }
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -68,8 +64,6 @@ class FormComponentsServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -81,23 +75,19 @@ class FormComponentsServiceProvider extends ServiceProvider
 
     /**
      * Boot all blade files from resources.
-     *
-     * @return void
      */
     private function bootResources(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views/components', 'form-components');
+        $this->loadViewsFrom(__DIR__.'/resources/views/components', 'form-components');
     }
 
     /**
      * Boot all Blade components.
-     *
-     * @return void
      */
     private function bootBladeComponents(): void
     {
         foreach ($this->components as $alias => $class) {
-            Blade::component($class, $this->prefix . $this->separator . $alias);
+            Blade::component($class, $this->prefix.$this->separator.$alias);
         }
 
         Blade::component(Error::class, 'form::error');
@@ -105,41 +95,37 @@ class FormComponentsServiceProvider extends ServiceProvider
 
     /**
      * Boot all publishable files.
-     *
-     * @return void
      */
     private function bootPublishing(): void
     {
         // Publish Form Component Config file.
         $this->publishes([
-            __DIR__ . '/config/form_components.php' => config_path('form_components.php'),
+            __DIR__.'/config/form_components.php' => config_path('form_components.php'),
         ], 'form-config');
 
         // Publish Form Component Styles.
         $this->publishes([
-            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/form-components.css',
-            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/form-components.min.css',
+            __DIR__.'/public/css/form-components.css' => $this->publishPath.'/css/form-components.css',
+            __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
         ], 'form-styles');
 
         // Publish Form Component Scripts.
         $this->publishes([
-            __DIR__ . '/public/js/form-components.js'     => $this->publishPath . '/js/form-components.js',
-            __DIR__ . '/public/js/form-components.min.js' => $this->publishPath . '/js/form-components.min.js',
+            __DIR__.'/public/js/form-components.js' => $this->publishPath.'/js/form-components.js',
+            __DIR__.'/public/js/form-components.min.js' => $this->publishPath.'/js/form-components.min.js',
         ], 'form-scripts');
 
         // Publish Form Component Styles and Scripts.
         $this->publishes([
-            __DIR__ . '/public/css/form-components.css'     => $this->publishPath . '/css/form-components.css',
-            __DIR__ . '/public/css/form-components.min.css' => $this->publishPath . '/css/form-components.min.css',
-            __DIR__ . '/public/js/form-components.js'       => $this->publishPath . '/js/form-components.js',
-            __DIR__ . '/public/js/form-components.min.js'   => $this->publishPath . '/js/form-components.min.js',
+            __DIR__.'/public/css/form-components.css' => $this->publishPath.'/css/form-components.css',
+            __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
+            __DIR__.'/public/js/form-components.js' => $this->publishPath.'/js/form-components.js',
+            __DIR__.'/public/js/form-components.min.js' => $this->publishPath.'/js/form-components.min.js',
         ], 'form-resources');
     }
 
     /**
      * Boot component Blade directives.
-     *
-     * @return void
      */
     private function bootDirectives(): void
     {
@@ -147,14 +133,14 @@ class FormComponentsServiceProvider extends ServiceProvider
             $type = str_replace(['\'', '"'], '', $type);
             $file = $type === 'full' ? 'form-components.css' : 'form-components.min.css';
 
-            return "<link href='" . asset($this->assetPath . '/css/' . $file) . "' rel='stylesheet'>";
+            return "<link href='".asset($this->assetPath.'/css/'.$file)."' rel='stylesheet'>";
         });
 
         Blade::directive('componentScripts', function ($type) {
             $type = str_replace(['\'', '"'], '', $type);
             $file = $type === 'full' ? 'form-components.js' : 'form-components.min.js';
 
-            return "<script src='" . asset($this->assetPath . '/js/' . $file) . "' defer></script>";
+            return "<script src='".asset($this->assetPath.'/js/'.$file)."' defer></script>";
         });
     }
 }

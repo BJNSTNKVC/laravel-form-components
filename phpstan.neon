@@ -1,0 +1,22 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 10
+    paths:
+        - src
+        - tests
+        - workbench
+        - rector.php
+    excludePaths:
+        - src/resources/views
+        - workbench/resources/views
+    tmpDir: build/phpstan
+    reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+        -
+            identifier: argument.type
+            message: '#^Parameter \#1 \$view of function view expects view-string\|null, string given\.$#'
+            path: workbench/routes/web.php
+            count: 1

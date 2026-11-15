@@ -72,7 +72,7 @@ class PublishesComponents extends Command
                     $filesystem->copy($publisher->getView($view), $publisher->publishView($view));
                     $filesystem->put($publisher->configPath, $updated_config_file);
                 } else {
-                    $this->warn('File ' . $class . '.php already exists!');
+                    $this->warn('File '.$class.'.php already exists!');
 
                     continue;
                 }
@@ -84,7 +84,7 @@ class PublishesComponents extends Command
             $filesystem->put($publisher->configPath, $updated_config_file);
 
             // Display status message.
-            $this->info('Successfully published ' . $class . ' component class!');
+            $this->info('Successfully published '.$class.' component class!');
         }
     }
 }
