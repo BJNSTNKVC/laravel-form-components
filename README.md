@@ -703,6 +703,25 @@ Open a shell in the PHP or Node container with:
     docker compose exec php sh
     docker compose exec node sh
 
+Install the PHP dependencies with:
+
+    docker compose exec php composer install
+
+Once they are installed, the playground with every component is served on http://localhost:8000, or on the `APP_PORT` set in `.env`.
+
+Run the tests, the tests with coverage, or the browser tests with:
+
+    docker compose exec php composer test
+    docker compose --profile coverage run --rm coverage composer test:coverage
+    docker compose exec php composer test:browser
+
+Browser tests need the browser container running. Watch them live through noVNC on http://localhost:7900, or on the `SELENIUM_VNC_PORT` set in `.env`.
+
+Test against Laravel 12 or 13 by switching the installed version:
+
+    docker compose exec php composer update --with "laravel/framework:^12.0"
+    docker compose exec php composer update --with "laravel/framework:^13.0"
+
 Stop the containers with:
 
     docker compose --profile browser down

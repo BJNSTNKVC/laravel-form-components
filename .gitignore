@@ -5,3 +5,9 @@
 /docker-compose.override.yml
 /.ai/
 /CLAUDE.md
+/composer.lock
+/.phpunit.cache/
+/build/
+/tests/Browser/screenshots/
+/tests/Browser/console/
+/tests/Browser/source/
