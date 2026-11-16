@@ -33,25 +33,61 @@ is `public/vendor/form-components`. Detailed explanation for each property can b
 
 1. *form-components.css*
 2. *form-components.min.css*
-3. *form-components.js*
-4. *form-components.min.js*
 
 ### Directives
 
-Once config and resources have been published, add following Blade directives to your layout file.
+Once config and resources have been published, add following Blade directive to your layout file.
 
     @componentStyles
 
-    @componentScripts
-
-As the name of the directives suggests, these will add Form components minified CSS and JS files. In case you would like
+As the name of the directive suggests, this will add Form components minified CSS file. In case you would like
 to edit published resource files, but would not like to edit minified versions, you can use the following syntax:
 
     @componentStyles('full')
 
-    @componentScripts('full')
+Directive above will instruct the library to load unminified css file, which you can edit as you see fit.
 
-Directives above will instruct the library to load unminified css and js files, which you can edit as you see fit.
+### Alpine.js
+
+Behaviour such as revealing a password, clearing a search or hiding errors as you type runs on [Alpine.js](https://alpinejs.dev),
+which your app provides. Each field keeps its Alpine data in its own script, so register the fields you use in your
+`resources/js/app.js` file:
+
+```js
+import Alpine from 'alpinejs';
+import password from '../../vendor/bjnstnkvc/form-components/src/Components/Password/resources/js/password.js';
+import search from '../../vendor/bjnstnkvc/form-components/src/Components/Search/resources/js/search.js';
+
+Alpine.data('form_password', password);
+Alpine.data('form_search', search);
+
+Alpine.start();
+```
+
+If Livewire brings Alpine to your app, register them once it starts instead:
+
+```js
+import password from '../../vendor/bjnstnkvc/form-components/src/Components/Password/resources/js/password.js';
+
+document.addEventListener('alpine:init', () => {
+    window.Alpine.data('form_password', password);
+});
+```
+
+| Component | Script | Alpine data |
+|-----------|--------|-------------|
+| Checkbox | `src/Components/Checkbox/resources/js/checkbox.js` | `form_checkbox` |
+| Date | `src/Components/Date/resources/js/date.js` | `form_date` |
+| DateTime | `src/Components/DateTime/resources/js/date-time.js` | `form_date_time` |
+| Email | `src/Components/Email/resources/js/email.js` | `form_email` |
+| File | `src/Components/File/resources/js/file.js` | `form_file` |
+| Input | `src/Components/Input/resources/js/input.js` | `form_input` |
+| Password | `src/Components/Password/resources/js/password.js` | `form_password` |
+| Radio | `src/Components/Radio/resources/js/radio.js` | `form_radio` |
+| Search | `src/Components/Search/resources/js/search.js` | `form_search` |
+| Select | `src/Components/Select/resources/js/select.js` | `form_select` |
+| Textarea | `src/Components/Textarea/resources/js/textarea.js` | `form_textarea` |
+| Time | `src/Components/Time/resources/js/time.js` | `form_time` |
 
 ### Form Components
 
@@ -208,7 +244,7 @@ Textarea component comes with an option to auto-expand when typing which is by d
 enable, use the following syntax:
 
 ```blade
-<x-form::textarea name="textarea" placeholder="Textarea placeholder" autoexpand="true" />
+<x-form::textarea name="textarea" placeholder="Textarea placeholder" auto-expand="true" />
 ```
 
 Depending on the `label-type` choice, component will display following behaviour:

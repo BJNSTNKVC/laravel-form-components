@@ -55,6 +55,11 @@ class Search extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Search component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Search component icon visibility state.
      */
     public $showIcon;
@@ -79,7 +84,7 @@ class Search extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $searchClearing = null, $icon = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, bool|string|null $interactive = null, $showIcon = null, $searchClearing = null, $icon = null)
     {
         $this->name = Str::slug($name, '_');
         $this->id = $id ?: $this->name;
@@ -90,9 +95,10 @@ class Search extends Component
         $this->border = $border ?: config('form_components.border');
         $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->searchClearing = filter_var($searchClearing ?: config('form_components.search_clearing'), FILTER_VALIDATE_BOOLEAN);
-        $this->searchClearIcon = $this->renderSearchIcon(config('form_components.icons.search.clear'), 'clear');
+        $this->searchClearIcon = $this->renderIcon(config('form_components.icons.search.clear'));
         $this->icon = $this->renderIcon($icon ?: config('form_components.icons.search.icon'));
     }
 
@@ -115,27 +121,6 @@ class Search extends Component
         }
 
         return $icon;
-    }
-
-    /**
-     * Render component search clearing depending on the type.
-     *
-     *
-     * @return false|string
-     */
-    public function renderSearchIcon(string $icon, string $type)
-    {
-        // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
-        if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
-            return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', (string) file_get_contents($icon));
-        }
-
-        // If an icon is part of 'image_formats' array, render an icon as '<img>'
-        if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="'.$icon.'" alt="'.$this->title.' icon" class="form-group__icon--'.$type.'">';
-        }
-
-        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon);
     }
 
     /**

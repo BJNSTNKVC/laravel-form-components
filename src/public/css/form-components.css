@@ -13,6 +13,9 @@
   --fc-default-transition-duration: 150ms;
   --fc-default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+.fc\:pointer-events-auto {
+  pointer-events: auto;
+}
 .fc\:pointer-events-none {
   pointer-events: none;
 }
@@ -560,6 +563,9 @@
   content: var(--tw-content);
   background-color: var(--fc-primary-foreground, light-dark(#fff, #000));
 }
+:is(.fc\:\*\:last\:px-2 > *):last-child {
+  padding-inline: calc(var(--fc-spacing) * 2);
+}
 :is(.fc\:\*\:last-of-type\:px-2 > *):last-of-type {
   padding-inline: calc(var(--fc-spacing) * 2);
 }
@@ -595,9 +601,6 @@
 .fc\:dark\:scheme-dark:where(.dark, .dark *) {
   color-scheme: dark;
 }
-.fc\:\[\&\.fc-is-invalid\]\:text-danger.fc-is-invalid {
-  color: var(--fc-danger, light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216)));
-}
 .fc\:\[\&\:\:-webkit-calendar-picker-indicator\]\:absolute::-webkit-calendar-picker-indicator {
   position: absolute;
 }
@@ -631,15 +634,6 @@
 .fc\:\[\&\:\:-webkit-search-cancel-button\]\:hidden::-webkit-search-cancel-button {
   display: none;
 }
-:is(.fc\:\*\:\[\[class\*\=icon--\]\]\:pointer-events-auto > *):is([class*=icon--]) {
-  pointer-events: auto;
-}
-:is(.fc\:\*\:\[\[class\*\=icon--clear\]\]\:hidden > *):is([class*=icon--clear]) {
-  display: none;
-}
-:is(.fc\:\*\:\[\[class\*\=icon--hide\]\]\:hidden > *):is([class*=icon--hide]) {
-  display: none;
-}
 :is(.fc\:\*\:\[\[role\=alert\]\]\:mt-0 > *):is([role=alert]) {
   margin-top: 0px;
 }
@@ -648,6 +642,9 @@
 }
 :is(.fc\:\*\:\[\[role\=alert\]\]\:whitespace-nowrap > *):is([role=alert]) {
   white-space: nowrap;
+}
+.fc\:\[\&\[hidden\]\]\:hidden[hidden] {
+  display: none;
 }
 .fc-form-group + .fc\:\[\.fc-form-group\+\&\]\:mt-4 {
   margin-top: calc(var(--fc-spacing) * 4);

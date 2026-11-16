@@ -55,6 +55,11 @@ class Password extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Password component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Password component icon visibility state.
      */
     public $showIcon;
@@ -84,7 +89,7 @@ class Password extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null, $passwordVisibility = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, bool|string|null $interactive = null, $showIcon = null, $icon = null, $passwordVisibility = null)
     {
         $this->name = Str::slug($name, '_');
         $this->id = $id ?: $this->name;
@@ -95,10 +100,11 @@ class Password extends Component
         $this->border = $border ?: config('form_components.border');
         $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->passwordVisibility = filter_var($passwordVisibility ?: config('form_components.password_visibility'), FILTER_VALIDATE_BOOLEAN);
-        $this->showPasswordIcon = $this->renderVisibilityIcon(config('form_components.icons.password.show'), 'show');
-        $this->hidePasswordIcon = $this->renderVisibilityIcon(config('form_components.icons.password.hide'), 'hide');
+        $this->showPasswordIcon = $this->renderIcon(config('form_components.icons.password.show'));
+        $this->hidePasswordIcon = $this->renderIcon(config('form_components.icons.password.hide'));
         $this->icon = $this->renderIcon($icon ?: config('form_components.icons.password.icon'));
     }
 
@@ -121,27 +127,6 @@ class Password extends Component
         }
 
         return $icon;
-    }
-
-    /**
-     * Render component password visibility icons depending on the type.
-     *
-     *
-     * @return false|string
-     */
-    public function renderVisibilityIcon(string $icon, string $type)
-    {
-        // If an icon is a 'svg' file, and it's not part of 'image_formats' array, render an icon as '<svg>'.
-        if (Str::contains($icon, '.svg') && ! in_array('.svg', config('form_components.image_formats'))) {
-            return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', (string) file_get_contents($icon));
-        }
-
-        // If an icon is part of 'image_formats' array, render an icon as '<img>'
-        if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="'.$icon.'" alt="'.$this->title.' icon" class="form-group__icon--'.$type.'">';
-        }
-
-        return Str::replaceFirst('<svg ', '<svg class="form-group__icon--'.$type.'" ', $icon);
     }
 
     /**

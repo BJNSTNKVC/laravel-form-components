@@ -55,6 +55,11 @@ class Input extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Input component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Input component icon visibility state.
      */
     public $showIcon;
@@ -69,7 +74,7 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, bool|string|null $interactive = null, $showIcon = null, $icon = null)
     {
         $this->name = Str::slug($name, '_');
         $this->id = $id ?: $this->name;
@@ -80,6 +85,7 @@ class Input extends Component
         $this->border = $border ?: config('form_components.border');
         $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->icon = $this->renderIcon($icon ?: config('form_components.icons.input'));
     }

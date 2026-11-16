@@ -10,7 +10,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bjnstnkvc\\FormComponents\\Tests\\": "tests/"
+            "Bjnstnkvc\\FormComponents\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/"
         }
     },
     "authors": [
@@ -32,6 +33,7 @@
     "require-dev": {
         "larastan/larastan": "^3.15",
         "laravel/pint": "^1.32",
+        "livewire/livewire": "^4.4",
         "nunomaduro/collision": "^8.9",
         "orchestra/testbench": "^10.0|^11.0",
         "orchestra/testbench-dusk": "^10.0|^11.0",

@@ -12,6 +12,9 @@
     ])
     @error($name) invalid @enderror
     for="{{ $name }}"
+    x-data="form_textarea"
+    @if($interactive) data-interactive @endif
+    @if($autoExpand) data-auto-expand @endif
 >
     <textarea
         {{ $attributes->class([
@@ -34,9 +37,7 @@
         name="{{ $name }}"
         placeholder="{{ $title ?: Str::title($name) }}"
         rows="2"
-        border="{{ $border }}"
-        interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
-        autoexpand="{{ config('form_components.auto_expand') ? 'true' : 'false' }}"
+        x-ref="textarea"
     >{!! $value !!}</textarea>
 
     @if($notched)
@@ -57,8 +58,8 @@
 
     <span
         @class([
-            'form-group__title fc:font-semibold fc:[&.fc-is-invalid]:text-danger',
-            'fc-is-invalid' => $invalidatedTitle && $errors->has($name),
+            'fc:font-semibold',
+            'fc:group-[[invalid]]:text-danger' => $invalidatedTitle,
             'fc:[grid-area:title]' => $labelType !== 'floating',
             'fc:mb-1' => $labelType === 'column',
             'fc:min-w-[100px] fc:mr-4 fc:py-2.5' => $labelType === 'row',
@@ -83,5 +84,8 @@
         </span>
     @endif
 
-    <x-form::error name="{{ $name }}" />
+    <x-form::error
+        name="{{ $name }}"
+        x-ref="error"
+    />
 </label>

@@ -59,7 +59,7 @@ abstract class TestCase extends Testbench
     protected function assertInvalid(Browser $browser, string $name): void
     {
         $browser->assertAttribute('label[for="'.$name.'"]', 'invalid', '')
-            ->assertVisible('label[for="'.$name.'"] .form-group__error');
+            ->assertVisible('label[for="'.$name.'"] [role="alert"]');
     }
 
     /**
@@ -68,7 +68,7 @@ abstract class TestCase extends Testbench
     protected function assertValid(Browser $browser, string $name): void
     {
         $browser->assertAttributeMissing('label[for="'.$name.'"]', 'invalid')
-            ->assertMissing('label[for="'.$name.'"] .form-group__error');
+            ->assertMissing('label[for="'.$name.'"] [role="alert"]');
     }
 
     /**
@@ -88,18 +88,17 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Determine whether the field title carries the invalid class.
+     * Determine whether the field title takes the error colour.
      */
     private function hasInvalidTitle(Browser $browser, string $name): bool
     {
-        $invalid = $browser->script(sprintf(
-            'return document.querySelector(%s).classList.contains("fc-is-invalid");',
-            json_encode('label[for="'.$name.'"] .form-group__title'),
-        ))[0];
+        $browser->waitUntil(sprintf(
+            'document.querySelector(%s).getAnimations().length === 0',
+            json_encode('label[for="'.$name.'"] > span:not([role])'),
+        ), 2);
 
-        $this->assertIsBool($invalid);
-
-        return $invalid;
+        return $this->style($browser, 'label[for="'.$name.'"] > span:not([role])', 'color')
+            === $this->style($browser, 'label[for="'.$name.'"] [role="alert"]', 'color');
     }
 
     /**

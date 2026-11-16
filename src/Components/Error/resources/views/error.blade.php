@@ -1,6 +1,6 @@
 @error($name)
     <span
-        {{ $attributes->class('form-group__error fc:[grid-area:error] fc:inline-block fc:mt-1 fc:text-danger fc:dark:scheme-dark') }}
+        {{ $attributes->class('fc:[grid-area:error] fc:inline-block fc:[&[hidden]]:hidden fc:mt-1 fc:text-danger fc:dark:scheme-dark') }}
         role="alert"
     >
         @foreach($errors->get($name) as $message)

@@ -10,6 +10,16 @@ use PHPUnit\Framework\Attributes\Test;
 
 class PasswordTest extends TestCase
 {
+    /**
+     * Selector of the icon that shows the password.
+     */
+    private const string SHOW = 'label[for="password_column_bottom"] [x-ref="show"]';
+
+    /**
+     * Selector of the icon that hides the password.
+     */
+    private const string HIDE = 'label[for="password_column_bottom"] [x-ref="hide"]';
+
     #[Test]
     public function it_opens_the_notch_when_a_floating_title_rises(): void
     {
@@ -30,8 +40,8 @@ class PasswordTest extends TestCase
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
                 ->assertAttribute('#password_column_bottom', 'type', 'password')
-                ->assertVisible('label[for="password_column_bottom"] .form-group__icon--show')
-                ->assertMissing('label[for="password_column_bottom"] .form-group__icon--hide');
+                ->assertVisible(self::SHOW)
+                ->assertMissing(self::HIDE);
         });
     }
 
@@ -41,11 +51,11 @@ class PasswordTest extends TestCase
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
                 ->type('password_column_bottom', 'secret')
-                ->click('label[for="password_column_bottom"] .form-group__icon--show')
+                ->click(self::SHOW)
                 ->assertAttribute('#password_column_bottom', 'type', 'text')
                 ->assertInputValue('password_column_bottom', 'secret')
-                ->assertMissing('label[for="password_column_bottom"] .form-group__icon--show')
-                ->assertVisible('label[for="password_column_bottom"] .form-group__icon--hide');
+                ->assertMissing(self::SHOW)
+                ->assertVisible(self::HIDE);
         });
     }
 
@@ -54,11 +64,11 @@ class PasswordTest extends TestCase
     {
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->click('label[for="password_column_bottom"] .form-group__icon--show')
-                ->click('label[for="password_column_bottom"] .form-group__icon--hide')
+                ->click(self::SHOW)
+                ->click(self::HIDE)
                 ->assertAttribute('#password_column_bottom', 'type', 'password')
-                ->assertVisible('label[for="password_column_bottom"] .form-group__icon--show')
-                ->assertMissing('label[for="password_column_bottom"] .form-group__icon--hide');
+                ->assertVisible(self::SHOW)
+                ->assertMissing(self::HIDE);
         });
     }
 
@@ -71,6 +81,7 @@ class PasswordTest extends TestCase
             $browser->visit('/')->type('password_error', 'secret');
 
             $this->assertValid($browser, 'password_error');
+            $this->assertValidTitle($browser, 'password_error');
         });
     }
 
@@ -85,6 +96,7 @@ class PasswordTest extends TestCase
                 ->keys('#password_error', '{backspace}');
 
             $this->assertInvalid($browser, 'password_error');
+            $this->assertInvalidTitle($browser, 'password_error');
         });
     }
 }

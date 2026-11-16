@@ -30,8 +30,7 @@ class FileTest extends TestCase
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
                 ->attach('file_column_bottom', __FILE__)
-                ->assertValue('#file_column_bottom ~ .form-group__file-holder', 'FileTest.php')
-                ->assertAttribute('#file_column_bottom ~ .form-group__file-holder', 'value', 'FileTest.php');
+                ->assertValue('#file_column_bottom ~ [x-ref="holder"]', 'FileTest.php');
         });
     }
 
@@ -43,8 +42,7 @@ class FileTest extends TestCase
 
             $this->choose($browser, 'file_column_bottom', ['one.txt', 'two.txt']);
 
-            $browser->assertValue('#file_column_bottom ~ .form-group__file-holder', '2 files')
-                ->assertAttribute('#file_column_bottom ~ .form-group__file-holder', 'value', '2 files');
+            $browser->assertValue('#file_column_bottom ~ [x-ref="holder"]', '2 files');
         });
     }
 

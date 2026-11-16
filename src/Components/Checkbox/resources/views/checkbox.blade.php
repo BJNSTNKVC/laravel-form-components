@@ -7,6 +7,8 @@
     ])
     @error($name) invalid @enderror
     for="{{ $name }}"
+    x-data="form_checkbox"
+    @if($interactive) data-interactive @endif
 >
     <input
         {{ $attributes->class([
@@ -18,8 +20,8 @@
         id="{{ $id }}"
         name="{{ $name }}"
         {{ $value }}
-        interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
         @if ($checked) checked @endif
+        x-ref="input"
     >
 
     @if($switch)
@@ -28,12 +30,15 @@
 
     <span
         @class([
-            'form-group__title fc:[grid-area:title] fc:min-w-[100px] fc:mr-4 fc:font-semibold fc:[&.fc-is-invalid]:text-danger',
-            'fc-is-invalid' => $invalidatedTitle && $errors->has($name),
+            'fc:[grid-area:title] fc:min-w-[100px] fc:mr-4 fc:font-semibold',
+            'fc:group-[[invalid]]:text-danger' => $invalidatedTitle,
         ])
     >
         {!! $title !!}
     </span>
 
-    <x-form::error name="{{ $name }}" />
+    <x-form::error
+        name="{{ $name }}"
+        x-ref="error"
+    />
 </label>

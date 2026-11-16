@@ -10,11 +10,16 @@ use PHPUnit\Framework\Attributes\Test;
 
 class SearchTest extends TestCase
 {
+    /**
+     * Selector of the icon that clears the search.
+     */
+    private const string CLEAR = 'label[for="search_column_bottom"] [x-ref="clear"]';
+
     #[Test]
     public function it_hides_the_clear_button_while_empty(): void
     {
         $this->browse(function (Browser $browser): void {
-            $browser->visit('/')->assertMissing('label[for="search_column_bottom"] .form-group__icon--clear');
+            $browser->visit('/')->assertMissing(self::CLEAR);
         });
     }
 
@@ -24,7 +29,7 @@ class SearchTest extends TestCase
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
                 ->type('search_column_bottom', 'Query')
-                ->assertVisible('label[for="search_column_bottom"] .form-group__icon--clear');
+                ->assertVisible(self::CLEAR);
         });
     }
 
@@ -35,7 +40,7 @@ class SearchTest extends TestCase
             $browser->visit('/')
                 ->type('search_column_bottom', 'Q')
                 ->keys('#search_column_bottom', '{backspace}')
-                ->assertMissing('label[for="search_column_bottom"] .form-group__icon--clear');
+                ->assertMissing(self::CLEAR);
         });
     }
 
@@ -45,10 +50,9 @@ class SearchTest extends TestCase
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
                 ->type('search_column_bottom', 'Query')
-                ->click('label[for="search_column_bottom"] .form-group__icon--clear')
+                ->click(self::CLEAR)
                 ->assertInputValue('search_column_bottom', '')
-                ->assertAttribute('#search_column_bottom', 'value', '')
-                ->assertMissing('label[for="search_column_bottom"] .form-group__icon--clear');
+                ->assertMissing(self::CLEAR);
         });
     }
 
@@ -74,6 +78,21 @@ class SearchTest extends TestCase
             $browser->visit('/')
                 ->type('search_error', 'Q')
                 ->keys('#search_error', '{backspace}');
+
+            $this->assertInvalid($browser, 'search_error');
+            $this->assertInvalidTitle($browser, 'search_error');
+        });
+    }
+
+    #[Test]
+    public function it_shows_the_error_again_once_the_search_is_cleared(): void
+    {
+        $this->serveWith('form_components.interactive', true);
+
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->type('search_error', 'Query')
+                ->click('label[for="search_error"] [x-ref="clear"]');
 
             $this->assertInvalid($browser, 'search_error');
             $this->assertInvalidTitle($browser, 'search_error');

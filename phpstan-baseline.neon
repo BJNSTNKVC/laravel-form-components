@@ -115,18 +115,6 @@ parameters:
 			path: src/FormComponentsServiceProvider.php
 
 		-
-			message: '#^Binary operation "\." between mixed and ''/js/'' results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
-			message: '#^Binary operation "\." between mixed and ''/js/form\-components…'' results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 4
-			path: src/FormComponentsServiceProvider.php
-
-		-
 			message: '#^Binary operation "\." between mixed and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
 			count: 1
@@ -154,7 +142,7 @@ parameters:
 		-
 			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/FormComponentsServiceProvider.php
 
 		-
@@ -1366,7 +1354,7 @@ parameters:
 		-
 			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
-			count: 2
+			count: 1
 			path: src/Components/Password/View/Components/Password.php
 
 		-
@@ -1462,13 +1450,7 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\Components\\Password\\View\\Components\\Password\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/Components/Password/View/Components/Password.php
-
-		-
-			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\Components\\Password\\View\\Components\\Password\:\:renderVisibilityIcon\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 2
+			count: 3
 			path: src/Components/Password/View/Components/Password.php
 
 		-
@@ -1486,13 +1468,13 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/Components/Password/View/Components/Password.php
 
 		-
 			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/Components/Password/View/Components/Password.php
 
 		-
@@ -1690,7 +1672,7 @@ parameters:
 		-
 			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
-			count: 2
+			count: 1
 			path: src/Components/Search/View/Components/Search.php
 
 		-
@@ -1786,13 +1768,7 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\Components\\Search\\View\\Components\\Search\:\:renderIcon\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/Components/Search/View/Components/Search.php
-
-		-
-			message: '#^Parameter \#1 \$icon of method Bjnstnkvc\\FormComponents\\Components\\Search\\View\\Components\\Search\:\:renderSearchIcon\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Components/Search/View/Components/Search.php
 
 		-
@@ -1810,13 +1786,13 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/Components/Search/View/Components/Search.php
 
 		-
 			message: '#^Parameter \#2 \$needles of static method Illuminate\\Support\\Str\:\:contains\(\) expects iterable\<string\>\|string, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: src/Components/Search/View/Components/Search.php
 
 		-

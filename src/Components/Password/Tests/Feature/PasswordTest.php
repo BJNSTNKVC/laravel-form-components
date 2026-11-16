@@ -20,6 +20,16 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
+    public function it_runs_on_alpine(): void
+    {
+        $this->withViewErrors(['password' => 'The password field is required.'])
+            ->blade('<x-form::password name="password" />')
+            ->assertSee('x-data="form_password"', false)
+            ->assertSee('x-ref="input"', false)
+            ->assertSee('x-ref="error"', false);
+    }
+
+    #[Test]
     public function it_hides_the_placeholder_behind_a_floating_title(): void
     {
         $this->withViewErrors([])
@@ -77,6 +87,52 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
+    public function it_leaves_the_title_colour_alone_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertDontSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_colours_the_title_of_an_invalid_field(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" invalidated-title="true" />')
+            ->assertSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_keeps_errors_while_typing_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertDontSee('data-interactive', false);
+    }
+
+    #[Test]
+    #[DataProvider('interactiveSwitches')]
+    public function it_hides_errors_while_typing_when_interactive(string $attributes, bool $config): void
+    {
+        config(['form_components.interactive' => $config]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" '.$attributes.' />')
+            ->assertSee('data-interactive', false);
+    }
+
+    /**
+     * Ways of making errors disappear on input.
+     *
+     * @return iterable<string, array{string, bool}>
+     */
+    public static function interactiveSwitches(): iterable
+    {
+        yield 'attribute' => ['interactive="true"', false];
+        yield 'config' => ['', true];
+    }
+
+    #[Test]
     public function it_renders_an_image_icon(): void
     {
         $this->withViewErrors([])
@@ -105,9 +161,29 @@ class PasswordTest extends TestCase
     #[Test]
     public function it_hides_the_hide_password_icon_until_toggled(): void
     {
+        $view = (string) $this->withViewErrors([])->blade('<x-form::password name="password" />');
+
+        $this->assertMatchesRegularExpression('/x-ref="hide"\s+hidden/', $view);
+        $this->assertDoesNotMatchRegularExpression('/x-ref="show"\s+hidden/', $view);
+    }
+
+    #[Test]
+    public function it_toggles_the_password_visibility(): void
+    {
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" />')
-            ->assertSee('fc:*:[[class*=icon--hide]]:hidden', false);
+            ->assertSeeInOrder(['x-ref="input"', 'x-ref="show"', 'x-ref="hide"'], false);
+    }
+
+    #[Test]
+    public function it_leaves_out_the_visibility_toggle_when_disabled(): void
+    {
+        config(['form_components.password_visibility' => false]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertDontSee('x-ref="show"', false)
+            ->assertDontSee('x-ref="hide"', false);
     }
 
     #[Test]
@@ -120,8 +196,10 @@ class PasswordTest extends TestCase
 
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" title="Password" />')
-            ->assertSee('<img src="/icons/show.png" alt="Password icon" class="form-group__icon--show">', false)
-            ->assertSee('<img src="/icons/hide.png" alt="Password icon" class="form-group__icon--hide">', false);
+            ->assertSeeInOrder([
+                '<img src="/icons/show.png" alt="Password icon">',
+                '<img src="/icons/hide.png" alt="Password icon">',
+            ], false);
     }
 
     #[Test]
@@ -135,7 +213,6 @@ class PasswordTest extends TestCase
 
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" />')
-            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--show" ', $this->iconMarkup()), false)
-            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--hide" ', $this->iconMarkup()), false);
+            ->assertSeeInOrder([$this->iconMarkup(), $this->iconMarkup()], false);
     }
 }

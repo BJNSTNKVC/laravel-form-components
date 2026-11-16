@@ -35,6 +35,7 @@ class TimeTest extends TestCase
             $browser->visit('/')->keys('#time_error', '103045AM');
 
             $this->assertValid($browser, 'time_error');
+            $this->assertValidTitle($browser, 'time_error');
         });
     }
 
@@ -49,6 +50,7 @@ class TimeTest extends TestCase
                 ->keys('#time_error', '{backspace}');
 
             $this->assertInvalid($browser, 'time_error');
+            $this->assertInvalidTitle($browser, 'time_error');
         });
     }
 }

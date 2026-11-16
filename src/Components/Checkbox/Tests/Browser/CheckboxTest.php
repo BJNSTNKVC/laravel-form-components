@@ -19,6 +19,7 @@ class CheckboxTest extends TestCase
             $browser->visit('/')->check('checkbox_error');
 
             $this->assertValid($browser, 'checkbox_error');
+            $this->assertValidTitle($browser, 'checkbox_error');
         });
     }
 
@@ -33,6 +34,7 @@ class CheckboxTest extends TestCase
                 ->uncheck('checkbox_error');
 
             $this->assertInvalid($browser, 'checkbox_error');
+            $this->assertInvalidTitle($browser, 'checkbox_error');
         });
     }
 }
