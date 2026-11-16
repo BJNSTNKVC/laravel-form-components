@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Feature;
+namespace Bjnstnkvc\FormComponents\Tests\Feature\Integration;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
-class ScriptTest extends TestCase
+class ComponentScriptsTest extends TestCase
 {
     #[Test]
     #[DataProvider('templates')]
@@ -29,7 +29,7 @@ class ScriptTest extends TestCase
     #[DataProvider('alpineComponents')]
     public function it_keeps_each_alpine_component_in_its_own_folder(string $component): void
     {
-        $scripts = glob(__DIR__.'/../../src/Components/'.Str::studly(Str::after($component, 'form_')).'/resources/js/*.js') ?: [];
+        $scripts = glob(__DIR__.'/../../../src/Components/'.Str::studly(Str::after($component, 'form_')).'/resources/js/*.js') ?: [];
 
         $this->assertCount(1, $scripts);
 
@@ -78,6 +78,6 @@ class ScriptTest extends TestCase
      */
     private static function templatePaths(): array
     {
-        return glob(__DIR__.'/../../src/Components/*/resources/views/*.blade.php') ?: [];
+        return glob(__DIR__.'/../../../src/Components/*/resources/views/*.blade.php') ?: [];
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Feature\Console;
+namespace Bjnstnkvc\FormComponents\Tests\Feature\Console\Commands;
 
 use Bjnstnkvc\FormComponents\Helpers\Publisher;
 use Bjnstnkvc\FormComponents\Tests\TestCase as BaseTestCase;
@@ -74,7 +74,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function packageConfigPath(): string
     {
-        return dirname(__DIR__, 3).'/src/config/form_components.php';
+        return dirname(__DIR__, 4).'/src/config/form_components.php';
     }
 
     /**

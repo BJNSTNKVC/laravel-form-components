@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Browser;
+namespace Bjnstnkvc\FormComponents\Tests\Browser\Integration;
 
+use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Bjnstnkvc\FormComponents\Tests\Fixtures\Livewire\Fields;
 use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
