@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Feature;
+namespace Bjnstnkvc\FormComponents\Tests\Feature\Helpers;
 
 use Bjnstnkvc\FormComponents\Helpers\Publisher;
 use Bjnstnkvc\FormComponents\Tests\TestCase;

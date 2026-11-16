@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Browser;
+namespace Bjnstnkvc\FormComponents\Tests\Browser\Integration;
 
+use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
 use Override;
 use PHPUnit\Framework\Attributes\Test;
 
-class ScriptTest extends TestCase
+class ComponentScriptsTest extends TestCase
 {
     /**
      * A password kept aside to be added later.

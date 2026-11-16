@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Feature\Console;
+namespace Bjnstnkvc\FormComponents\Tests\Feature\Console\Commands;
 
 use PHPUnit\Framework\Attributes\Test;
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use PHPUnit\Framework\Attributes\Test;
 
-class ServiceProviderTest extends TestCase
+class FormComponentsServiceProviderTest extends TestCase
 {
     #[Test]
     public function it_registers_the_service_provider(): void

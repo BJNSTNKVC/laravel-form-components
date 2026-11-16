@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Bjnstnkvc\FormComponents\Tests\Feature;
+namespace Bjnstnkvc\FormComponents\Tests\Feature\Integration;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
-class StylesheetTest extends TestCase
+class CompiledStylesheetTest extends TestCase
 {
     #[Test]
     public function it_only_styles_prefixed_utility_classes(): void
@@ -64,7 +64,7 @@ class StylesheetTest extends TestCase
     #[Test]
     public function it_ships_a_minified_copy(): void
     {
-        $minified = (string) file_get_contents(__DIR__.'/../../src/public/css/form-components.min.css');
+        $minified = (string) file_get_contents(__DIR__.'/../../../src/public/css/form-components.min.css');
 
         $this->assertStringNotContainsString("\n  ", $minified);
         $this->assertStringContainsString('.fc\:grid{', $minified);
@@ -106,7 +106,7 @@ class StylesheetTest extends TestCase
      */
     private function stylesheet(): string
     {
-        return (string) file_get_contents(__DIR__.'/../../src/public/css/form-components.css');
+        return (string) file_get_contents(__DIR__.'/../../../src/public/css/form-components.css');
     }
 
     /**
