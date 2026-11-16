@@ -6,10 +6,63 @@ namespace Bjnstnkvc\FormComponents\Components\Input\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class InputTest extends TestCase
 {
+    /**
+     * Inputs with each border, and an invalid input.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::input
+                name="input_column_bottom"
+                title="Input"
+                label-type="column"
+                border="bottom"
+                border-radius="squared"
+            />
+
+            <x-form::input
+                name="input_column_squared"
+                title="Input"
+                label-type="column"
+                border="full"
+                border-radius="squared"
+            />
+
+            <x-form::input
+                name="input_column_rounded_s"
+                title="Input"
+                label-type="column"
+                border="full"
+                border-radius="rounded-s"
+            />
+
+            <x-form::input
+                name="input_error"
+                title="Input"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'input_error' => 'The input field is required.',
+        ];
+    }
+
     #[Test]
     public function it_styles_the_input(): void
     {

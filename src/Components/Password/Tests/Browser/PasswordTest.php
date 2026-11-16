@@ -6,6 +6,7 @@ namespace Bjnstnkvc\FormComponents\Components\Password\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class PasswordTest extends TestCase
@@ -19,6 +20,50 @@ class PasswordTest extends TestCase
      * Selector of the icon that hides the password.
      */
     private const string HIDE = 'label[for="password_column_bottom"] [x-ref="hide"]';
+
+    /**
+     * Passwords with column and floating titles, and an invalid password.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::password
+                name="password_column_bottom"
+                title="Password"
+                label-type="column"
+                border="bottom"
+                border-radius="squared"
+            />
+
+            <x-form::password
+                name="password_floating_squared"
+                title="Password"
+                label-type="floating"
+                border="full"
+                border-radius="squared"
+            />
+
+            <x-form::password
+                name="password_error"
+                title="Password"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'password_error' => 'The password field is required.',
+        ];
+    }
 
     #[Test]
     public function it_opens_the_notch_when_a_floating_title_rises(): void

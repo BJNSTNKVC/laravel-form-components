@@ -6,10 +6,55 @@ namespace Bjnstnkvc\FormComponents\Components\File\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class FileTest extends TestCase
 {
+    /**
+     * Files with column and floating titles, and an invalid file.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::file
+                name="file_column_bottom"
+                title="File"
+                label-type="column"
+                border="bottom"
+                border-radius="squared"
+            />
+
+            <x-form::file
+                name="file_floating_rounded_s"
+                title="File"
+                label-type="floating"
+                border="full"
+                border-radius="rounded-s"
+            />
+
+            <x-form::file
+                name="file_error"
+                title="File"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'file_error' => 'The file field is required.',
+        ];
+    }
+
     #[Test]
     public function it_floats_the_title_once_a_file_is_chosen(): void
     {

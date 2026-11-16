@@ -6,6 +6,8 @@
 /.ai/
 /CLAUDE.md
 /composer.lock
+/testbench.yaml
+/workbench/
 /.phpunit.cache/
 /build/
 /tests/Browser/screenshots/

@@ -4,17 +4,25 @@ declare(strict_types=1);
 
 namespace Bjnstnkvc\FormComponents\Tests\Browser;
 
+use Bjnstnkvc\FormComponents\Tests\Concerns\LoadsThePackage;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 use Laravel\Dusk\Browser;
-use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase as Testbench;
 use Override;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
+use function Orchestra\Testbench\package_path;
 
 abstract class TestCase extends Testbench
 {
-    use WithWorkbench;
+    use LoadsThePackage;
 
     /**
      * Talk to Selenium using the W3C WebDriver protocol.
@@ -28,7 +36,72 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Serve the playground with a config value changed.
+     * Markup of the components the tests interact with.
+     */
+    abstract protected function page(): string;
+
+    /**
+     * Validation errors shown on the page, keyed by field name.
+     *
+     * @return array<string, string>
+     */
+    protected function errors(): array
+    {
+        return [];
+    }
+
+    /**
+     * Script registering the component data with Alpine.
+     */
+    protected function script(): string
+    {
+        return 'app';
+    }
+
+    /**
+     * Serve the page, Alpine and the component scripts.
+     *
+     * @param  Router  $router
+     */
+    #[Override]
+    protected function defineWebRoutes($router): void
+    {
+        $router->get('/', $this->render(...));
+
+        $router->get('/js/alpine.js', fn (): BinaryFileResponse => response()->file(
+            package_path('node_modules', 'alpinejs', 'dist', 'module.esm.js'),
+            ['Content-Type' => 'text/javascript'],
+        ));
+
+        $router->get('/js/components/{script}.js', function (string $script): BinaryFileResponse {
+            $files = glob(package_path('src', 'Components', '*', 'resources', 'js', $script.'.js')) ?: [];
+
+            abort_if($files === [], 404);
+
+            return response()->file($files[0], ['Content-Type' => 'text/javascript']);
+        })->where('script', '[a-z-]+');
+
+        $router->get('/js/{script}.js', fn (string $script): BinaryFileResponse => response()->file(
+            __DIR__.'/resources/js/'.$script.'.js',
+            ['Content-Type' => 'text/javascript'],
+        ))->where('script', 'app|livewire');
+    }
+
+    /**
+     * Render the page with its validation errors.
+     */
+    protected function render(): View
+    {
+        view()->share('errors', (new ViewErrorBag)->put('default', new MessageBag($this->errors())));
+
+        return view()->file(__DIR__.'/resources/views/page.blade.php', [
+            'content' => Blade::render($this->page()),
+            'script' => $this->script(),
+        ]);
+    }
+
+    /**
+     * Serve the page with a config value changed.
      */
     protected function serveWith(string $key, mixed $value): void
     {
