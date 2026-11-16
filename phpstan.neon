@@ -7,17 +7,9 @@ parameters:
     paths:
         - src
         - tests
-        - workbench
         - rector.php
     excludePaths:
         - src/Components/*/resources/views
-        - workbench/resources/views
+        - tests/Browser/resources
     tmpDir: build/phpstan
     reportUnmatchedIgnoredErrors: true
-    ignoreErrors:
-        -
-            identifier: argument.type
-            message: '#^Parameter \#1 \$view of function view expects view-string\|null, string given\.$#'
-            paths:
-                - workbench/routes/web.php
-                - workbench/app/Livewire/Playground.php

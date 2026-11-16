@@ -5,10 +5,27 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class ScriptTest extends TestCase
 {
+    /**
+     * A password kept aside to be added later.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <template id="later">
+                <x-form::password
+                    name="password_later"
+                    title="Password Added Later"
+                />
+            </template>
+            BLADE;
+    }
+
     #[Test]
     public function it_runs_components_added_after_the_page_loaded(): void
     {

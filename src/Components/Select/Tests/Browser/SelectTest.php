@@ -6,10 +6,51 @@ namespace Bjnstnkvc\FormComponents\Components\Select\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class SelectTest extends TestCase
 {
+    /**
+     * A select with a floating title, and an invalid select.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::select
+                name="select_floating_squared"
+                title="Select"
+                label-type="floating"
+                border="full"
+                border-radius="squared"
+                values="Option A, Option B"
+            />
+
+            <x-form::select
+                name="select_error"
+                title="Select"
+                label-type="floating"
+                values="Option A, Option B"
+                placeholder="Choose an option"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'select_error' => 'The select field is required.',
+        ];
+    }
+
     #[Test]
     public function it_raises_the_floating_title_once_an_option_is_chosen(): void
     {

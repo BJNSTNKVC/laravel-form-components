@@ -5,10 +5,81 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class ThemeTest extends TestCase
 {
+    /**
+     * Components taking each theme variable.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::base
+                action="#"
+                id="form-column-rounded-s"
+            >
+                <x-form::input
+                    name="input_column_rounded_s"
+                    title="Input"
+                    label-type="column"
+                    border="full"
+                    border-radius="rounded-s"
+                />
+            </x-form::base>
+
+            <x-form::input
+                name="input_column_squared"
+                title="Input"
+                label-type="column"
+                border="full"
+                border-radius="squared"
+            />
+
+            <x-form::input
+                name="input_row_rounded_s"
+                title="Input"
+                label-type="row"
+                border="full"
+                border-radius="rounded-s"
+            />
+
+            <x-form::input
+                name="input_error"
+                title="Input"
+                invalidated-title="true"
+            />
+
+            <x-form::checkbox
+                name="checkbox"
+                switch="false"
+            />
+
+            <x-form::checkbox
+                name="checkbox_switch"
+                title="Checkbox Switch"
+                checked="true"
+            />
+
+            <x-form::button name="submit" />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'input_error' => 'The input field is required.',
+        ];
+    }
+
     #[Test]
     public function it_uses_the_built_in_theme_by_default(): void
     {
@@ -40,7 +111,7 @@ class ThemeTest extends TestCase
     public function it_turns_dark_inside_a_dark_class(): void
     {
         $this->browse(function (Browser $browser): void {
-            $browser->visit('/?dark=1');
+            $browser->visit('/')->script('document.documentElement.classList.add("dark");');
 
             $this->assertDarkTheme($browser);
         });

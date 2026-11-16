@@ -785,7 +785,7 @@ Install the PHP dependencies with:
 
     docker compose exec php composer install
 
-Once they are installed, the playground with every component is served on http://localhost:8000, or on the `APP_PORT` set in `.env`.
+Once they are installed, the PHP container serves a Testbench app on http://localhost:8000, or on the `APP_PORT` set in `.env`. Try components by hand in a playground of your own, kept in `workbench/` and set up in a `testbench.yaml` that takes the place of the committed `testbench.yaml.dist`. Git ignores both, so the playground stays local and never has to match the tests, which bring the pages they need.
 
 Run the tests, the tests with coverage, or the browser tests with:
 

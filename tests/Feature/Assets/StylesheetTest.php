@@ -6,6 +6,7 @@ namespace Bjnstnkvc\FormComponents\Tests\Feature\Assets;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
 use Closure;
+use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
@@ -95,7 +96,9 @@ class StylesheetTest extends TestCase
     #[Test]
     public function it_keeps_the_view_of_the_page_it_links_the_stylesheet_into(): void
     {
-        $this->get('/')
+        Route::get('/page', fn (): ViewContract => view()->file(dirname(__DIR__, 2).'/Fixtures/page.blade.php'));
+
+        $this->get('/page')
             ->assertViewHas('errors')
             ->assertSee($this->link('form-components.min.css'), false);
     }

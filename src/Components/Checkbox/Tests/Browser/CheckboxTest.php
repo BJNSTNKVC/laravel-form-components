@@ -6,10 +6,41 @@ namespace Bjnstnkvc\FormComponents\Components\Checkbox\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class CheckboxTest extends TestCase
 {
+    /**
+     * An invalid checkbox.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::checkbox
+                name="checkbox_error"
+                title="Checkbox"
+                switch="false"
+                position="left"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'checkbox_error' => 'The checkbox field is required.',
+        ];
+    }
+
     #[Test]
     public function it_hides_the_error_once_checked(): void
     {

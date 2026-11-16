@@ -6,10 +6,40 @@ namespace Bjnstnkvc\FormComponents\Components\Email\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class EmailTest extends TestCase
 {
+    /**
+     * An invalid email without an invalidated title.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::email
+                name="email_error"
+                title="Email"
+                border="full"
+                label-type="row"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'email_error' => 'The email field is required.',
+        ];
+    }
+
     #[Test]
     public function it_hides_the_error_once_an_email_is_typed(): void
     {

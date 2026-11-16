@@ -6,6 +6,7 @@ namespace Bjnstnkvc\FormComponents\Components\Search\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class SearchTest extends TestCase
@@ -14,6 +15,42 @@ class SearchTest extends TestCase
      * Selector of the icon that clears the search.
      */
     private const string CLEAR = 'label[for="search_column_bottom"] [x-ref="clear"]';
+
+    /**
+     * A search, and an invalid search.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::search
+                name="search_column_bottom"
+                title="Search"
+                label-type="column"
+                border="bottom"
+                border-radius="squared"
+            />
+
+            <x-form::search
+                name="search_error"
+                title="Search"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'search_error' => 'The search field is required.',
+        ];
+    }
 
     #[Test]
     public function it_hides_the_clear_button_while_empty(): void

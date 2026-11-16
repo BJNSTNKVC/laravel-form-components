@@ -6,10 +6,47 @@ namespace Bjnstnkvc\FormComponents\Components\Date\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\Test;
 
 class DateTest extends TestCase
 {
+    /**
+     * A date with a floating title, and an invalid date.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::date
+                name="date_floating_squared"
+                title="Date"
+                label-type="floating"
+                border="full"
+                border-radius="squared"
+            />
+
+            <x-form::date
+                name="date_error"
+                title="Date"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'date_error' => 'The date field is required.',
+        ];
+    }
+
     #[Test]
     public function it_raises_the_floating_title_once_a_date_is_entered(): void
     {

@@ -157,7 +157,7 @@ jobs:
           node-version: '26'
           cache: npm
 
-      - name: Install the playground's Alpine.js
+      - name: Install Alpine.js for the browser tests
         run: npm ci --no-audit --no-fund
 
       - name: Wait for Selenium

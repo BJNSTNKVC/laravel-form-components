@@ -6,11 +6,56 @@ namespace Bjnstnkvc\FormComponents\Components\Textarea\Tests\Browser;
 
 use Bjnstnkvc\FormComponents\Tests\Browser\TestCase;
 use Laravel\Dusk\Browser;
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class TextareaTest extends TestCase
 {
+    /**
+     * Textareas with each border, and an invalid textarea.
+     */
+    #[Override]
+    protected function page(): string
+    {
+        return <<<'BLADE'
+            <x-form::textarea
+                name="textarea_column_bottom"
+                title="Textarea"
+                label-type="column"
+                border="bottom"
+                border-radius="squared"
+            />
+
+            <x-form::textarea
+                name="textarea_column_squared"
+                title="Textarea"
+                label-type="column"
+                border="full"
+                border-radius="squared"
+            />
+
+            <x-form::textarea
+                name="textarea_error"
+                title="Textarea"
+                invalidated-title="true"
+            />
+            BLADE;
+    }
+
+    /**
+     * Validation errors shown on the page.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function errors(): array
+    {
+        return [
+            'textarea_error' => 'The textarea field is required.',
+        ];
+    }
+
     #[Test]
     public function it_keeps_its_height_when_not_auto_expanding(): void
     {
