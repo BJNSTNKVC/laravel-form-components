@@ -9,7 +9,7 @@ use Illuminate\Support\ViewErrorBag;
 use function Orchestra\Testbench\package_path;
 
 Route::get('/', function (): Factory|View {
-    $messages = collect(['input', 'email', 'select', 'checkbox', 'radio'])
+    $messages = collect(['input', 'email', 'password', 'search', 'textarea', 'select', 'date', 'time', 'date_time', 'file', 'checkbox', 'radio'])
         ->mapWithKeys(fn (string $field): array => [$field.'_error' => ['The '.$field.' field is required.']]);
 
     view()->share('errors', (new ViewErrorBag)->put('default', new MessageBag($messages->all())));
