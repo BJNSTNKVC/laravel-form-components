@@ -2,10 +2,14 @@
 
 namespace Bjnstnkvc\FormComponents;
 
+use Bjnstnkvc\FormComponents\Assets\Stylesheet;
 use Bjnstnkvc\FormComponents\Components\Error\View\Components\Error;
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
+use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class FormComponentsServiceProvider extends ServiceProvider
@@ -26,16 +30,6 @@ class FormComponentsServiceProvider extends ServiceProvider
     public $separator;
 
     /**
-     * Form components path used to publish config files.
-     */
-    public $publishPath;
-
-    /**
-     * Form components asset path.
-     */
-    public $assetPath;
-
-    /**
      * Create new Service Provider instance.
      */
     public function __construct($app)
@@ -45,8 +39,6 @@ class FormComponentsServiceProvider extends ServiceProvider
         $this->components = config('form_components.components') ?: [];
         $this->prefix = config('form_components.prefix');
         $this->separator = config('form_components.separator');
-        $this->publishPath = config('form_components.publish_path') ?: public_path('vendor/form-components');
-        $this->assetPath = ltrim(substr($this->publishPath, strlen(public_path())), '/\\');
     }
 
     /**
@@ -54,6 +46,8 @@ class FormComponentsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->scoped(Stylesheet::class);
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 PublishesComponents::class,
@@ -71,6 +65,7 @@ class FormComponentsServiceProvider extends ServiceProvider
         $this->bootBladeComponents();
         $this->bootPublishing();
         $this->bootDirectives();
+        $this->bootStylesheet();
     }
 
     /**
@@ -102,18 +97,6 @@ class FormComponentsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/form_components.php' => config_path('form_components.php'),
         ], 'form-config');
-
-        // Publish Form Component Styles.
-        $this->publishes([
-            __DIR__.'/public/css/form-components.css' => $this->publishPath.'/css/form-components.css',
-            __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
-        ], 'form-styles');
-
-        // Publish Form Component Resources.
-        $this->publishes([
-            __DIR__.'/public/css/form-components.css' => $this->publishPath.'/css/form-components.css',
-            __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
-        ], 'form-resources');
     }
 
     /**
@@ -121,11 +104,18 @@ class FormComponentsServiceProvider extends ServiceProvider
      */
     private function bootDirectives(): void
     {
-        Blade::directive('componentStyles', function ($type) {
-            $type = str_replace(['\'', '"'], '', $type);
-            $file = $type === 'full' ? 'form-components.css' : 'form-components.min.css';
+        Blade::directive('componentStyles', fn (string $variant): string => '<?php echo app(\\'.Stylesheet::class.'::class)->tag('.$variant.'); ?>');
+    }
 
-            return "<link href='".asset($this->assetPath.'/css/'.$file)."' rel='stylesheet'>";
-        });
+    /**
+     * Serve the stylesheet and link it into pages rendering components.
+     */
+    private function bootStylesheet(): void
+    {
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+
+        View::composer(['form-components::*', 'components.form.*'], fn () => $this->app->make(Stylesheet::class)->require());
+
+        Event::listen(RequestHandled::class, fn (RequestHandled $event) => $this->app->make(Stylesheet::class)->inject($event->response));
     }
 }

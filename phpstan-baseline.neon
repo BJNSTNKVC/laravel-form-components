@@ -103,18 +103,6 @@ parameters:
 			path: src/FormComponentsServiceProvider.php
 
 		-
-			message: '#^Binary operation "\." between mixed and ''/css/'' results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
-			message: '#^Binary operation "\." between mixed and ''/css/form…'' results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 4
-			path: src/FormComponentsServiceProvider.php
-
-		-
 			message: '#^Binary operation "\." between mixed and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
 			count: 1
@@ -134,24 +122,6 @@ parameters:
 
 
 		-
-			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
-			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$assetPath has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
 			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$components has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
@@ -159,12 +129,6 @@ parameters:
 
 		-
 			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$prefix has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/FormComponentsServiceProvider.php
-
-		-
-			message: '#^Property Bjnstnkvc\\FormComponents\\FormComponentsServiceProvider\:\:\$publishPath has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
 			path: src/FormComponentsServiceProvider.php

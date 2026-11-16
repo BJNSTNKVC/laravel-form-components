@@ -47,8 +47,8 @@ return [
         'select' => Select::class,
     ],
 
-    // Path used to publish component config files.
-    'publish_path' => public_path('vendor/form-components'),
+    // Determine whether pages rendering a component link its stylesheet on their own.
+    'inject_styles' => true,
 
     // Form Components prefix (E.g. <x-form-button>).
     'prefix' => 'form',

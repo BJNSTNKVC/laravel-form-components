@@ -2,7 +2,9 @@
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -15,14 +17,16 @@ Route::get('/', function (): Factory|View {
 
     view()->share('errors', (new ViewErrorBag)->put('default', new MessageBag($messages->all())));
 
-    return view('playground', [
-        'styles' => file_get_contents(package_path('src', 'public', 'css', 'form-components.css')),
-    ]);
+    return view('playground');
 })->name('playground');
 
-Route::get('/livewire', fn (): Factory|View => view('livewire', [
-    'styles' => file_get_contents(package_path('src', 'public', 'css', 'form-components.css')),
-]))->name('livewire');
+Route::get('/csp', function (): Response {
+    Vite::useCspNonce();
+
+    return response(view('playground'))->header('Content-Security-Policy', sprintf("style-src 'nonce-%s'", Vite::cspNonce()));
+})->name('csp');
+
+Route::get('/livewire', fn (): Factory|View => view('livewire'))->name('livewire');
 
 Route::get('/js/alpine.js', fn (): BinaryFileResponse => response()->file(
     package_path('node_modules', 'alpinejs', 'dist', 'module.esm.js'),
