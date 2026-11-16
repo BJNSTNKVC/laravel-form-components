@@ -109,18 +109,10 @@ class FormComponentsServiceProvider extends ServiceProvider
             __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
         ], 'form-styles');
 
-        // Publish Form Component Scripts.
-        $this->publishes([
-            __DIR__.'/public/js/form-components.js' => $this->publishPath.'/js/form-components.js',
-            __DIR__.'/public/js/form-components.min.js' => $this->publishPath.'/js/form-components.min.js',
-        ], 'form-scripts');
-
-        // Publish Form Component Styles and Scripts.
+        // Publish Form Component Resources.
         $this->publishes([
             __DIR__.'/public/css/form-components.css' => $this->publishPath.'/css/form-components.css',
             __DIR__.'/public/css/form-components.min.css' => $this->publishPath.'/css/form-components.min.css',
-            __DIR__.'/public/js/form-components.js' => $this->publishPath.'/js/form-components.js',
-            __DIR__.'/public/js/form-components.min.js' => $this->publishPath.'/js/form-components.min.js',
         ], 'form-resources');
     }
 
@@ -134,13 +126,6 @@ class FormComponentsServiceProvider extends ServiceProvider
             $file = $type === 'full' ? 'form-components.css' : 'form-components.min.css';
 
             return "<link href='".asset($this->assetPath.'/css/'.$file)."' rel='stylesheet'>";
-        });
-
-        Blade::directive('componentScripts', function ($type) {
-            $type = str_replace(['\'', '"'], '', $type);
-            $file = $type === 'full' ? 'form-components.js' : 'form-components.min.js';
-
-            return "<script src='".asset($this->assetPath.'/js/'.$file)."' defer></script>";
         });
     }
 }

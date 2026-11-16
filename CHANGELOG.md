@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A changelog recording notable changes for each release.
 - CSS variables for the brand colour, field colours, error colour, font and corner radii, so components can match an app without overriding its stylesheet.
 - Dark mode, applied inside a `dark` class or a dark `color-scheme`.
+- Component behaviour runs on Alpine.js, which the app provides. Each field ships its own Alpine data, e.g. `form_password`, as a self-contained script in its own folder that the app registers with `Alpine.data()`, so revealing a password, clearing a search, growing a textarea, naming a chosen file and hiding errors on input keep working for components added after the page loads, e.g. by Livewire. Templates only name the data and its refs, the script wires up the behaviour.
+- `interactive` attribute on every field and `auto-expand` attribute on the Textarea component, overriding the `interactive` and `auto_expand` config values for a single component.
 
 ### Changed
 
@@ -22,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Focused fields no longer glow around their border.
 - Fields and buttons use the font of the page instead of the browser's form font.
 - Checked switches, checkboxes and radios take the brand colour, black by default, instead of green and the browser's blue.
+- The Textarea component's `autoexpand` attribute is renamed to `auto-expand`.
+- Clearing a Search with its clear button fires an `input` event, as deleting its text does.
 
 ### Fixed
 
@@ -29,11 +33,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The border no longer runs through the floating title of a fully bordered field, it opens a notch around the title instead.
 - `components:publish` and `components:restore` write to `app/View/Components/Form` and `resources/views/components/form` on every platform instead of creating backslash-named files, and switch the component imports in the published config.
 - `@componentStyles` and `@componentScripts` link to `vendor/form-components` instead of a path missing its first letter.
-- Password visibility and Search clear icons loaded from an SVG file keep the class that toggles them.
+- With `invalidated-title` on, emptying a Password, Textarea, Select, Date, Time, Date & Time, Checkbox or Radio field marks its title invalid again, as it already did for the other fields.
+- Clearing a Search with its clear button brings its error back, as deleting its text does.
 
 ### Removed
 
-- The `label-type`, `border-radius`, `position`, `with-icon`, `with-visibility` and `with-clearing` attributes and the `form-group__*`, `form-btn`, `btn-*` and `tg-*` classes that only served the old stylesheet. Elements the script relies on keep their classes until behaviour moves to Alpine.
+- The `label-type`, `border-radius`, `position`, `with-icon`, `with-visibility` and `with-clearing` attributes and the `form-group__*`, `form-btn`, `btn-*` and `tg-*` classes that only served the old stylesheet.
+- The global script that wired up behaviour once on page load, the `form-group__*` and `fc-is-invalid` classes it relied on, and the `interactive`, `invalidated-title`, `autoexpand` and `border` attributes it read from fields.
+- The `@componentScripts` directive, the `form-scripts` publish tag and the `form-components.js` script, as apps register each field's Alpine data themselves.
+- The `renderVisibilityIcon()` method of the Password component and the `renderSearchIcon()` method of the Search component, as their icons no longer need a class injected.
 
 ## [1.5.1] - 2023-02-25
 

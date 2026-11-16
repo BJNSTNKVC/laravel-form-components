@@ -20,6 +20,24 @@ class FileTest extends TestCase
     }
 
     #[Test]
+    public function it_runs_on_alpine(): void
+    {
+        $this->withViewErrors(['avatar' => 'The avatar field is required.'])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertSee('x-data="form_file"', false)
+            ->assertSee('x-ref="input"', false)
+            ->assertSee('x-ref="error"', false);
+    }
+
+    #[Test]
+    public function it_shows_the_chosen_files_in_the_field(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertSeeInOrder(['x-ref="input"', 'x-ref="holder"'], false);
+    }
+
+    #[Test]
     public function it_covers_the_field_with_the_file_input(): void
     {
         $this->withViewErrors([])
@@ -92,6 +110,52 @@ class FileTest extends TestCase
             ->assertSee('fc:border-2')
             ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
+    }
+
+    #[Test]
+    public function it_leaves_the_title_colour_alone_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertDontSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_colours_the_title_of_an_invalid_field(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" invalidated-title="true" />')
+            ->assertSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_keeps_errors_while_typing_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertDontSee('data-interactive', false);
+    }
+
+    #[Test]
+    #[DataProvider('interactiveSwitches')]
+    public function it_hides_errors_while_typing_when_interactive(string $attributes, bool $config): void
+    {
+        config(['form_components.interactive' => $config]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" '.$attributes.' />')
+            ->assertSee('data-interactive', false);
+    }
+
+    /**
+     * Ways of making errors disappear on input.
+     *
+     * @return iterable<string, array{string, bool}>
+     */
+    public static function interactiveSwitches(): iterable
+    {
+        yield 'attribute' => ['interactive="true"', false];
+        yield 'config' => ['', true];
     }
 
     #[Test]

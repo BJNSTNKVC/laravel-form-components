@@ -55,6 +55,7 @@ class TextareaTest extends TestCase
             $browser->visit('/')->type('textarea_error', 'Value');
 
             $this->assertValid($browser, 'textarea_error');
+            $this->assertValidTitle($browser, 'textarea_error');
         });
     }
 
@@ -69,6 +70,7 @@ class TextareaTest extends TestCase
                 ->keys('#textarea_error', '{backspace}');
 
             $this->assertInvalid($browser, 'textarea_error');
+            $this->assertInvalidTitle($browser, 'textarea_error');
         });
     }
 

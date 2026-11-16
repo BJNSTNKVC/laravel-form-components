@@ -35,6 +35,7 @@ class DateTimeTest extends TestCase
             $browser->visit('/')->keys('#date_time_error', '02152026', '{arrow_right}', '103045AM');
 
             $this->assertValid($browser, 'date_time_error');
+            $this->assertValidTitle($browser, 'date_time_error');
         });
     }
 
@@ -49,6 +50,7 @@ class DateTimeTest extends TestCase
                 ->keys('#date_time_error', '{backspace}');
 
             $this->assertInvalid($browser, 'date_time_error');
+            $this->assertInvalidTitle($browser, 'date_time_error');
         });
     }
 }

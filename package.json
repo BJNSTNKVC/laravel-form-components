@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "@tailwindcss/cli": "4.3.5",
+        "alpinejs": "3.17.5",
         "tailwindcss": "4.3.5"
     }
 }

@@ -35,6 +35,7 @@ class DateTest extends TestCase
             $browser->visit('/')->keys('#date_error', '02152026');
 
             $this->assertValid($browser, 'date_error');
+            $this->assertValidTitle($browser, 'date_error');
         });
     }
 
@@ -49,6 +50,7 @@ class DateTest extends TestCase
                 ->keys('#date_error', '{backspace}');
 
             $this->assertInvalid($browser, 'date_error');
+            $this->assertInvalidTitle($browser, 'date_error');
         });
     }
 }

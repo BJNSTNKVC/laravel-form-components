@@ -54,6 +54,11 @@ class Textarea extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Textarea component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Textarea component icon visibility state.
      */
     public $showIcon;
@@ -64,11 +69,16 @@ class Textarea extends Component
     public $icon;
 
     /**
+     * Whether Textarea component height grows with its text.
+     */
+    public bool $autoExpand;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null)
+    public function __construct($name, $id = null, $title = null, $value = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, bool|string|null $interactive = null, $showIcon = null, $icon = null, bool|string|null $autoExpand = null)
     {
         $this->name = Str::slug($name, '_');
         $this->id = $id ?: $this->name;
@@ -79,8 +89,10 @@ class Textarea extends Component
         $this->border = $border ?: config('form_components.border');
         $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->icon = $this->renderIcon($icon ?: config('form_components.icons.textarea'));
+        $this->autoExpand = filter_var($autoExpand ?: config('form_components.auto_expand'), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

@@ -151,6 +151,15 @@ jobs:
       - name: Show the resolved Laravel version
         run: composer show laravel/framework | grep -E '^(name|versions)'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '26'
+          cache: npm
+
+      - name: Install the playground's Alpine.js
+        run: npm ci --no-audit --no-fund
+
       - name: Wait for Selenium
         run: timeout 60 bash -c 'until curl -sf http://localhost:4444/status | jq -e .value.ready > /dev/null; do sleep 1; done'
 

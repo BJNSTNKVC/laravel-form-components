@@ -51,13 +51,13 @@
             <x-form::password name="password_error" title="Password" invalidated-title="true" />
             <x-form::search name="search_error" title="Search" invalidated-title="true" />
             <x-form::textarea name="textarea_error" title="Textarea" invalidated-title="true" />
-            <x-form::select name="select_error" title="Select" label-type="floating" values="Option A, Option B" placeholder="Choose an option" />
+            <x-form::select name="select_error" title="Select" label-type="floating" values="Option A, Option B" placeholder="Choose an option" invalidated-title="true" />
             <x-form::date name="date_error" title="Date" invalidated-title="true" />
             <x-form::time name="time_error" title="Time" invalidated-title="true" />
             <x-form::date-time name="date_time_error" title="Date &amp; Time" invalidated-title="true" />
             <x-form::file name="file_error" title="File" invalidated-title="true" />
-            <x-form::checkbox name="checkbox_error" title="Checkbox" switch="false" position="left" />
-            <x-form::radio name="radio_error" title="Radio" switch="false" />
+            <x-form::checkbox name="checkbox_error" title="Checkbox" switch="false" position="left" invalidated-title="true" />
+            <x-form::radio name="radio_error" title="Radio" switch="false" invalidated-title="true" />
         </x-form::base>
     </section>
 
@@ -74,6 +74,10 @@
         </x-form::base>
     </section>
 
-    <script>{!! $scripts !!}</script>
+    <template id="later">
+        <x-form::password name="password_later" title="Password Added Later" />
+    </template>
+
+    <script type="module" src="/js/app.js"></script>
 </body>
 </html>

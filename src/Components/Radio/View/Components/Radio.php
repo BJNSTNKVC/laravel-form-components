@@ -44,6 +44,11 @@ class Radio extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Radio component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Radio component style.
      */
     public $switch;
@@ -58,7 +63,7 @@ class Radio extends Component
      *
      * @return void
      */
-    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null, $switch = null, $checked = null)
+    public function __construct($name, $title = null, $id = null, $position = null, $label = null, $invalidatedTitle = null, bool|string|null $interactive = null, $switch = null, $checked = null)
     {
         $this->name = Str::slug($name, '_');
         $this->title = $title ?: Str::title($name);
@@ -67,6 +72,7 @@ class Radio extends Component
         $this->position = $position ?: config('form_components.position');
         $this->label = $label;
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->switch = filter_var($switch ?: config('form_components.switch'), FILTER_VALIDATE_BOOLEAN);
         $this->checked = filter_var($checked, FILTER_VALIDATE_BOOLEAN);
     }

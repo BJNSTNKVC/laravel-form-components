@@ -34,6 +34,7 @@ class SelectTest extends TestCase
             $browser->visit('/')->keys('#select_error', '{arrow_down}');
 
             $this->assertValid($browser, 'select_error');
+            $this->assertValidTitle($browser, 'select_error');
         });
     }
 
@@ -48,6 +49,7 @@ class SelectTest extends TestCase
                 ->keys('#select_error', '{arrow_up}');
 
             $this->assertInvalid($browser, 'select_error');
+            $this->assertInvalidTitle($browser, 'select_error');
         });
     }
 }

@@ -2,6 +2,8 @@ laravel: '@testbench'
 
 providers:
   - Bjnstnkvc\FormComponents\FormComponentsServiceProvider
+  - Livewire\LivewireServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
 
 workbench:
   start: '/'

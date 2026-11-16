@@ -19,6 +19,7 @@ class RadioTest extends TestCase
             $browser->visit('/')->click('#radio_error');
 
             $this->assertValid($browser, 'radio_error');
+            $this->assertValidTitle($browser, 'radio_error');
         });
     }
 }

@@ -12,6 +12,8 @@
     ])
     @error($name) invalid @enderror
     for="{{ $name }}"
+    x-data="form_file"
+    @if($interactive) data-interactive @endif
 >
     <input
         {{ $attributes->class('fc:absolute fc:inset-0 fc:size-full fc:m-0 fc:p-0 fc:opacity-0 fc:cursor-pointer fc:file:hidden') }}
@@ -19,13 +21,11 @@
         id="{{ $id }}"
         name="{{ $name }}"
         value="{{ $value }}"
-        invalidated-title="{{ $invalidatedTitle ? 'true' : 'false' }}"
-        interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
+        x-ref="input"
     >
 
     <input
         {{ $attributes->merge(['placeholder' => $title ?: Str::title($name)])->class([
-            'form-group__file-holder',
             'fc:peer fc:[grid-area:input] fc:block fc:box-border fc:w-full fc:h-10 fc:m-0 fc:text-[length:inherit] fc:leading-[inherit] fc:font-base fc:text-field-foreground fc:bg-field fc:outline-0',
             'fc:border-current fc:group-[[invalid]]:border-danger' => ! $notched,
             'fc:border-transparent' => $notched,
@@ -42,6 +42,7 @@
         ]) }}
         type="text"
         value="{{ $value }}"
+        x-ref="holder"
     >
 
     @if($notched)
@@ -62,8 +63,8 @@
 
     <span
         @class([
-            'form-group__title fc:font-semibold fc:[&.fc-is-invalid]:text-danger',
-            'fc-is-invalid' => $invalidatedTitle && $errors->has($name),
+            'fc:font-semibold',
+            'fc:group-[[invalid]]:text-danger' => $invalidatedTitle,
             'fc:[grid-area:title]' => $labelType !== 'floating',
             'fc:mb-1' => $labelType === 'column',
             'fc:min-w-[100px] fc:mr-4 fc:py-2.5' => $labelType === 'row',
@@ -88,5 +89,8 @@
         </span>
     @endif
 
-    <x-form::error name="{{ $name }}" />
+    <x-form::error
+        name="{{ $name }}"
+        x-ref="error"
+    />
 </label>

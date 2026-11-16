@@ -86,6 +86,11 @@ class Select extends Component
     public $invalidatedTitle;
 
     /**
+     * Whether Select component errors disappear on input.
+     */
+    public bool $interactive;
+
+    /**
      * Select component icon visibility state.
      */
     public $showIcon;
@@ -105,7 +110,7 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $jsDataKey = null, $jsDataValue = null, $placeholder = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, $showIcon = null, $icon = null, $default = null)
+    public function __construct($name, $id = null, $title = null, $values = null, $model = null, $modelKey = null, $modelValue = null, $jsDataKey = null, $jsDataValue = null, $placeholder = null, $label = null, $labelType = null, $border = null, $borderRadius = null, $invalidatedTitle = null, bool|string|null $interactive = null, $showIcon = null, $icon = null, $default = null)
     {
         $this->name = Str::slug($name, '_');
         $this->id = $id ?: $this->name;
@@ -122,6 +127,7 @@ class Select extends Component
         $this->border = $border ?: config('form_components.border');
         $this->borderRadius = $borderRadius ?: config('form_components.radius');
         $this->invalidatedTitle = filter_var($invalidatedTitle ?: config('form_components.invalidated_title'), FILTER_VALIDATE_BOOLEAN);
+        $this->interactive = filter_var($interactive ?: config('form_components.interactive'), FILTER_VALIDATE_BOOLEAN);
         $this->showIcon = filter_var($showIcon ?: config('form_components.icon'), FILTER_VALIDATE_BOOLEAN);
         $this->icon = $this->renderIcon($icon ?: config('form_components.icons.select'));
         $this->default = $default;

@@ -20,6 +20,16 @@ class SearchTest extends TestCase
     }
 
     #[Test]
+    public function it_runs_on_alpine(): void
+    {
+        $this->withViewErrors(['query' => 'The query field is required.'])
+            ->blade('<x-form::search name="query" />')
+            ->assertSee('x-data="form_search"', false)
+            ->assertSee('x-ref="input"', false)
+            ->assertSee('x-ref="error"', false);
+    }
+
+    #[Test]
     public function it_hides_the_browser_clear_button(): void
     {
         $this->withViewErrors([])
@@ -85,11 +95,75 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_hides_the_clear_icon_until_typing(): void
+    public function it_leaves_the_title_colour_alone_by_default(): void
     {
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" />')
-            ->assertSee('fc:*:[[class*=icon--clear]]:hidden', false);
+            ->assertDontSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_colours_the_title_of_an_invalid_field(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" invalidated-title="true" />')
+            ->assertSee('fc:group-[[invalid]]:text-danger', false);
+    }
+
+    #[Test]
+    public function it_keeps_errors_while_typing_by_default(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertDontSee('data-interactive', false);
+    }
+
+    #[Test]
+    #[DataProvider('interactiveSwitches')]
+    public function it_hides_errors_while_typing_when_interactive(string $attributes, bool $config): void
+    {
+        config(['form_components.interactive' => $config]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" '.$attributes.' />')
+            ->assertSee('data-interactive', false);
+    }
+
+    /**
+     * Ways of making errors disappear on input.
+     *
+     * @return iterable<string, array{string, bool}>
+     */
+    public static function interactiveSwitches(): iterable
+    {
+        yield 'attribute' => ['interactive="true"', false];
+        yield 'config' => ['', true];
+    }
+
+    #[Test]
+    public function it_hides_the_clear_icon_until_typing(): void
+    {
+        $view = (string) $this->withViewErrors([])->blade('<x-form::search name="query" />');
+
+        $this->assertMatchesRegularExpression('/x-ref="clear"\s+hidden/', $view);
+    }
+
+    #[Test]
+    public function it_clears_the_search_with_the_clear_icon(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertSeeInOrder(['x-ref="input"', 'x-ref="clear"'], false);
+    }
+
+    #[Test]
+    public function it_leaves_out_the_clear_icon_when_disabled(): void
+    {
+        config(['form_components.search_clearing' => false]);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertDontSee('x-ref="clear"', false);
     }
 
     #[Test]
@@ -117,7 +191,7 @@ class SearchTest extends TestCase
 
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" title="Query" />')
-            ->assertSee('<img src="/icons/clear.png" alt="Query icon" class="form-group__icon--clear">', false);
+            ->assertSee('<img src="/icons/clear.png" alt="Query icon">', false);
     }
 
     #[Test]
@@ -130,6 +204,6 @@ class SearchTest extends TestCase
 
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" />')
-            ->assertSee(str_replace('<svg ', '<svg class="form-group__icon--clear" ', $this->iconMarkup()), false);
+            ->assertSee($this->iconMarkup(), false);
     }
 }

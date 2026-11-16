@@ -12,6 +12,8 @@
     ])
     @error($name) invalid @enderror
     for="{{ $name }}"
+    x-data="form_search"
+    @if($interactive) data-interactive @endif
 >
     <input
         {{ $attributes->class([
@@ -37,8 +39,7 @@
         name="{{ $name }}"
         placeholder="{{ $title ?: Str::title($name) }}"
         value="{{ $value }}"
-        invalidated-title="{{ $invalidatedTitle ? 'true' : 'false' }}"
-        interactive="{{ config('form_components.interactive') ? 'true' : 'false' }}"
+        x-ref="input"
     >
 
     @if($notched)
@@ -59,8 +60,8 @@
 
     <span
         @class([
-            'form-group__title fc:font-semibold fc:[&.fc-is-invalid]:text-danger',
-            'fc-is-invalid' => $invalidatedTitle && $errors->has($name),
+            'fc:font-semibold',
+            'fc:group-[[invalid]]:text-danger' => $invalidatedTitle,
             'fc:[grid-area:title]' => $labelType !== 'floating',
             'fc:mb-1' => $labelType === 'column',
             'fc:min-w-[100px] fc:mr-4 fc:py-2.5' => $labelType === 'row',
@@ -77,13 +78,18 @@
         <span
             @class([
                 'fc:[grid-area:input] fc:flex fc:items-center fc:justify-center fc:box-border fc:h-10 fc:ml-auto fc:select-none fc:pointer-events-none fc:text-inherit fc:fill-current fc:*:grow fc:*:w-auto fc:*:fill-current',
-                'fc:min-w-10 fc:*:last-of-type:px-2' => ! $bottom,
+                'fc:min-w-10 fc:*:last:px-2' => ! $bottom,
                 'fc:min-w-6' => $bottom,
-                'fc:*:[[class*=icon--]]:pointer-events-auto fc:*:[[class*=icon--clear]]:hidden' => $searchClearing,
             ])
         >
             @if($searchClearing)
-                {!! $searchClearIcon !!}
+                <span
+                    class="fc:flex fc:justify-center fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
+                    x-ref="clear"
+                    hidden
+                >
+                    {!! $searchClearIcon !!}
+                </span>
             @endif
             @if($hasIcon)
                 {!! $icon !!}
@@ -91,5 +97,8 @@
         </span>
     @endif
 
-    <x-form::error name="{{ $name }}" />
+    <x-form::error
+        name="{{ $name }}"
+        x-ref="error"
+    />
 </label>
