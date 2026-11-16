@@ -1,11 +1,6 @@
 /*! tailwindcss v4.3.5 | MIT License | https://tailwindcss.com */
 @layer properties;
 :root, :host {
-  --fc-color-red-600: oklch(57.7% 0.245 27.325);
-  --fc-color-green-500: oklch(72.3% 0.219 149.579);
-  --fc-color-gray-200: oklch(92.8% 0.006 264.531);
-  --fc-color-stone-500: oklch(55.3% 0.013 58.071);
-  --fc-color-black: #000;
   --fc-color-white: #fff;
   --fc-spacing: 0.25rem;
   --fc-text-xs: 0.75rem;
@@ -15,9 +10,6 @@
   --fc-text-base: 1rem;
   --fc-text-base--line-height: calc(1.5 / 1);
   --fc-font-weight-semibold: 600;
-  --fc-radius-lg: 0.5rem;
-  --fc-radius-xl: 0.75rem;
-  --fc-radius-3xl: 1.5rem;
   --fc-default-transition-duration: 150ms;
   --fc-default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -170,20 +162,20 @@
 .fc\:overflow-auto {
   overflow: auto;
 }
-.fc\:rounded-3xl {
-  border-radius: var(--fc-radius-3xl);
-}
 .fc\:rounded-full {
   border-radius: calc(infinity * 1px);
 }
-.fc\:rounded-lg {
-  border-radius: var(--fc-radius-lg);
+.fc\:rounded-medium {
+  border-radius: var(--fc-radius-medium, 0.75rem);
 }
 .fc\:rounded-none {
   border-radius: 0;
 }
-.fc\:rounded-xl {
-  border-radius: var(--fc-radius-xl);
+.fc\:rounded-pill {
+  border-radius: var(--fc-radius-pill, 9999px);
+}
+.fc\:rounded-small {
+  border-radius: var(--fc-radius-small, 0.5rem);
 }
 .fc\:border-0 {
   border-style: var(--tw-border-style);
@@ -203,11 +195,17 @@
 .fc\:border-transparent {
   border-color: transparent;
 }
-.fc\:bg-black {
-  background-color: var(--fc-color-black);
+.fc\:bg-field {
+  background-color: var(--fc-field, Field);
 }
-.fc\:bg-gray-200 {
-  background-color: var(--fc-color-gray-200);
+.fc\:bg-muted\/20 {
+  background-color: var(--fc-muted, oklch(55.3% 0.013 58.071));
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--fc-muted, oklch(55.3% 0.013 58.071)) 20%, transparent);
+  }
+}
+.fc\:bg-primary {
+  background-color: var(--fc-primary, light-dark(#000, #fff));
 }
 .fc\:fill-current {
   fill: currentcolor;
@@ -257,6 +255,9 @@
 .fc\:text-left {
   text-align: left;
 }
+.fc\:font-base {
+  font-family: var(--fc-font, inherit);
+}
 .fc\:text-base {
   font-size: var(--fc-text-base);
   line-height: var(--tw-leading, var(--fc-text-base--line-height));
@@ -291,17 +292,23 @@
 .fc\:text-ellipsis {
   text-overflow: ellipsis;
 }
+.fc\:text-danger {
+  color: var(--fc-danger, light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216)));
+}
+.fc\:text-field-foreground {
+  color: var(--fc-field-foreground, FieldText);
+}
 .fc\:text-inherit {
   color: inherit;
 }
-.fc\:text-red-600 {
-  color: var(--fc-color-red-600);
-}
-.fc\:text-white {
-  color: var(--fc-color-white);
+.fc\:text-primary-foreground {
+  color: var(--fc-primary-foreground, light-dark(#fff, #000));
 }
 .fc\:no-underline {
   text-decoration-line: none;
+}
+.fc\:accent-primary {
+  accent-color: var(--fc-primary, light-dark(#000, #fff));
 }
 .fc\:opacity-0 {
   opacity: 0%;
@@ -309,9 +316,15 @@
 .fc\:opacity-100 {
   opacity: 100%;
 }
-.fc\:shadow-\[inset_0_0_0_2px_black\] {
-  --tw-shadow: inset 0 0 0 2px var(--tw-shadow-color, black);
+.fc\:shadow-\[inset_0_0_0_2px\] {
+  --tw-shadow: inset 0 0 0 2px var(--tw-shadow-color, currentcolor);
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.fc\:shadow-primary {
+  --tw-shadow-color: var(--fc-primary, light-dark(#000, #fff));
+  @supports (color: color-mix(in lab, red, red)) {
+    --tw-shadow-color: color-mix(in oklab, var(--fc-primary, light-dark(#000, #fff)) var(--tw-shadow-alpha), transparent);
+  }
 }
 .fc\:outline-0 {
   outline-style: var(--tw-outline-style);
@@ -406,11 +419,11 @@
   --tw-ease: linear;
   transition-timing-function: linear;
 }
-:is(:where(.fc\:group):is([invalid]) .fc\:group-\[\[invalid\]\]\:border-red-600) {
-  border-color: var(--fc-color-red-600);
+:is(:where(.fc\:group):is([invalid]) .fc\:group-\[\[invalid\]\]\:border-danger) {
+  border-color: var(--fc-danger, light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216)));
 }
-:is(:where(.fc\:group):is([invalid]) .fc\:group-\[\[invalid\]\]\:text-red-600) {
-  color: var(--fc-color-red-600);
+:is(:where(.fc\:group):is([invalid]) .fc\:group-\[\[invalid\]\]\:text-danger) {
+  color: var(--fc-danger, light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216)));
 }
 :is(:where(.fc\:peer):not(:placeholder-shown) ~ .fc\:peer-not-placeholder-shown\:-top-2) {
   top: calc(var(--fc-spacing) * -2);
@@ -421,8 +434,8 @@
 :is(:is(:where(.fc\:peer):not(:placeholder-shown) ~ .fc\:peer-not-placeholder-shown\:\*\:max-w-full) > *) {
   max-width: 100%;
 }
-:is(:where(.fc\:peer):checked ~ .fc\:peer-checked\:bg-green-500) {
-  background-color: var(--fc-color-green-500);
+:is(:where(.fc\:peer):checked ~ .fc\:peer-checked\:bg-primary) {
+  background-color: var(--fc-primary, light-dark(#000, #fff));
 }
 :is(:where(.fc\:peer):focus ~ .fc\:peer-focus\:-top-2) {
   top: calc(var(--fc-spacing) * -2);
@@ -467,13 +480,13 @@
   --tw-translate-y: 2px;
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.fc\:before\:rounded-xl::before {
+.fc\:before\:rounded-full::before {
   content: var(--tw-content);
-  border-radius: var(--fc-radius-xl);
+  border-radius: calc(infinity * 1px);
 }
-.fc\:before\:bg-white::before {
+.fc\:before\:bg-field::before {
   content: var(--tw-content);
-  background-color: var(--fc-color-white);
+  background-color: var(--fc-field, Field);
 }
 .fc\:before\:content-\[\'\'\]::before {
   --tw-content: '';
@@ -510,9 +523,9 @@
   --tw-translate-y: 2px;
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.fc\:after\:rounded-xl::after {
+.fc\:after\:rounded-full::after {
   content: var(--tw-content);
-  border-radius: var(--fc-radius-xl);
+  border-radius: calc(infinity * 1px);
 }
 .fc\:after\:bg-white::after {
   content: var(--tw-content);
@@ -543,15 +556,19 @@
   --tw-translate-x: 18px;
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
+:is(:where(.fc\:peer):checked ~ .fc\:peer-checked\:after\:bg-primary-foreground)::after {
+  content: var(--tw-content);
+  background-color: var(--fc-primary-foreground, light-dark(#fff, #000));
+}
 :is(.fc\:\*\:last-of-type\:px-2 > *):last-of-type {
   padding-inline: calc(var(--fc-spacing) * 2);
 }
 @media (hover: hover) {
-  .fc\:hover\:bg-white:hover {
-    background-color: var(--fc-color-white);
+  .fc\:hover\:bg-primary-foreground:hover {
+    background-color: var(--fc-primary-foreground, light-dark(#fff, #000));
   }
-  .fc\:hover\:text-black:hover {
-    color: var(--fc-color-black);
+  .fc\:hover\:text-primary:hover {
+    color: var(--fc-primary, light-dark(#000, #fff));
   }
 }
 .fc\:focus\:placeholder\:text-transparent:focus::placeholder {
@@ -560,23 +577,26 @@
 .fc\:disabled\:pointer-events-none:disabled {
   pointer-events: none;
 }
-.fc\:disabled\:bg-stone-500\/15:disabled {
-  background-color: var(--fc-color-stone-500);
+.fc\:disabled\:bg-muted\/15:disabled {
+  background-color: var(--fc-muted, oklch(55.3% 0.013 58.071));
   @supports (color: color-mix(in lab, red, red)) {
-    background-color: color-mix(in oklab, var(--fc-color-stone-500) 15%, transparent);
+    background-color: color-mix(in oklab, var(--fc-muted, oklch(55.3% 0.013 58.071)) 15%, transparent);
   }
 }
-.fc\:disabled\:text-stone-500:disabled {
-  color: var(--fc-color-stone-500);
+.fc\:disabled\:text-muted:disabled {
+  color: var(--fc-muted, oklch(55.3% 0.013 58.071));
 }
-.fc\:disabled\:shadow-stone-500\/15:disabled {
-  --tw-shadow-color: var(--fc-color-stone-500);
+.fc\:disabled\:shadow-muted\/15:disabled {
+  --tw-shadow-color: var(--fc-muted, oklch(55.3% 0.013 58.071));
   @supports (color: color-mix(in lab, red, red)) {
-    --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--fc-color-stone-500) 15%, transparent) var(--tw-shadow-alpha), transparent);
+    --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--fc-muted, oklch(55.3% 0.013 58.071)) 15%, transparent) var(--tw-shadow-alpha), transparent);
   }
 }
-.fc\:\[\&\.fc-is-invalid\]\:text-red-600.fc-is-invalid {
-  color: var(--fc-color-red-600);
+.fc\:dark\:scheme-dark:where(.dark, .dark *) {
+  color-scheme: dark;
+}
+.fc\:\[\&\.fc-is-invalid\]\:text-danger.fc-is-invalid {
+  color: var(--fc-danger, light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216)));
 }
 .fc\:\[\&\:\:-webkit-calendar-picker-indicator\]\:absolute::-webkit-calendar-picker-indicator {
   position: absolute;

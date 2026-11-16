@@ -104,7 +104,7 @@ class SelectTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::select name="country" title="Country" values="Serbia, Spain" border="full" border-radius="rounded" />')
             ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
+            ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
     }
 

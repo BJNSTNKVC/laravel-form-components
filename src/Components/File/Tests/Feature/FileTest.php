@@ -90,7 +90,7 @@ class FileTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::file name="avatar" title="Avatar" border="full" border-radius="rounded" />')
             ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
+            ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
     }
 

@@ -80,7 +80,7 @@ class TextareaTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::textarea name="bio" title="Bio" border="full" border-radius="rounded" />')
             ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
+            ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
     }
 

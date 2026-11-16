@@ -80,7 +80,7 @@ class SearchTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" title="Query" border="full" border-radius="rounded" />')
             ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
+            ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
     }
 
