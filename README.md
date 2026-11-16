@@ -600,6 +600,53 @@ property in your published `form_components.php` file.
 
 ![Input Interactivity](docs/images/components/Input%20Interactivity.gif)
 
+## Theming
+
+Components pick up the font of the page they sit on and draw their colours and corners from CSS variables. Set any of
+them in your own stylesheet, in any order relative to the components' one:
+
+```css
+:root {
+    --fc-primary: #4f46e5;
+    --fc-font: "Inter", sans-serif;
+    --fc-radius-small: 0.25rem;
+}
+```
+
+| Variable                  | Styles                                                      | Default                     |
+|---------------------------|-------------------------------------------------------------|-----------------------------|
+| `--fc-primary`            | Button background, checked switches, checkboxes and radios  | Black, white in dark mode   |
+| `--fc-primary-foreground` | Button text and the knob of a checked switch                | White, black in dark mode   |
+| `--fc-field`              | Field background                                            | The browser's field colour  |
+| `--fc-field-foreground`   | Field text and border                                       | The browser's field text    |
+| `--fc-danger`             | Validation errors and invalid fields                        | Red, lighter in dark mode   |
+| `--fc-muted`              | Disabled buttons and unchecked switches                     | Grey                        |
+| `--fc-font`               | Font family                                                 | The surrounding font        |
+| `--fc-radius-small`       | `rounded-s` corners                                         | `0.5rem`                    |
+| `--fc-radius-medium`      | `rounded-m` button corners                                  | `0.75rem`                   |
+| `--fc-radius-pill`        | `rounded` corners                                           | Fully rounded               |
+
+Variables set on an element only theme the components inside it, so a single form can carry its own brand.
+
+### Dark Mode
+
+Components turn dark inside an element with the `dark` class, the convention Tailwind CSS and Laravel's starter kits
+use, or wherever the page declares a dark colour scheme:
+
+```css
+:root {
+    color-scheme: light dark;
+}
+```
+
+Give a variable separate light and dark values with `light-dark()`:
+
+```css
+:root {
+    --fc-primary: light-dark(#4f46e5, #818cf8);
+}
+```
+
 ## Customisation
 
 ### Config

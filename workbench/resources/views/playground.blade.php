@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+    lang="en"
+    @class(['dark' => request()->boolean('dark')])
+>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +12,7 @@
         body { margin: 0 auto; max-width: 960px; padding: 2rem 1rem; font-family: system-ui, sans-serif; }
         section { margin-bottom: 3rem; }
         .playground-grid { display: grid; gap: 1.5rem; }
+        .dark body { background: #18181b; color: #f4f4f5; }
     </style>
 </head>
 <body>

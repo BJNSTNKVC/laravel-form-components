@@ -72,7 +72,7 @@ class EmailTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::email name="email" title="Email" border="full" border-radius="rounded" />')
             ->assertSee('fc:border-2')
-            ->assertSee('fc:rounded-full')
+            ->assertSee('fc:rounded-pill')
             ->assertDontSee('fc:border-b-2');
     }
 

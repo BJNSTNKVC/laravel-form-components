@@ -19,11 +19,11 @@ class ErrorTest extends TestCase
     }
 
     #[Test]
-    public function it_renders_the_message_in_red(): void
+    public function it_renders_the_message_in_the_danger_colour(): void
     {
         $this->withViewErrors(['email' => 'The email field is required.'])
             ->blade('<x-form::error name="email" />')
-            ->assertSee('fc:text-red-600');
+            ->assertSee('fc:text-danger');
     }
 
     #[Test]

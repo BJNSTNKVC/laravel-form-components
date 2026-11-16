@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bjnstnkvc\FormComponents\Tests\Feature;
 
 use Bjnstnkvc\FormComponents\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class StylesheetTest extends TestCase
@@ -41,12 +42,63 @@ class StylesheetTest extends TestCase
     }
 
     #[Test]
+    #[DataProvider('themeVariables')]
+    public function it_reads_a_theme_variable_with_a_default(string $variable, string $default): void
+    {
+        $this->assertStringContainsString(sprintf('var(%s, %s)', $variable, $default), $this->stylesheet());
+    }
+
+    #[Test]
+    #[DataProvider('themeVariableNames')]
+    public function it_leaves_theme_variables_for_the_app_to_declare(string $variable): void
+    {
+        $this->assertDoesNotMatchRegularExpression('/^\s*'.preg_quote($variable, '/').':/m', $this->stylesheet());
+    }
+
+    #[Test]
+    public function it_turns_dark_inside_a_dark_class(): void
+    {
+        $this->assertMatchesRegularExpression('/\.fc\\\\:dark\\\\:scheme-dark:where\(\.dark, \.dark \*\) \{\s*color-scheme: dark;/', $this->stylesheet());
+    }
+
+    #[Test]
     public function it_ships_a_minified_copy(): void
     {
         $minified = (string) file_get_contents(__DIR__.'/../../src/public/css/form-components.min.css');
 
         $this->assertStringNotContainsString("\n  ", $minified);
         $this->assertStringContainsString('.fc\:grid{', $minified);
+    }
+
+    /**
+     * Theme variables an app may set, with their defaults.
+     *
+     * @return iterable<string, array{string, string}>
+     */
+    public static function themeVariables(): iterable
+    {
+        yield 'primary' => ['--fc-primary', 'light-dark(#000, #fff)'];
+        yield 'primary foreground' => ['--fc-primary-foreground', 'light-dark(#fff, #000)'];
+        yield 'field' => ['--fc-field', 'Field'];
+        yield 'field foreground' => ['--fc-field-foreground', 'FieldText'];
+        yield 'danger' => ['--fc-danger', 'light-dark(oklch(57.7% 0.245 27.325), oklch(70.4% 0.191 22.216))'];
+        yield 'muted' => ['--fc-muted', 'oklch(55.3% 0.013 58.071)'];
+        yield 'font' => ['--fc-font', 'inherit'];
+        yield 'small radius' => ['--fc-radius-small', '0.5rem'];
+        yield 'medium radius' => ['--fc-radius-medium', '0.75rem'];
+        yield 'pill radius' => ['--fc-radius-pill', '9999px'];
+    }
+
+    /**
+     * Theme variables an app may set.
+     *
+     * @return iterable<string, array{string}>
+     */
+    public static function themeVariableNames(): iterable
+    {
+        foreach (self::themeVariables() as $name => [$variable]) {
+            yield $name => [$variable];
+        }
     }
 
     /**

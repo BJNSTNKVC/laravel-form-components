@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - A changelog recording notable changes for each release.
+- CSS variables for the brand colour, field colours, error colour, font and corner radii, so components can match an app without overriding its stylesheet.
+- Dark mode, applied inside a `dark` class or a dark `color-scheme`.
 
 ### Changed
 
@@ -18,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Component views are named `form-components::<name>` instead of `form-components::form.<name>`.
 - Component styles are rebuilt on Tailwind CSS 4 as `fc:` prefixed utility classes in each component's template, compiled into the shipped stylesheet. It has no preflight or unprefixed classes and keeps its utilities out of cascade layers, so it never resets or clashes with an app's own styles, Tailwind included.
 - Focused fields no longer glow around their border.
+- Fields and buttons use the font of the page instead of the browser's form font.
+- Checked switches, checkboxes and radios take the brand colour, black by default, instead of green and the browser's blue.
 
 ### Fixed
 

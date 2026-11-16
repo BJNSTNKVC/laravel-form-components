@@ -34,7 +34,7 @@ class ButtonTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::button title="Save" />')
-            ->assertSee('fc:rounded-3xl');
+            ->assertSee('fc:rounded-pill');
     }
 
     #[Test]
@@ -43,6 +43,6 @@ class ButtonTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::button title="Save" border-radius="squared" />')
             ->assertSee('fc:rounded-none')
-            ->assertDontSee('fc:rounded-3xl');
+            ->assertDontSee('fc:rounded-pill');
     }
 }
