@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Form Components Playground</title>
-    <style>{!! $styles !!}</style>
     <style>
         body { margin: 0 auto; max-width: 960px; padding: 2rem 1rem; font-family: system-ui, sans-serif; }
         section { margin-bottom: 3rem; }

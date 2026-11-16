@@ -22,30 +22,25 @@ Publish the components' config file with:
 
 This will publish a file called ```form_components.php``` in your config-directory.
 
-### Resources
+### Styles
 
-Publish the components' resources files with:
+Pages that render a component load its stylesheet on their own. The package serves the stylesheet and links it at the
+start of the page's `<head>`, so your own styles come after it and win. There is nothing to publish and no tag to add.
 
-    php artisan vendor:publish --provider="Bjnstnkvc\FormComponents\FormComponentsServiceProvider" --tag=form-resources
+If your app sets a Content Security Policy nonce with `Vite::useCspNonce()`, the link carries it, so a strict
+`style-src` keeps working.
 
-This will publish a following files to a folder configured in ```form_components.php```. By default, that folders
-is `public/vendor/form-components`. Detailed explanation for each property can be found [here](#customisation).
-
-1. *form-components.css*
-2. *form-components.min.css*
-
-### Directives
-
-Once config and resources have been published, add following Blade directive to your layout file.
+To place the stylesheet yourself, set `inject_styles` to `false` in `form_components.php` and add the following Blade
+directive to your layout file:
 
     @componentStyles
 
-As the name of the directive suggests, this will add Form components minified CSS file. In case you would like
-to edit published resource files, but would not like to edit minified versions, you can use the following syntax:
+This links the minified stylesheet. Link the readable one instead with:
 
     @componentStyles('full')
 
-Directive above will instruct the library to load unminified css file, which you can edit as you see fit.
+A page that uses the directive is never given a second copy, so you can also keep injection on and use the directive
+where a component only appears later, e.g. when Livewire adds it after the page loads.
 
 ### Alpine.js
 
@@ -687,7 +682,7 @@ Give a variable separate light and dark values with `light-dark()`:
 
 ### Config
 
-- **publish_path** - *Path used to publish component files.*
+- **inject_styles** - *Determine whether pages rendering a component link its stylesheet on their own, defaults to true.*
 
 
 - **prefix** - *Form Components prefix, defaults to 'form' (E.g. <x-form-button>).*

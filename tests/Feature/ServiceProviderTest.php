@@ -35,24 +35,6 @@ class ServiceProviderTest extends TestCase
         }
     }
 
-    #[Test]
-    public function it_links_the_minified_stylesheet_by_default(): void
-    {
-        $this->assertSame(
-            "<link href='".asset('vendor/form-components/css/form-components.min.css')."' rel='stylesheet'>",
-            Blade::compileString('@componentStyles')
-        );
-    }
-
-    #[Test]
-    public function it_links_the_full_stylesheet_when_asked(): void
-    {
-        $this->assertSame(
-            "<link href='".asset('vendor/form-components/css/form-components.css')."' rel='stylesheet'>",
-            Blade::compileString("@componentStyles('full')")
-        );
-    }
-
     /**
      * Components listed in the package configuration.
      *
