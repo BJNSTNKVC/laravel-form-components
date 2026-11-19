@@ -30,7 +30,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->root = sys_get_temp_dir().'/form-components-'.uniqid();
+        $this->root = $this->temporaryDirectory().'/form-components-'.uniqid();
 
         $this->publisher = new Publisher;
         $this->publisher->configPath = $this->root.'/config/form_components.php';
@@ -53,6 +53,14 @@ abstract class TestCase extends BaseTestCase
         (new Filesystem)->deleteDirectory($this->root);
 
         parent::tearDown();
+    }
+
+    /**
+     * Directory holding the temporary application.
+     */
+    protected function temporaryDirectory(): string
+    {
+        return sys_get_temp_dir();
     }
 
     /**

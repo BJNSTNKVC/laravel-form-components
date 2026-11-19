@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Component behaviour runs on Alpine.js, which the app provides. Each field ships its own Alpine data, e.g. `form_password`, as a self-contained script in its own folder that the app registers with `Alpine.data()`, so revealing a password, clearing a search, growing a textarea, naming a chosen file and hiding errors on input keep working for components added after the page loads, e.g. by Livewire. Templates only name the data and its refs, the script wires up the behaviour.
 - `interactive` attribute on every field and `auto-expand` attribute on the Textarea component, overriding the `interactive` and `auto_expand` config values for a single component.
 - Pages that render a component link its stylesheet on their own, at the start of their `<head>`, so nothing needs publishing or adding to a layout. The package serves the stylesheet from its own route, versioned by its contents, and the link carries the CSP nonce set with `Vite::useCspNonce()`. Turn it off with the `inject_styles` config value.
+- `resources/js/index.js`, which exports every field's Alpine data under its file name, e.g. `password`, so an app can import them all as one namespace.
+- `form-components:install` command, which registers each field's Alpine data in the script that starts Alpine, waits for Alpine when Livewire brings it, and adds Alpine to apps without it.
 
 ### Changed
 
