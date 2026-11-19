@@ -10,7 +10,15 @@ You can install the package via composer:
 
     composer require bjnstnkvc/form-components
 
-The package will automatically register its service provider.
+The package will automatically register its service provider. Then set up its scripts with:
+
+    php artisan form-components:install
+
+This registers each field's [Alpine.js](https://alpinejs.dev) data in the script that starts Alpine, which is usually
+`resources/js/app.js`. If Livewire brings Alpine to your app, it registers them once Alpine starts instead. If your app
+has no Alpine yet, it adds Alpine to `package.json` and starts it in `resources/js/app.js`. Components you left out of
+the `components` config value are skipped, and running it again only adds what is missing. Rebuild your scripts
+afterwards with `npm install` and `npm run build`.
 
 ## Usage
 
@@ -45,16 +53,16 @@ where a component only appears later, e.g. when Livewire adds it after the page 
 ### Alpine.js
 
 Behaviour such as revealing a password, clearing a search or hiding errors as you type runs on [Alpine.js](https://alpinejs.dev),
-which your app provides. Each field keeps its Alpine data in its own script, so register the fields you use in your
-`resources/js/app.js` file:
+which your app provides. Each field keeps its Alpine data in its own script, and `resources/js/index.js` exports them
+all under their file names. `php artisan form-components:install` registers them for you, or register the fields you
+use in your `resources/js/app.js` file yourself:
 
 ```js
 import Alpine from 'alpinejs';
-import password from '../../vendor/bjnstnkvc/form-components/src/Components/Password/resources/js/password.js';
-import search from '../../vendor/bjnstnkvc/form-components/src/Components/Search/resources/js/search.js';
+import * as form from '../../vendor/bjnstnkvc/form-components/src/resources/js/index.js';
 
-Alpine.data('form_password', password);
-Alpine.data('form_search', search);
+Alpine.data('form_password', form.password);
+Alpine.data('form_search', form.search);
 
 Alpine.start();
 ```
@@ -62,27 +70,27 @@ Alpine.start();
 If Livewire brings Alpine to your app, register them once it starts instead:
 
 ```js
-import password from '../../vendor/bjnstnkvc/form-components/src/Components/Password/resources/js/password.js';
+import * as form from '../../vendor/bjnstnkvc/form-components/src/resources/js/index.js';
 
 document.addEventListener('alpine:init', () => {
-    window.Alpine.data('form_password', password);
+    window.Alpine.data('form_password', form.password);
 });
 ```
 
-| Component | Script | Alpine data |
+| Component | Export | Alpine data |
 |-----------|--------|-------------|
-| Checkbox | `src/Components/Checkbox/resources/js/checkbox.js` | `form_checkbox` |
-| Date | `src/Components/Date/resources/js/date.js` | `form_date` |
-| DateTime | `src/Components/DateTime/resources/js/date-time.js` | `form_date_time` |
-| Email | `src/Components/Email/resources/js/email.js` | `form_email` |
-| File | `src/Components/File/resources/js/file.js` | `form_file` |
-| Input | `src/Components/Input/resources/js/input.js` | `form_input` |
-| Password | `src/Components/Password/resources/js/password.js` | `form_password` |
-| Radio | `src/Components/Radio/resources/js/radio.js` | `form_radio` |
-| Search | `src/Components/Search/resources/js/search.js` | `form_search` |
-| Select | `src/Components/Select/resources/js/select.js` | `form_select` |
-| Textarea | `src/Components/Textarea/resources/js/textarea.js` | `form_textarea` |
-| Time | `src/Components/Time/resources/js/time.js` | `form_time` |
+| Checkbox | `checkbox` | `form_checkbox` |
+| Date | `date` | `form_date` |
+| DateTime | `dateTime` | `form_date_time` |
+| Email | `email` | `form_email` |
+| File | `file` | `form_file` |
+| Input | `input` | `form_input` |
+| Password | `password` | `form_password` |
+| Radio | `radio` | `form_radio` |
+| Search | `search` | `form_search` |
+| Select | `select` | `form_select` |
+| Textarea | `textarea` | `form_textarea` |
+| Time | `time` | `form_time` |
 
 ### Form Components
 

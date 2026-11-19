@@ -4,6 +4,7 @@ namespace Bjnstnkvc\FormComponents;
 
 use Bjnstnkvc\FormComponents\Assets\Stylesheet;
 use Bjnstnkvc\FormComponents\Components\Error\View\Components\Error;
+use Bjnstnkvc\FormComponents\Console\Commands\InstallsComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\PublishesComponents;
 use Bjnstnkvc\FormComponents\Console\Commands\RestoresComponents;
 use Illuminate\Foundation\Http\Events\RequestHandled;
@@ -50,6 +51,7 @@ class FormComponentsServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallsComponents::class,
                 PublishesComponents::class,
                 RestoresComponents::class,
             ]);

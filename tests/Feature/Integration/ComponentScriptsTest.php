@@ -39,6 +39,35 @@ class ComponentScriptsTest extends TestCase
         $this->assertStringNotContainsString('import ', $script);
     }
 
+    #[Test]
+    #[DataProvider('alpineComponents')]
+    public function it_exports_each_alpine_component_from_the_index(string $component): void
+    {
+        $folder = Str::studly(Str::after($component, 'form_'));
+        $scripts = glob(__DIR__.'/../../../src/Components/'.$folder.'/resources/js/*.js') ?: [];
+
+        $this->assertCount(1, $scripts);
+
+        $name = basename($scripts[0], '.js');
+
+        $this->assertStringContainsString(
+            'export { default as '.Str::camel($name)." } from '../../Components/".$folder.'/resources/js/'.$name.".js';",
+            $this->index(),
+        );
+    }
+
+    #[Test]
+    public function it_exports_nothing_but_the_component_scripts_from_the_index(): void
+    {
+        $lines = explode("\n", trim($this->index()));
+
+        $this->assertCount(count(glob(__DIR__.'/../../../src/Components/*/resources/js/*.js') ?: []), $lines);
+
+        foreach ($lines as $line) {
+            $this->assertMatchesRegularExpression("#^export \{ default as \w+ \} from '\.\./\.\./Components/\w+/resources/js/[a-z-]+\.js';$#", $line);
+        }
+    }
+
     /**
      * Blade templates of every component.
      *
@@ -69,6 +98,14 @@ class ComponentScriptsTest extends TestCase
         foreach (array_unique($components) as $component) {
             yield $component => [$component];
         }
+    }
+
+    /**
+     * Contents of the index re-exporting every component script.
+     */
+    private function index(): string
+    {
+        return (string) file_get_contents(__DIR__.'/../../../src/resources/js/index.js');
     }
 
     /**
