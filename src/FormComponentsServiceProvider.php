@@ -87,7 +87,10 @@ class FormComponentsServiceProvider extends ServiceProvider
             Blade::component($class, $this->prefix.$this->separator.$alias);
         }
 
-        Blade::component(Error::class, 'form::error');
+        /** @var class-string $error */
+        $error = config('form_components.components.error') ?: Error::class;
+
+        Blade::component($error, 'form::error');
     }
 
     /**

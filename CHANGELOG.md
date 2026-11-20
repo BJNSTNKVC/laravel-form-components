@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pages that render a component link its stylesheet on their own, at the start of their `<head>`, so nothing needs publishing or adding to a layout. The package serves the stylesheet from its own route, versioned by its contents, and the link carries the CSP nonce set with `Vite::useCspNonce()`. Turn it off with the `inject_styles` config value.
 - `resources/js/index.js`, which exports every field's Alpine data under its file name, e.g. `password`, so an app can import them all as one namespace.
 - `form-components:install` command, which registers each field's Alpine data in the script that starts Alpine, waits for Alpine when Livewire brings it, and adds Alpine to apps without it.
+- `components:publish` copies a component's script into `resources/js/components/form` along with its class and view, and switches the app's Alpine registration to the copy. `components:restore` switches it back, and `--delete` removes the copied script too. `form-components:install` registers copied scripts in place of the package ones.
 
 ### Changed
 
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The Textarea component's `autoexpand` attribute is renamed to `auto-expand`.
 - Clearing a Search with its clear button fires an `input` event, as deleting its text does.
 - `@componentStyles` links to the stylesheet the package serves instead of a published copy, adds the CSP nonce, and keeps a page from linking the stylesheet twice.
+- `components:publish` publishes the config when the app has none, instead of failing.
 
 ### Fixed
 
@@ -38,6 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `components:publish` and `components:restore` write to `app/View/Components/Form` and `resources/views/components/form` on every platform instead of creating backslash-named files, and switch the component imports in the published config.
 - With `invalidated-title` on, emptying a Password, Textarea, Select, Date, Time, Date & Time, Checkbox or Radio field marks its title invalid again, as it already did for the other fields.
 - Clearing a Search with its clear button brings its error back, as deleting its text does.
+- Fields show their errors with a published Error component instead of always using the package one.
+- `components:publish` and `components:restore` clear compiled views, so components already rendered pick up a published or restored component straight away.
+- `components:restore` no longer fails when no component has been published.
 
 ### Removed
 

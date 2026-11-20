@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bjnstnkvc\FormComponents\Console\Commands;
 
 use Bjnstnkvc\FormComponents\Helpers\Publisher;
+use Bjnstnkvc\FormComponents\Helpers\Registrar;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class RestoresComponents extends Command
@@ -16,69 +18,75 @@ class RestoresComponents extends Command
      *
      * @var string
      */
-    protected $signature = 'components:restore {component?* } {--delete : Deletes Form component files. }';
+    protected $signature = 'components:restore { component?* } { --delete : Deletes Form component files. }';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Restores published components classes.';
+    protected $description = 'Switch copied components back to the package ones.';
 
     /**
      * Execute the console command.
      *
-     * @return void
-     *
      * @throws FileNotFoundException
      */
-    public function handle(Filesystem $filesystem, Publisher $publisher)
+    public function handle(Filesystem $filesystem, Publisher $publisher, Registrar $registrar): int
     {
-        // Get Components to restore.
-        $arguments = array_map(function ($data) {
-            return Str::slug(Str::snake($data));
-        }, $this->argument('component'));
+        $scripts = [];
 
-        // Get 'key - value' pairs of components that the User inputted, or return all if no arguments where passed.
-        $components = $arguments
-            ? Arr::only(config('form_components.components'), $arguments)
-            : Arr::only(config('form_components.components'), $this->getPublishedComponents($publisher));
+        foreach ($this->components($publisher) as $view => $class) {
+            $class = class_basename($class);
 
-        foreach ($components as $view => $class) {
-            // Get the class name from the Component config path.
-            $class_name = Str::of($class)->explode('\\')->last();
-
-            // Get the Components' config file.
-            $config = $filesystem->get($publisher->configPath);
-
-            // Get Component config file contents.
-            $restored_config_file = $publisher->restoreClass($class_name, $config);
-
-            // If option 'delete' has been passed, remove Component Class and View files.
-            if ($this->option('delete')) {
-                $filesystem->delete($publisher->publishClass($class_name));
-                $filesystem->delete($publisher->publishView($view));
+            if ($filesystem->exists($publisher->configPath)) {
+                $filesystem->put($publisher->configPath, $publisher->restoreClass($class, $filesystem->get($publisher->configPath)));
             }
 
-            // Restore Component config file.
-            $filesystem->put($publisher->configPath, $restored_config_file);
+            if ($this->option('delete')) {
+                $filesystem->delete([
+                    $publisher->publishClass($class),
+                    $publisher->publishView($view),
+                    $publisher->publishScript($view),
+                ]);
+            }
 
-            // Display status message.
-            $this->info('Successfully restored '.$class_name.' component class!');
+            if ($filesystem->exists($publisher->getScript($view))) {
+                $scripts[] = $view;
+            }
+
+            $this->info('Successfully restored '.$class.' component class!');
         }
+
+        $file = $registrar->usePackage($scripts);
+
+        if ($file !== null) {
+            $this->info('Registered the package scripts with Alpine in '.Str::after($file, base_path().DIRECTORY_SEPARATOR).'.');
+            $this->info('Run "npm run build" to bundle them.');
+        }
+
+        $this->callSilently('view:clear');
+
+        return self::SUCCESS;
     }
 
     /**
-     * Returns an array of all published components.
+     * Components to restore, keyed by view name.
+     *
+     * @return array<string, class-string>
      */
-    private function getPublishedComponents(Publisher $publisher): array
+    private function components(Publisher $publisher): array
     {
-        $published_components = scandir($publisher->classPath);
+        /** @var array<string, class-string> $components */
+        $components = config('form_components.components') ?: [];
 
-        array_splice($published_components, 0, 2);
+        /** @var list<string> $arguments */
+        $arguments = $this->argument('component');
 
-        return array_map(function ($data) {
-            return Str::slug(Str::snake(Str::replaceFirst('.php', '', $data)));
-        }, $published_components);
+        $names = $arguments === []
+            ? array_map(fn (string $file): string => basename($file, '.php'), glob($publisher->classPath.'*.php') ?: [])
+            : $arguments;
+
+        return array_intersect_key($components, array_flip(array_map(fn (string $name): string => Str::slug(Str::snake($name)), $names)));
     }
 }

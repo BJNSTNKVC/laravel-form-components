@@ -36,12 +36,14 @@ abstract class TestCase extends BaseTestCase
         $this->publisher->configPath = $this->root.'/config/form_components.php';
         $this->publisher->classPath = $this->root.'/app/View/Components/Form/';
         $this->publisher->viewPath = $this->root.'/resources/views/components/form/';
+        $this->publisher->scriptPath = $this->root.'/resources/js/components/form/';
 
         $filesystem = new Filesystem;
         $filesystem->ensureDirectoryExists(dirname($this->publisher->configPath));
         $filesystem->copy($this->packageConfigPath(), $this->publisher->configPath);
 
         $this->instance(Publisher::class, $this->publisher);
+        $this->app?->setBasePath($this->root);
     }
 
     /**
@@ -56,11 +58,11 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Directory holding the temporary application.
+     * Keep the application beside the package, as apps keep vendor.
      */
     protected function temporaryDirectory(): string
     {
-        return sys_get_temp_dir();
+        return dirname(__DIR__, 4).'/build';
     }
 
     /**
@@ -83,6 +85,44 @@ abstract class TestCase extends BaseTestCase
     protected function packageConfigPath(): string
     {
         return dirname(__DIR__, 4).'/src/config/form_components.php';
+    }
+
+    /**
+     * Write a file into the temporary application.
+     */
+    protected function write(string $path, string $content): void
+    {
+        $filesystem = new Filesystem;
+        $filesystem->ensureDirectoryExists(dirname($this->root.'/'.$path));
+        $filesystem->put($this->root.'/'.$path, $content);
+    }
+
+    /**
+     * Contents of a file in the temporary application.
+     */
+    protected function script(string $path): string
+    {
+        return (string) file_get_contents($this->root.'/'.$path);
+    }
+
+    /**
+     * App script registering components the install command's way.
+     */
+    protected function installedScript(): string
+    {
+        return <<<'JS'
+            import Alpine from 'alpinejs';
+            import * as form from '../../../../src/resources/js/index.js';
+
+            window.Alpine = Alpine;
+
+            Alpine.data('form_date_time', form.dateTime);
+            Alpine.data('form_password', form.password);
+            Alpine.data('form_time', form.time);
+
+            Alpine.start();
+
+            JS;
     }
 
     /**

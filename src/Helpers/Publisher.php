@@ -28,6 +28,11 @@ class Publisher
     public $viewPath;
 
     /**
+     * Components published script path.
+     */
+    public string $scriptPath;
+
+    /**
      * Components default Namespace.
      *
      * @var string
@@ -81,6 +86,7 @@ class Publisher
         $this->classRoot = __DIR__.'/../Components/';
         $this->configPath = config_path('form_components.php');
         $this->viewPath = resource_path('views/components/form/');
+        $this->scriptPath = resource_path('js/components/form/');
         $this->defaultNamespace = 'Bjnstnkvc\FormComponents\Components';
         $this->publishedNamespace = 'App\View\Components\Form';
         $this->defaultPath = 'Bjnstnkvc\FormComponents\Components\\';
@@ -111,6 +117,22 @@ class Publisher
     }
 
     /**
+     * Returns Script location.
+     */
+    public function getScript(string $view): string
+    {
+        return $this->classRoot.Str::studly($view).'/resources/js/'.$view.'.js';
+    }
+
+    /**
+     * Returns the config file the package ships.
+     */
+    public function getConfig(): string
+    {
+        return __DIR__.'/../config/form_components.php';
+    }
+
+    /**
      * Returns published Class location.
      *
      * @param  string  $class  Class name.
@@ -131,13 +153,20 @@ class Publisher
     }
 
     /**
+     * Returns published Script location.
+     */
+    public function publishScript(string $view): string
+    {
+        return $this->scriptPath.$view.'.js';
+    }
+
+    /**
      * Updates Component Class file content.
      *
      * @param  string  $view  Name of the view.
      * @param  string  $class  Class file.
-     * @return array|string|string[]
      */
-    public function updateClass(string $view, string $class)
+    public function updateClass(string $view, string $class): string
     {
         return str_replace(
             [$this->defaultNamespace.'\\'.Str::studly($view).'\\View\\Components', $this->defaultBlade.$view],
@@ -151,9 +180,8 @@ class Publisher
      *
      * @param  string  $class  Name of the class.
      * @param  string  $config  Class config.
-     * @return array|string|string[]
      */
-    public function updateConfig(string $class, string $config)
+    public function updateConfig(string $class, string $config): string
     {
         return $this->replaceClass(
             $this->defaultPath.$class.'\\View\\Components\\'.$class,
@@ -167,9 +195,8 @@ class Publisher
      *
      * @param  string  $view  Name of the view.
      * @param  string  $class  Class file.
-     * @return array|string|string[]
      */
-    public function restoreClass(string $view, string $class)
+    public function restoreClass(string $view, string $class): string
     {
         return $this->replaceClass(
             $this->publishedPath.$view,
