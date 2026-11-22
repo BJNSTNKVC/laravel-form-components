@@ -12,8 +12,6 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withSkip([
         '*.blade.php',
-        __DIR__.'/src/Console/Commands/PublishesComponents.php',
-        __DIR__.'/src/Console/Commands/RestoresComponents.php',
         __DIR__.'/src/FormComponentsServiceProvider.php',
         __DIR__.'/src/Helpers/Publisher.php',
         __DIR__.'/src/Components/Base/View/Components/Base.php',

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bjnstnkvc\FormComponents\Console\Commands;
 
 use Bjnstnkvc\FormComponents\Helpers\Publisher;
+use Bjnstnkvc\FormComponents\Helpers\Registrar;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class PublishesComponents extends Command
@@ -23,68 +25,86 @@ class PublishesComponents extends Command
      *
      * @var string
      */
-    protected $description = 'Publish components classes.';
+    protected $description = 'Copy components into the app to change them freely.';
 
     /**
      * Execute the console command.
      *
-     * @return void
-     *
      * @throws FileNotFoundException
      */
-    public function handle(Filesystem $filesystem, Publisher $publisher)
+    public function handle(Filesystem $filesystem, Publisher $publisher, Registrar $registrar): int
     {
-        // Get Components to publish.
-        $arguments = array_map(function ($data) {
-            return Str::slug(Str::snake($data));
-        }, $this->argument('component'));
+        if (! $filesystem->exists($publisher->configPath)) {
+            $filesystem->ensureDirectoryExists(dirname($publisher->configPath));
+            $filesystem->copy($publisher->getConfig(), $publisher->configPath);
 
-        // Get 'key - value' pairs of components that the User inputted, or return all if no arguments where passed.
-        $components = $arguments
-            ? Arr::only(config('form_components.components'), $arguments)
-            : config('form_components.components');
+            $this->info('Published the config to '.$this->path($publisher->configPath).'.');
+        }
 
-        foreach ($components as $view => $class) {
-            // Get the class name from the Component config path.
-            $class = Str::of($class)->explode('\\')->last();
+        $scripts = [];
 
-            // Get the Component class file.
-            $class_file = $filesystem->get($publisher->getClass($class));
+        foreach ($this->components() as $view => $class) {
+            $class = class_basename($class);
 
-            // Get the Components' config file.
-            $config = $filesystem->get($publisher->configPath);
+            if ($filesystem->exists($publisher->publishClass($class)) && ! $this->option('force')) {
+                $this->warn('File '.$class.'.php already exists!');
 
-            // Update Component Class file.
-            $updated_class_file = $publisher->updateClass($view, $class_file);
-
-            // Update Component config file.
-            $updated_config_file = $publisher->updateConfig($class, $config);
-
-            // In case Class and resource folders do not exist, create them.
-            $filesystem->ensureDirectoryExists($publisher->classPath);
-            $filesystem->ensureDirectoryExists($publisher->viewPath);
-
-            // Check if the Component already exists.
-            if ($filesystem->exists($publisher->publishClass($class))) {
-                //  In case 'force' option is passed, overwrite the existing files, otherwise, show the warning message.
-                if ($this->option('force')) {
-                    $filesystem->put($publisher->publishClass($class), $updated_class_file);
-                    $filesystem->copy($publisher->getView($view), $publisher->publishView($view));
-                    $filesystem->put($publisher->configPath, $updated_config_file);
-                } else {
-                    $this->warn('File '.$class.'.php already exists!');
-
-                    continue;
-                }
+                continue;
             }
 
-            // Publish Form Component, View and config file.
-            $filesystem->put($publisher->publishClass($class), $updated_class_file);
+            $filesystem->ensureDirectoryExists($publisher->classPath);
+            $filesystem->ensureDirectoryExists($publisher->viewPath);
+            $filesystem->put($publisher->publishClass($class), $publisher->updateClass($view, $filesystem->get($publisher->getClass($class))));
             $filesystem->copy($publisher->getView($view), $publisher->publishView($view));
-            $filesystem->put($publisher->configPath, $updated_config_file);
 
-            // Display status message.
+            if ($filesystem->exists($publisher->getScript($view))) {
+                $filesystem->ensureDirectoryExists($publisher->scriptPath);
+                $filesystem->copy($publisher->getScript($view), $publisher->publishScript($view));
+
+                $scripts[] = $view;
+            }
+
+            $filesystem->put($publisher->configPath, $publisher->updateConfig($class, $filesystem->get($publisher->configPath)));
+
             $this->info('Successfully published '.$class.' component class!');
         }
+
+        $file = $registrar->useCopies($scripts);
+
+        if ($file !== null) {
+            $this->info('Registered the copied scripts with Alpine in '.$this->path($file).'.');
+            $this->info('Run "npm run build" to bundle them.');
+        }
+
+        $this->callSilently('view:clear');
+
+        return self::SUCCESS;
+    }
+
+    /**
+     * Components to publish, keyed by view name.
+     *
+     * @return array<string, class-string>
+     */
+    private function components(): array
+    {
+        /** @var array<string, class-string> $components */
+        $components = config('form_components.components') ?: [];
+
+        /** @var list<string> $arguments */
+        $arguments = $this->argument('component');
+
+        return $arguments === [] ? $components : array_intersect_key($components, array_flip(array_map(
+            fn (string $argument): string => Str::slug(Str::snake($argument)),
+            $arguments,
+        )));
+    }
+
+    /**
+     * Path of a file relative to the app.
+     */
+    private function path(string $file): string
+    {
+        return Str::after($file, base_path().DIRECTORY_SEPARATOR);
     }
 }

@@ -3,6 +3,7 @@
 namespace Bjnstnkvc\FormComponents\Tests\Feature;
 
 use Bjnstnkvc\FormComponents\FormComponentsServiceProvider;
+use Bjnstnkvc\FormComponents\Tests\Fixtures\CopiedError;
 use Bjnstnkvc\FormComponents\Tests\TestCase;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -25,6 +26,17 @@ class FormComponentsServiceProviderTest extends TestCase
         foreach ($this->components() as $alias => $class) {
             $this->assertSame($class, $aliases['form::'.$alias] ?? null);
         }
+    }
+
+    #[Test]
+    public function it_renders_field_errors_with_the_configured_error_component(): void
+    {
+        config()->set('form_components.prefix', 'fc');
+        config()->set('form_components.components.error', CopiedError::class);
+
+        $this->app?->register(FormComponentsServiceProvider::class, true);
+
+        $this->assertSame(CopiedError::class, Blade::getClassComponentAliases()['form::error'] ?? null);
     }
 
     #[Test]

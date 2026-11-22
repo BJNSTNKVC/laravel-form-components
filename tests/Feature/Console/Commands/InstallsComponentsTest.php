@@ -4,33 +4,12 @@ declare(strict_types=1);
 
 namespace Bjnstnkvc\FormComponents\Tests\Feature\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
-use Override;
+use Bjnstnkvc\FormComponents\Components\Time\View\Components\Time;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 class InstallsComponentsTest extends TestCase
 {
-    /**
-     * Install into the temporary application.
-     */
-    #[Override]
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->app?->setBasePath($this->root);
-    }
-
-    /**
-     * Keep the application beside the package, as apps keep vendor.
-     */
-    #[Override]
-    protected function temporaryDirectory(): string
-    {
-        return dirname(__DIR__, 4).'/build';
-    }
-
     #[Test]
     public function it_registers_every_component_before_alpine_starts(): void
     {
@@ -315,6 +294,43 @@ class InstallsComponentsTest extends TestCase
     }
 
     #[Test]
+    public function it_registers_the_copied_script_of_a_copied_component(): void
+    {
+        config()->set('form_components.components', [
+            'password' => 'App\View\Components\Form\Password',
+            'time' => Time::class,
+        ]);
+
+        $this->write('resources/js/app.js', "Alpine.start();\n");
+        $this->write('resources/js/components/form/password.js', 'export default () => ({});');
+
+        $this->command('form-components:install')->assertSuccessful();
+
+        $this->assertSame(<<<'JS'
+            import formPassword from './components/form/password.js';
+            import * as form from '../../../../src/resources/js/index.js';
+
+            Alpine.data('form_password', formPassword);
+            Alpine.data('form_time', form.time);
+
+            Alpine.start();
+
+            JS, $this->script('resources/js/app.js'));
+    }
+
+    #[Test]
+    public function it_registers_the_package_script_of_a_component_copied_without_its_script(): void
+    {
+        config()->set('form_components.components', ['password' => 'App\View\Components\Form\Password']);
+
+        $this->write('resources/js/app.js', "Alpine.start();\n");
+
+        $this->command('form-components:install')->assertSuccessful();
+
+        $this->assertStringContainsString("Alpine.data('form_password', form.password);", $this->script('resources/js/app.js'));
+    }
+
+    #[Test]
     public function it_leaves_an_installed_app_alone(): void
     {
         $this->write('resources/js/app.js', "import Alpine from 'alpinejs';\n\nAlpine.start();\n");
@@ -360,24 +376,6 @@ class InstallsComponentsTest extends TestCase
                 "    Alpine.data('form_time', form.time);\n\n    Alpine.start();",
             ],
         ];
-    }
-
-    /**
-     * Write a file into the temporary application.
-     */
-    private function write(string $path, string $content): void
-    {
-        $filesystem = new Filesystem;
-        $filesystem->ensureDirectoryExists(dirname($this->root.'/'.$path));
-        $filesystem->put($this->root.'/'.$path, $content);
-    }
-
-    /**
-     * Contents of a file in the temporary application.
-     */
-    private function script(string $path): string
-    {
-        return (string) file_get_contents($this->root.'/'.$path);
     }
 
     /**

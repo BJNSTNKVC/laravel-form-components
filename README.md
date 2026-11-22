@@ -744,35 +744,46 @@ file.
 
 ### Publishing
 
-You can publish all components class and view using artisan the following command:
+When a component needs more than its options allow, copy it into your app and change it freely:
 
-    php artisan components:publish
+    php artisan components:publish Password
 
-Optionally, you can pass component name as an argument, which will publish only those components.
+Pass the components you want, or nothing to copy them all. Each one is copied as:
 
-    php artisan components:publish Input Password Button
+| File | Copied to |
+|------|-----------|
+| Class | `app/View/Components/Form/Password.php` |
+| View | `resources/views/components/form/password.blade.php` |
+| Script | `resources/js/components/form/password.js` |
 
-From this point on, you can change the published component class and view to your liking.
+The command publishes `form_components.php` if your app has none yet and points the component at its copy there, so
+`<x-form::password>` renders your copy while the other components keep coming from the package. If your app already
+registers the component with Alpine, the registration switches to the copied script:
+
+```js
+import formPassword from './components/form/password.js';
+
+Alpine.data('form_password', formPassword);
+```
+
+Run `npm run build` afterwards to bundle it. `php artisan form-components:install` registers copied scripts the same
+way. An existing copy is kept unless you pass `--force`.
+
+The copied view keeps its `fc:` classes, which the package stylesheet already styles. Style what you add with your
+app's own classes, as `fc:` classes the package doesn't use aren't in its stylesheet.
 
 ### Restoring
 
-If by any chance you'd like to restore the components default settings, use the following artisan command:
+Switch copied components back to the package ones with:
 
-    php artisan components:restore
+    php artisan components:restore Password
 
-Optionally, you can pass component name as an argument, which will restore only those components.
+Pass the components you want, or nothing to restore every copied one. The config and the Alpine registration point
+at the package again, and the copied files stay in place unless you pass `--delete`:
 
-    php artisan components:restore Input Password Button
+    php artisan components:restore Password --delete
 
-Additionally, if you'd like to remove previously published components class and views, you can attach `--delete` option:
-
-    php artisan components:restore --delete
-
-or
-
-    php artisan components:restore Input Password Button --delete
-
-> **Note:** You might need to clear config cache using `php artisan cache:clear` command after you publish or restore the components.
+> **Note:** If your app caches its config, run `php artisan config:clear` after you publish or restore components.
 
 ## Local development
 

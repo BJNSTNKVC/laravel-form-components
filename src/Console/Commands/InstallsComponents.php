@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bjnstnkvc\FormComponents\Console\Commands;
 
+use Bjnstnkvc\FormComponents\Helpers\Publisher;
+use Bjnstnkvc\FormComponents\Helpers\Registrar;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -31,35 +33,31 @@ class InstallsComponents extends Command
     private const string ALPINE = '^3.15.0';
 
     /**
-     * Line where Alpine, or Livewire bringing it, starts.
-     */
-    private const string START = '/^([ \t]*)((?:window\.)?(?:Alpine|Livewire))\.start\(\s*\)/m';
-
-    /**
-     * Name the app imports the component scripts under.
-     */
-    private const string NAMESPACE = 'form';
-
-    /**
      * Filesystem the command reads and writes through.
      */
     private Filesystem $filesystem;
+
+    /**
+     * Publisher locating the copied components.
+     */
+    private Publisher $publisher;
 
     /**
      * Execute the console command.
      *
      * @throws FileNotFoundException
      */
-    public function handle(Filesystem $filesystem): int
+    public function handle(Filesystem $filesystem, Publisher $publisher, Registrar $registrar): int
     {
         $this->filesystem = $filesystem;
+        $this->publisher = $publisher;
 
-        $file = $this->entry();
+        $file = $registrar->entry();
         $content = $filesystem->exists($file) ? $filesystem->get($file) : '';
 
         $names = array_values(array_filter(
             $this->names(),
-            fn (string $name): bool => preg_match('/Alpine\.data\(\s*[\'"]'.$this->data($name).'[\'"]/', $content) !== 1,
+            fn (string $name): bool => ! $registrar->registers($content, $name),
         ));
 
         if ($names === []) {
@@ -68,29 +66,36 @@ class InstallsComponents extends Command
             return self::SUCCESS;
         }
 
-        $index = $this->relative(dirname($file), dirname(__DIR__, 2).'/resources/js/index.js');
-        $imported = preg_match('/^import\s+\*\s+as\s+(\w+)\s+from\s+[\'"]'.preg_quote($index, '/').'[\'"]/m', $content, $import) === 1;
-        $namespace = $imported ? $import[1] : self::NAMESPACE;
-        $imports = $imported ? [] : ['import * as '.$namespace." from '".$index."';"];
+        $scripts = [];
+        $imports = [];
+
+        foreach ($names as $name) {
+            [$scripts[$name], $needed] = $this->isCopied($name)
+                ? $registrar->copied($file, $name)
+                : $registrar->package($content, $file, $name);
+
+            $imports = [...$imports, ...$needed];
+        }
+
         $added = false;
 
-        if (preg_match(self::START, $content, $start, PREG_OFFSET_CAPTURE) === 1) {
+        if (preg_match(Registrar::START, $content, $start, PREG_OFFSET_CAPTURE) === 1) {
             $content = substr_replace(
                 $content,
-                $this->registrations($names, $namespace, str_replace('Livewire', 'Alpine', $start[2][0]), $start[1][0])."\n\n",
+                $this->registrations($registrar, $scripts, str_replace('Livewire', 'Alpine', $start[2][0]), $start[1][0])."\n\n",
                 $start[0][1],
                 0,
             );
         } elseif ($this->usesLivewire()) {
             $content = $this->append($content, implode("\n", [
                 "document.addEventListener('alpine:init', () => {",
-                $this->registrations($names, $namespace, 'window.Alpine', '    '),
+                $this->registrations($registrar, $scripts, 'window.Alpine', '    '),
                 '});',
             ]));
         } else {
             $content = $this->append($content, implode("\n\n", [
                 'window.Alpine = Alpine;',
-                $this->registrations($names, $namespace, 'Alpine'),
+                $this->registrations($registrar, $scripts, 'Alpine'),
                 'Alpine.start();',
             ]));
 
@@ -102,7 +107,7 @@ class InstallsComponents extends Command
         }
 
         $filesystem->ensureDirectoryExists(dirname($file));
-        $filesystem->put($file, $this->import($content, $imports));
+        $filesystem->put($file, $registrar->import($content, $imports));
 
         $this->info('Registered the form components with Alpine in '.Str::after($file, base_path().DIRECTORY_SEPARATOR).'.');
 
@@ -116,45 +121,18 @@ class InstallsComponents extends Command
     }
 
     /**
-     * Script starting Alpine, falling back to the app script.
-     */
-    private function entry(): string
-    {
-        $app = resource_path('js'.DIRECTORY_SEPARATOR.'app.js');
-        $files = [$app];
-
-        if ($this->filesystem->isDirectory(resource_path('js'))) {
-            foreach ($this->filesystem->allFiles(resource_path('js')) as $file) {
-                if ($file->getExtension() === 'js') {
-                    $files[] = $file->getPathname();
-                }
-            }
-        }
-
-        foreach ($files as $file) {
-            if ($this->filesystem->exists($file) && preg_match(self::START, $this->filesystem->get($file)) === 1) {
-                return $file;
-            }
-        }
-
-        return $app;
-    }
-
-    /**
      * Configured components that ship a script.
      *
      * @return list<string>
      */
     private function names(): array
     {
-        /** @var array<string, class-string> $components */
-        $components = config('form_components.components') ?: [];
         $names = [];
 
         foreach (glob(dirname(__DIR__, 2).'/Components/*/resources/js/*.js') ?: [] as $script) {
             $name = basename($script, '.js');
 
-            if (array_key_exists($name, $components)) {
+            if (array_key_exists($name, $this->components())) {
                 $names[] = $name;
             }
         }
@@ -163,24 +141,43 @@ class InstallsComponents extends Command
     }
 
     /**
-     * Alpine data name of a component.
+     * Determine whether the app uses its copy of a component.
      */
-    private function data(string $name): string
+    private function isCopied(string $name): bool
     {
-        return 'form_'.str_replace('-', '_', $name);
+        $class = $this->components()[$name];
+
+        return $class === $this->publisher->publishedPath.class_basename($class)
+            && $this->filesystem->exists($this->publisher->publishScript($name));
+    }
+
+    /**
+     * Components the app configures, keyed by name.
+     *
+     * @return array<string, class-string>
+     */
+    private function components(): array
+    {
+        /** @var array<string, class-string> $components */
+        $components = config('form_components.components') ?: [];
+
+        return $components;
     }
 
     /**
      * Lines registering the components with Alpine.
      *
-     * @param  list<string>  $names
+     * @param  array<string, string>  $scripts
      */
-    private function registrations(array $names, string $namespace, string $alpine, string $indent = ''): string
+    private function registrations(Registrar $registrar, array $scripts, string $alpine, string $indent = ''): string
     {
-        return implode("\n", array_map(
-            fn (string $name): string => $indent.$alpine.".data('".$this->data($name)."', ".$namespace.'.'.Str::camel($name).');',
-            $names,
-        ));
+        $lines = [];
+
+        foreach ($scripts as $name => $script) {
+            $lines[] = $indent.$alpine.".data('".$registrar->data($name)."', ".$script.');';
+        }
+
+        return implode("\n", $lines);
     }
 
     /**
@@ -191,44 +188,6 @@ class InstallsComponents extends Command
         $content = rtrim($content);
 
         return ($content === '' ? '' : $content."\n\n").$block."\n";
-    }
-
-    /**
-     * Add import statements after the script's last import.
-     *
-     * @param  list<string>  $imports
-     */
-    private function import(string $content, array $imports): string
-    {
-        $statements = implode("\n", $imports);
-
-        if (preg_match_all('/^import\b[^;]*?[\'"][^\'"\n]*[\'"][ \t]*;?/m', $content, $matches, PREG_OFFSET_CAPTURE) === 0) {
-            return $statements."\n\n".$content;
-        }
-
-        $offset = 0;
-
-        foreach ($matches[0] as [$statement, $position]) {
-            $offset = $position + strlen($statement);
-        }
-
-        return substr_replace($content, "\n".$statements, $offset, 0);
-    }
-
-    /**
-     * Path of a file relative to a directory.
-     */
-    private function relative(string $directory, string $file): string
-    {
-        $from = explode('/', trim(str_replace('\\', '/', $directory), '/'));
-        $to = explode('/', trim(str_replace('\\', '/', $file), '/'));
-
-        while ($from !== [] && $to !== [] && $from[0] === $to[0]) {
-            array_shift($from);
-            array_shift($to);
-        }
-
-        return ($from === [] ? './' : str_repeat('../', count($from))).implode('/', $to);
     }
 
     /**

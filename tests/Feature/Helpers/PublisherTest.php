@@ -18,5 +18,6 @@ class PublisherTest extends TestCase
         $this->assertSame(config_path('form_components.php'), $publisher->configPath);
         $this->assertSame(app_path('View/Components/Form/Input.php'), $publisher->publishClass('Input'));
         $this->assertSame(resource_path('views/components/form/input.blade.php'), $publisher->publishView('input'));
+        $this->assertSame(resource_path('js/components/form/input.js'), $publisher->publishScript('input'));
     }
 }
