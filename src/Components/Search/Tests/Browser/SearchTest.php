@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\Test;
 class SearchTest extends TestCase
 {
     /**
-     * Selector of the icon that clears the search.
+     * Selector of the button that clears the search.
      */
     private const string CLEAR = 'label[for="search_column_bottom"] [x-ref="clear"]';
 
@@ -90,6 +90,18 @@ class SearchTest extends TestCase
                 ->click(self::CLEAR)
                 ->assertInputValue('search_column_bottom', '')
                 ->assertMissing(self::CLEAR);
+        });
+    }
+
+    #[Test]
+    public function it_returns_focus_to_the_search_once_cleared(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->type('search_column_bottom', 'Query')
+                ->click(self::CLEAR);
+
+            $this->assertFocused($browser, '#search_column_bottom');
         });
     }
 

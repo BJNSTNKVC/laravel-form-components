@@ -82,6 +82,14 @@ export default () => ({
     state(state) {
         this.$field.toggleAttribute('invalid', state === 'invalid');
         this.$error.hidden = state === 'valid';
+
+        if (state === 'invalid') {
+            this.$textarea.setAttribute('aria-invalid', 'true');
+            this.$textarea.setAttribute('aria-describedby', this.$error.id);
+        } else {
+            this.$textarea.removeAttribute('aria-invalid');
+            this.$textarea.removeAttribute('aria-describedby');
+        }
     },
 
     /**

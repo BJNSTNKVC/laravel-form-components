@@ -145,7 +145,7 @@ class TextareaTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::textarea name="bio" title="Bio" icon="/icons/bio.png" />')
-            ->assertSee('<img src="/icons/bio.png" alt="Bio icon">', false);
+            ->assertSee('<img src="/icons/bio.png" alt="">', false);
     }
 
     #[Test]

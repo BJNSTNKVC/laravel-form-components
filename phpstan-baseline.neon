@@ -266,12 +266,6 @@ parameters:
 			path: src/Components/Checkbox/View/Components/Checkbox.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Date/View/Components/Date.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Date\\View\\Components\\Date\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -458,12 +452,6 @@ parameters:
 			path: src/Components/Date/View/Components/Date.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/DateTime/View/Components/DateTime.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\DateTime\\View\\Components\\DateTime\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -648,12 +636,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: src/Components/DateTime/View/Components/DateTime.php
-
-		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Email/View/Components/Email.php
 
 		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Email\\View\\Components\\Email\:\:__construct\(\) has parameter \$border with no type specified\.$#'
@@ -848,12 +830,6 @@ parameters:
 			path: src/Components/Error/View/Components/Error.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/File/View/Components/File.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\File\\View\\Components\\File\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -1034,12 +1010,6 @@ parameters:
 			path: src/Components/File/View/Components/File.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Input/View/Components/Input.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Input\\View\\Components\\Input\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -1218,12 +1188,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: src/Components/Input/View/Components/Input.php
-
-		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Password/View/Components/Password.php
 
 		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Password\\View\\Components\\Password\:\:__construct\(\) has parameter \$border with no type specified\.$#'
@@ -1538,12 +1502,6 @@ parameters:
 			path: src/Components/Radio/View/Components/Radio.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Search/View/Components/Search.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Search\\View\\Components\\Search\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -1737,12 +1695,6 @@ parameters:
 
 		-
 			message: '#^Binary operation "\." between ''data\-'' and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Select/View/Components/Select.php
-
-		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
 			count: 1
 			path: src/Components/Select/View/Components/Select.php
@@ -2030,12 +1982,6 @@ parameters:
 			path: src/Components/Select/View/Components/Select.php
 
 		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Textarea/View/Components/Textarea.php
-
-		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Textarea\\View\\Components\\Textarea\:\:__construct\(\) has parameter \$border with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -2214,12 +2160,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: src/Components/Textarea/View/Components/Textarea.php
-
-		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Components/Time/View/Components/Time.php
 
 		-
 			message: '#^Method Bjnstnkvc\\FormComponents\\Components\\Time\\View\\Components\\Time\:\:__construct\(\) has parameter \$border with no type specified\.$#'

@@ -137,7 +137,7 @@ class PasswordTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" title="Password" icon="/icons/password.png" />')
-            ->assertSee('<img src="/icons/password.png" alt="Password icon">', false);
+            ->assertSee('<img src="/icons/password.png" alt="">', false);
     }
 
     #[Test]
@@ -176,6 +176,23 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
+    public function it_names_the_visibility_toggles(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSeeInOrder([
+                'type="button"',
+                'aria-label="Show password"',
+                'aria-controls="password"',
+                'x-ref="show"',
+                'type="button"',
+                'aria-label="Hide password"',
+                'aria-controls="password"',
+                'x-ref="hide"',
+            ], false);
+    }
+
+    #[Test]
     public function it_leaves_out_the_visibility_toggle_when_disabled(): void
     {
         config(['form_components.password_visibility' => false]);
@@ -197,8 +214,8 @@ class PasswordTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::password name="password" title="Password" />')
             ->assertSeeInOrder([
-                '<img src="/icons/show.png" alt="Password icon">',
-                '<img src="/icons/hide.png" alt="Password icon">',
+                '<img src="/icons/show.png" alt="">',
+                '<img src="/icons/hide.png" alt="">',
             ], false);
     }
 

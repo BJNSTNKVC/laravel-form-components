@@ -6,7 +6,7 @@
         $label,
     ])
     @error($name) invalid @enderror
-    for="{{ $name }}"
+    for="{{ $id }}"
     x-data="form_checkbox"
     @if($interactive) data-interactive @endif
 >
@@ -14,18 +14,25 @@
         {{ $attributes->class([
             'fc:peer',
             'fc:[grid-area:input] fc:relative fc:inline-block fc:size-4 fc:m-0 fc:cursor-pointer fc:accent-primary' => ! $switch,
-            'fc:hidden' => $switch,
+            'fc:sr-only' => $switch,
         ]) }}
         type="checkbox"
+        @if($switch) role="switch" @endif
         id="{{ $id }}"
         name="{{ $name }}"
         {{ $value }}
         @if ($checked) checked @endif
+        aria-labelledby="{{ $id }}-title"
+        @error($name) aria-invalid="true" @enderror
+        @error($name) aria-describedby="{{ $id }}-error" @enderror
         x-ref="input"
     >
 
     @if($switch)
-        <i class="fc:[grid-area:input] fc:relative fc:inline-block fc:w-[38px] fc:h-[22px] fc:rounded-full fc:bg-muted/20 fc:transition-colors fc:duration-250 fc:peer-checked:bg-primary fc:before:absolute fc:before:left-0 fc:before:w-[34px] fc:before:h-[18px] fc:before:translate-[2px] fc:before:rounded-full fc:before:bg-field fc:before:content-[''] fc:peer-checked:before:translate-x-[18px] fc:peer-checked:before:scale-0 fc:after:absolute fc:after:left-0 fc:after:size-[18px] fc:after:translate-[2px] fc:after:rounded-full fc:after:bg-white fc:peer-checked:after:bg-primary-foreground fc:after:shadow-[0_2px_2px_rgb(0_0_0/0.25)] fc:after:transition-transform fc:after:duration-250 fc:after:content-[''] fc:peer-checked:after:translate-x-[18px]"></i>
+        <i
+            class="fc:[grid-area:input] fc:relative fc:inline-block fc:w-[38px] fc:h-[22px] fc:rounded-full fc:bg-muted/20 fc:transition-colors fc:duration-250 fc:peer-checked:bg-primary fc:before:absolute fc:before:left-0 fc:before:w-[34px] fc:before:h-[18px] fc:before:translate-[2px] fc:before:rounded-full fc:before:bg-field fc:before:content-[''] fc:peer-checked:before:translate-x-[18px] fc:peer-checked:before:scale-0 fc:after:absolute fc:after:left-0 fc:after:size-[18px] fc:after:translate-[2px] fc:after:rounded-full fc:after:bg-white fc:peer-checked:after:bg-primary-foreground fc:after:shadow-[0_2px_2px_rgb(0_0_0/0.25)] fc:after:transition-transform fc:after:duration-250 fc:after:content-[''] fc:peer-checked:after:translate-x-[18px] fc:peer-focus-visible:outline-2 fc:peer-focus-visible:outline-offset-2 fc:peer-focus-visible:outline-primary"
+            aria-hidden="true"
+        ></i>
     @endif
 
     <span
@@ -33,12 +40,14 @@
             'fc:[grid-area:title] fc:min-w-[100px] fc:mr-4 fc:font-semibold',
             'fc:group-[[invalid]]:text-danger' => $invalidatedTitle,
         ])
+        id="{{ $id }}-title"
     >
         {!! $title !!}
     </span>
 
     <x-form::error
         name="{{ $name }}"
+        id="{{ $id }}-error"
         x-ref="error"
     />
 </label>

@@ -104,7 +104,7 @@ class Email extends Component
 
         // If an icon is part of 'image_formats' array, render an icon as '<img>'
         if (Str::contains($icon, config('form_components.image_formats'))) {
-            return '<img src="'.$icon.'" alt="'.$this->title.' icon">';
+            return '<img src="'.$icon.'" alt="">';
         }
 
         return $icon;

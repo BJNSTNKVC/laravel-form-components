@@ -19,6 +19,17 @@
 .fc\:pointer-events-none {
   pointer-events: none;
 }
+.fc\:sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
 .fc\:absolute {
   position: absolute;
 }
@@ -81,9 +92,6 @@
 }
 .fc\:grid {
   display: grid;
-}
-.fc\:hidden {
-  display: none;
 }
 .fc\:inline-block {
   display: inline-block;
@@ -209,6 +217,9 @@
 }
 .fc\:bg-primary {
   background-color: var(--fc-primary, light-dark(#000, #fff));
+}
+.fc\:bg-transparent {
+  background-color: transparent;
 }
 .fc\:fill-current {
   fill: currentcolor;
@@ -448,6 +459,16 @@
 }
 :is(:is(:where(.fc\:peer):focus ~ .fc\:peer-focus\:\*\:max-w-full) > *) {
   max-width: 100%;
+}
+:is(:where(.fc\:peer):focus-visible ~ .fc\:peer-focus-visible\:outline-2) {
+  outline-style: var(--tw-outline-style);
+  outline-width: 2px;
+}
+:is(:where(.fc\:peer):focus-visible ~ .fc\:peer-focus-visible\:outline-offset-2) {
+  outline-offset: 2px;
+}
+:is(:where(.fc\:peer):focus-visible ~ .fc\:peer-focus-visible\:outline-primary) {
+  outline-color: var(--fc-primary, light-dark(#000, #fff));
 }
 :is(:where(.fc\:peer):is([value='']) ~ .fc\:peer-\[\[value\=\'\'\]\]\:top-2\.5) {
   top: calc(var(--fc-spacing) * 2.5);

@@ -169,7 +169,7 @@ class SelectTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::select name="country" title="Country" icon="/icons/country.png" />')
-            ->assertSee('<img src="/icons/country.png" alt="Country icon">', false);
+            ->assertSee('<img src="/icons/country.png" alt="">', false);
     }
 
     #[Test]

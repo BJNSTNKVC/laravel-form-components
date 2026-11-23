@@ -132,7 +132,9 @@ abstract class TestCase extends Testbench
     protected function assertInvalid(Browser $browser, string $name): void
     {
         $browser->assertAttribute('label[for="'.$name.'"]', 'invalid', '')
-            ->assertVisible('label[for="'.$name.'"] [role="alert"]');
+            ->assertVisible('label[for="'.$name.'"] [role="alert"]')
+            ->assertAttribute('#'.$name, 'aria-invalid', 'true')
+            ->assertAttribute('#'.$name, 'aria-describedby', $name.'-error');
     }
 
     /**
@@ -141,7 +143,20 @@ abstract class TestCase extends Testbench
     protected function assertValid(Browser $browser, string $name): void
     {
         $browser->assertAttributeMissing('label[for="'.$name.'"]', 'invalid')
-            ->assertMissing('label[for="'.$name.'"] [role="alert"]');
+            ->assertMissing('label[for="'.$name.'"] [role="alert"]')
+            ->assertAttributeMissing('#'.$name, 'aria-invalid')
+            ->assertAttributeMissing('#'.$name, 'aria-describedby');
+    }
+
+    /**
+     * Assert the focused element matches a selector.
+     */
+    protected function assertFocused(Browser $browser, string $selector): void
+    {
+        $this->assertTrue(
+            $browser->script(sprintf('return document.activeElement.matches(%s);', json_encode($selector)))[0],
+            'The focused element does not match ['.$selector.'].',
+        );
     }
 
     /**

@@ -147,7 +147,7 @@ class TimeTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::time name="alarm" title="Alarm" icon="/icons/alarm.png" />')
-            ->assertSee('<img src="/icons/alarm.png" alt="Alarm icon">', false);
+            ->assertSee('<img src="/icons/alarm.png" alt="">', false);
     }
 
     #[Test]

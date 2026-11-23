@@ -14,16 +14,16 @@ export default () => ({
     $input: undefined,
 
     /**
-     * Icon that shows the password.
+     * Button that shows the password.
      *
-     * @type { HTMLSpanElement | undefined }
+     * @type { HTMLButtonElement | undefined }
      */
     $show: undefined,
 
     /**
-     * Icon that hides the password.
+     * Button that hides the password.
      *
-     * @type { HTMLSpanElement | undefined }
+     * @type { HTMLButtonElement | undefined }
      */
     $hide: undefined,
 
@@ -67,6 +67,7 @@ export default () => ({
      */
     reveal() {
         this.visibility('visible');
+        this.$hide.focus();
     },
 
     /**
@@ -76,6 +77,7 @@ export default () => ({
      */
     conceal() {
         this.visibility('hidden');
+        this.$show.focus();
     },
 
     /**
@@ -114,6 +116,14 @@ export default () => ({
     state(state) {
         this.$field.toggleAttribute('invalid', state === 'invalid');
         this.$error.hidden = state === 'valid';
+
+        if (state === 'invalid') {
+            this.$input.setAttribute('aria-invalid', 'true');
+            this.$input.setAttribute('aria-describedby', this.$error.id);
+        } else {
+            this.$input.removeAttribute('aria-invalid');
+            this.$input.removeAttribute('aria-describedby');
+        }
     },
 
     /**

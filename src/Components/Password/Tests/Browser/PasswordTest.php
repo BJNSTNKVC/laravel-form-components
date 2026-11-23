@@ -12,12 +12,12 @@ use PHPUnit\Framework\Attributes\Test;
 class PasswordTest extends TestCase
 {
     /**
-     * Selector of the icon that shows the password.
+     * Selector of the button that shows the password.
      */
     private const string SHOW = 'label[for="password_column_bottom"] [x-ref="show"]';
 
     /**
-     * Selector of the icon that hides the password.
+     * Selector of the button that hides the password.
      */
     private const string HIDE = 'label[for="password_column_bottom"] [x-ref="hide"]';
 
@@ -114,6 +114,38 @@ class PasswordTest extends TestCase
                 ->assertAttribute('#password_column_bottom', 'type', 'password')
                 ->assertVisible(self::SHOW)
                 ->assertMissing(self::HIDE);
+        });
+    }
+
+    #[Test]
+    public function it_moves_focus_to_the_hide_button_once_revealed(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')->click(self::SHOW);
+
+            $this->assertFocused($browser, self::HIDE);
+        });
+    }
+
+    #[Test]
+    public function it_moves_focus_to_the_show_button_once_hidden(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->click(self::SHOW)
+                ->click(self::HIDE);
+
+            $this->assertFocused($browser, self::SHOW);
+        });
+    }
+
+    #[Test]
+    public function it_reveals_the_password_from_the_keyboard(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->keys('#password_column_bottom', '{tab}', '{enter}')
+                ->assertAttribute('#password_column_bottom', 'type', 'text');
         });
     }
 
