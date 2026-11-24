@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `form-components:install` command, which registers each field's Alpine data in the script that starts Alpine, waits for Alpine when Livewire brings it, and adds Alpine to apps without it.
 - `components:publish` copies a component's script into `resources/js/components/form` along with its class and view, and switches the app's Alpine registration to the copy. `components:restore` switches it back, and `--delete` removes the copied script too. `form-components:install` registers copied scripts in place of the package ones.
 - Every field tells assistive technology its title, whether it is invalid and which error belongs to it. The control is named after its title, and an invalid control is marked with `aria-invalid` and described by its error, staying in step as interactive errors hide and return.
+- Text the components show on their own, such as the Password and Search button names and the number of files a File field shows, comes from translation files under the `form-components` namespace, which apps can publish with the `form-lang` tag to change or translate.
 
 ### Changed
 

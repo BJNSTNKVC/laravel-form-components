@@ -5,7 +5,9 @@ namespace Bjnstnkvc\FormComponents\Tests\Feature;
 use Bjnstnkvc\FormComponents\FormComponentsServiceProvider;
 use Bjnstnkvc\FormComponents\Tests\Fixtures\CopiedError;
 use Bjnstnkvc\FormComponents\Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -45,6 +47,24 @@ class FormComponentsServiceProviderTest extends TestCase
         foreach (array_keys($this->components()) as $alias) {
             $this->assertTrue(View::exists('form-components::'.$alias), sprintf('View [%s] was not found.', $alias));
         }
+    }
+
+    #[Test]
+    public function it_loads_the_component_translations(): void
+    {
+        $this->assertSame('Show password', __('form-components::password.show'));
+    }
+
+    #[Test]
+    public function it_publishes_the_component_translations(): void
+    {
+        $this->beforeApplicationDestroyed(function (): void {
+            File::deleteDirectory(lang_path('vendor/form-components'));
+        });
+
+        Artisan::call('vendor:publish', ['--tag' => 'form-lang']);
+
+        $this->assertFileEquals(__DIR__.'/../../src/lang/en/password.php', lang_path('vendor/form-components/en/password.php'));
     }
 
     /**
