@@ -61,7 +61,7 @@ export default () => ({
     describe() {
         const files = this.$input.files;
 
-        this.$holder.value = files.length > 1 ? `${files.length} files` : (files[0]?.name ?? '');
+        this.$holder.value = files.length > 1 ? this.chosen.replace(':count', files.length) : (files[0]?.name ?? '');
     },
 
     /**
@@ -104,6 +104,15 @@ export default () => ({
      */
     get isEmpty() {
         return this.$input.value === '';
+    },
+
+    /**
+     * Get the text showing how many files were chosen.
+     *
+     * @return { String }
+     */
+    get chosen() {
+        return this.$field.dataset.chosen;
     },
 
     /**

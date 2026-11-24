@@ -71,11 +71,12 @@ class FormComponentsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the Blade views kept in each component's resources folder.
+     * Boot the component views and translations.
      */
     private function bootResources(): void
     {
         $this->loadViewsFrom(glob(__DIR__.'/Components/*/resources/views', GLOB_ONLYDIR) ?: [], 'form-components');
+        $this->loadTranslationsFrom(__DIR__.'/lang', 'form-components');
     }
 
     /**
@@ -102,6 +103,11 @@ class FormComponentsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/form_components.php' => config_path('form_components.php'),
         ], 'form-config');
+
+        // Publish Form Component translation files.
+        $this->publishes([
+            __DIR__.'/lang' => $this->app->langPath('vendor/form-components'),
+        ], 'form-lang');
     }
 
     /**

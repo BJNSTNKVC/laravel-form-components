@@ -89,7 +89,7 @@
                 <button
                     class="fc:flex fc:justify-center fc:m-0 fc:p-0 fc:border-0 fc:bg-transparent fc:text-inherit fc:cursor-pointer fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
                     type="button"
-                    aria-label="{{ __('Show password') }}"
+                    aria-label="{{ __('form-components::password.show') }}"
                     aria-controls="{{ $id }}"
                     x-ref="show"
                 >
@@ -98,7 +98,7 @@
                 <button
                     class="fc:flex fc:justify-center fc:m-0 fc:p-0 fc:border-0 fc:bg-transparent fc:text-inherit fc:cursor-pointer fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
                     type="button"
-                    aria-label="{{ __('Hide password') }}"
+                    aria-label="{{ __('form-components::password.hide') }}"
                     aria-controls="{{ $id }}"
                     x-ref="hide"
                     hidden

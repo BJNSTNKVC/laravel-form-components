@@ -46,6 +46,24 @@ class FileTest extends TestCase
     }
 
     #[Test]
+    public function it_passes_the_text_counting_chosen_files_to_alpine(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertSeeInOrder(['x-data="form_file"', 'data-chosen=":count files"'], false);
+    }
+
+    #[Test]
+    public function it_translates_the_text_counting_chosen_files(): void
+    {
+        $this->translate('de', ['file.chosen' => ':count Dateien']);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::file name="avatar" />')
+            ->assertSee('data-chosen=":count Dateien"', false);
+    }
+
+    #[Test]
     public function it_covers_the_field_with_the_file_input(): void
     {
         $this->withViewErrors([])

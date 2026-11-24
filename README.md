@@ -30,6 +30,16 @@ Publish the components' config file with:
 
 This will publish a file called ```form_components.php``` in your config-directory.
 
+### Translations
+
+Text the components show on their own, such as the names screen readers announce for the Password visibility and
+Search clear buttons, comes from the package's translation files. Publish them with:
+
+    php artisan vendor:publish --provider="Bjnstnkvc\FormComponents\FormComponentsServiceProvider" --tag=form-lang
+
+This copies them to `lang/vendor/form-components`, where you can change the English text or add a folder for each
+language your app uses, e.g. `lang/vendor/form-components/de/password.php`.
+
 ### Styles
 
 Pages that render a component load its stylesheet on their own. The package serves the stylesheet and links it at the

@@ -170,6 +170,16 @@ class SearchTest extends TestCase
     }
 
     #[Test]
+    public function it_translates_the_clear_button_name(): void
+    {
+        $this->translate('de', ['search.clear' => 'Suche leeren']);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertSee('aria-label="Suche leeren"', false);
+    }
+
+    #[Test]
     public function it_leaves_out_the_clear_icon_when_disabled(): void
     {
         config(['form_components.search_clearing' => false]);

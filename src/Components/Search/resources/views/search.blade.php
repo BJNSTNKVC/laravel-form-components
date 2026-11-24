@@ -90,7 +90,7 @@
                 <button
                     class="fc:flex fc:justify-center fc:m-0 fc:p-0 fc:border-0 fc:bg-transparent fc:text-inherit fc:cursor-pointer fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
                     type="button"
-                    aria-label="{{ __('Clear search') }}"
+                    aria-label="{{ __('form-components::search.clear') }}"
                     aria-controls="{{ $id }}"
                     x-ref="clear"
                     hidden

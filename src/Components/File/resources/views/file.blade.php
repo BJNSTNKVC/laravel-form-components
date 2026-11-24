@@ -13,6 +13,7 @@
     @error($name) invalid @enderror
     for="{{ $id }}"
     x-data="form_file"
+    data-chosen="{{ __('form-components::file.chosen') }}"
     @if($interactive) data-interactive @endif
 >
     <input

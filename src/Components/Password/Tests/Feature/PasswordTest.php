@@ -193,6 +193,16 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
+    public function it_translates_the_visibility_toggle_names(): void
+    {
+        $this->translate('de', ['password.show' => 'Passwort anzeigen', 'password.hide' => 'Passwort verbergen']);
+
+        $this->withViewErrors([])
+            ->blade('<x-form::password name="password" />')
+            ->assertSeeInOrder(['aria-label="Passwort anzeigen"', 'aria-label="Passwort verbergen"'], false);
+    }
+
+    #[Test]
     public function it_leaves_out_the_visibility_toggle_when_disabled(): void
     {
         config(['form_components.password_visibility' => false]);
