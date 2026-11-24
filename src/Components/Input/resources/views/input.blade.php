@@ -11,7 +11,7 @@
         $label,
     ])
     @error($name) invalid @enderror
-    for="{{ $name }}"
+    for="{{ $id }}"
     x-data="form_input"
     @if($interactive) data-interactive @endif
 >
@@ -36,6 +36,9 @@
         name="{{ $name }}"
         placeholder="{{ $title ?: Str::title($name) }}"
         value="{{ $value }}"
+        aria-labelledby="{{ $id }}-title"
+        @error($name) aria-invalid="true" @enderror
+        @error($name) aria-describedby="{{ $id }}-error" @enderror
         x-ref="input"
     >
 
@@ -67,12 +70,14 @@
             'fc:left-2.5 fc:px-2 fc:rounded-full' => $labelType === 'floating' && ! $bottom,
             'fc:left-0' => $labelType === 'floating' && $bottom,
         ])
+        id="{{ $id }}-title"
     >
         {!! $title !!}
     </span>
 
     @if($hasIcon)
         <span
+            aria-hidden="true"
             @class([
                 'fc:[grid-area:input] fc:flex fc:items-center fc:justify-center fc:box-border fc:h-10 fc:ml-auto fc:select-none fc:pointer-events-none fc:text-inherit fc:fill-current fc:*:grow fc:*:w-auto fc:*:fill-current',
                 'fc:min-w-10 fc:*:last-of-type:px-2' => ! $bottom,
@@ -85,6 +90,7 @@
 
     <x-form::error
         name="{{ $name }}"
+        id="{{ $id }}-error"
         x-ref="error"
     />
 </label>

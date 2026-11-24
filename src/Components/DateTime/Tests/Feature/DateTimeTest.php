@@ -147,7 +147,7 @@ class DateTimeTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::date-time name="starts_at" title="Starts At" icon="/icons/starts_at.png" />')
-            ->assertSee('<img src="/icons/starts_at.png" alt="Starts At icon">', false);
+            ->assertSee('<img src="/icons/starts_at.png" alt="">', false);
     }
 
     #[Test]

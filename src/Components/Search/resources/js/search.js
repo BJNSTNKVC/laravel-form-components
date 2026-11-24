@@ -14,9 +14,9 @@ export default () => ({
     $input: undefined,
 
     /**
-     * Icon that clears the search.
+     * Button that clears the search.
      *
-     * @type { HTMLSpanElement | undefined }
+     * @type { HTMLButtonElement | undefined }
      */
     $clear: undefined,
 
@@ -64,10 +64,11 @@ export default () => ({
     clear() {
         this.$input.value = '';
         this.$input.dispatchEvent(new Event('input', { bubbles: true }));
+        this.$input.focus();
     },
 
     /**
-     * Show the clear icon while the search holds text.
+     * Show the clear button while the search holds text.
      *
      * @return { void }
      */
@@ -100,6 +101,14 @@ export default () => ({
     state(state) {
         this.$field.toggleAttribute('invalid', state === 'invalid');
         this.$error.hidden = state === 'valid';
+
+        if (state === 'invalid') {
+            this.$input.setAttribute('aria-invalid', 'true');
+            this.$input.setAttribute('aria-describedby', this.$error.id);
+        } else {
+            this.$input.removeAttribute('aria-invalid');
+            this.$input.removeAttribute('aria-describedby');
+        }
     },
 
     /**

@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `resources/js/index.js`, which exports every field's Alpine data under its file name, e.g. `password`, so an app can import them all as one namespace.
 - `form-components:install` command, which registers each field's Alpine data in the script that starts Alpine, waits for Alpine when Livewire brings it, and adds Alpine to apps without it.
 - `components:publish` copies a component's script into `resources/js/components/form` along with its class and view, and switches the app's Alpine registration to the copy. `components:restore` switches it back, and `--delete` removes the copied script too. `form-components:install` registers copied scripts in place of the package ones.
+- Every field tells assistive technology its title, whether it is invalid and which error belongs to it. The control is named after its title, and an invalid control is marked with `aria-invalid` and described by its error, staying in step as interactive errors hide and return.
 
 ### Changed
 
@@ -32,10 +33,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clearing a Search with its clear button fires an `input` event, as deleting its text does.
 - `@componentStyles` links to the stylesheet the package serves instead of a published copy, adds the CSP nonce, and keeps a page from linking the stylesheet twice.
 - `components:publish` publishes the config when the app has none, instead of failing.
+- The Password visibility icons and the Search clear icon are buttons named "Show password", "Hide password" and "Clear search", reachable from the keyboard. Pressing one keeps focus in the field.
+- Switches stay reachable from the keyboard and screen readers, show an outline on keyboard focus, and Checkbox switches are announced as switches.
+- Field icons are hidden from screen readers, and image icons have an empty `alt` instead of one like "Email icon".
+- The text showing a File field's chosen files is left out of the tab order and hidden from screen readers, which hear the file input instead.
 
 ### Fixed
 
 - File fields show their title as a placeholder, and floating File titles rise once a file is chosen.
+- A field given its own `id` is labelled by its title, instead of by a label pointing at its name.
 - The border no longer runs through the floating title of a fully bordered field, it opens a notch around the title instead.
 - `components:publish` and `components:restore` write to `app/View/Components/Form` and `resources/views/components/form` on every platform instead of creating backslash-named files, and switch the component imports in the published config.
 - With `invalidated-title` on, emptying a Password, Textarea, Select, Date, Time, Date & Time, Checkbox or Radio field marks its title invalid again, as it already did for the other fields.

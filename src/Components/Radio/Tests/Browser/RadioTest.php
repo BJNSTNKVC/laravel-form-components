@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\Test;
 class RadioTest extends TestCase
 {
     /**
-     * An invalid radio.
+     * An invalid radio and a radio switch.
      */
     #[Override]
     protected function page(): string
@@ -23,6 +23,12 @@ class RadioTest extends TestCase
                 title="Radio"
                 switch="false"
                 invalidated-title="true"
+            />
+
+            <x-form::radio
+                name="radio_switch"
+                title="Switch"
+                switch="true"
             />
             BLADE;
     }
@@ -50,6 +56,32 @@ class RadioTest extends TestCase
 
             $this->assertValid($browser, 'radio_error');
             $this->assertValidTitle($browser, 'radio_error');
+        });
+    }
+
+    #[Test]
+    public function it_turns_a_switch_on_from_the_keyboard(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')->keys('#radio_error', '{tab}');
+
+            $this->assertFocused($browser, '#radio_switch');
+
+            $browser->keys('#radio_switch', '{space}')->assertChecked('#radio_switch');
+        });
+    }
+
+    #[Test]
+    public function it_outlines_a_switch_focused_from_the_keyboard(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/');
+
+            $this->assertSame('none', $this->style($browser, 'label[for="radio_switch"] i', 'outline-style'));
+
+            $browser->keys('#radio_error', '{tab}');
+
+            $this->assertSame('solid', $this->style($browser, 'label[for="radio_switch"] i', 'outline-style'));
         });
     }
 }

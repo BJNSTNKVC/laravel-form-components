@@ -38,6 +38,14 @@ class FileTest extends TestCase
     }
 
     #[Test]
+    public function it_hides_the_chosen_files_from_assistive_technology(): void
+    {
+        $view = (string) $this->withViewErrors([])->blade('<x-form::file name="avatar" />');
+
+        $this->assertMatchesRegularExpression('/tabindex="-1"\s+aria-hidden="true"\s+x-ref="holder"/', $view);
+    }
+
+    #[Test]
     public function it_covers_the_field_with_the_file_input(): void
     {
         $this->withViewErrors([])
@@ -163,7 +171,7 @@ class FileTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::file name="avatar" title="Avatar" icon="/icons/avatar.png" />')
-            ->assertSee('<img src="/icons/avatar.png" alt="Avatar icon">', false);
+            ->assertSee('<img src="/icons/avatar.png" alt="">', false);
     }
 
     #[Test]

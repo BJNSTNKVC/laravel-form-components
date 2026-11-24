@@ -98,8 +98,17 @@ class CheckboxTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::checkbox name="remember" />')
-            ->assertSee('fc:hidden')
-            ->assertSee('<i class="fc:[grid-area:input]', false);
+            ->assertSee('fc:sr-only')
+            ->assertSee('role="switch"', false)
+            ->assertSee('></i>', false);
+    }
+
+    #[Test]
+    public function it_hides_the_drawn_switch_from_assistive_technology(): void
+    {
+        $view = (string) $this->withViewErrors([])->blade('<x-form::checkbox name="remember" />');
+
+        $this->assertMatchesRegularExpression('/<i\s+class="[^"]*"\s+aria-hidden="true"\s*><\/i>/', $view);
     }
 
     #[Test]
@@ -108,6 +117,7 @@ class CheckboxTest extends TestCase
         $this->withViewErrors([])
             ->blade('<x-form::checkbox name="remember" switch="false" />')
             ->assertSee('fc:size-4')
-            ->assertDontSee('<i ', false);
+            ->assertDontSee('role="', false)
+            ->assertDontSee('></i>', false);
     }
 }

@@ -137,7 +137,7 @@ class InputTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::input name="email" title="Email" icon="/icons/email.png" />')
-            ->assertSee('<img src="/icons/email.png" alt="Email icon">', false);
+            ->assertSee('<img src="/icons/email.png" alt="">', false);
     }
 
     #[Test]

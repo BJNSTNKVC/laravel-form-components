@@ -157,6 +157,19 @@ class SearchTest extends TestCase
     }
 
     #[Test]
+    public function it_names_the_clear_button(): void
+    {
+        $this->withViewErrors([])
+            ->blade('<x-form::search name="query" />')
+            ->assertSeeInOrder([
+                'type="button"',
+                'aria-label="Clear search"',
+                'aria-controls="query"',
+                'x-ref="clear"',
+            ], false);
+    }
+
+    #[Test]
     public function it_leaves_out_the_clear_icon_when_disabled(): void
     {
         config(['form_components.search_clearing' => false]);
@@ -171,7 +184,7 @@ class SearchTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" title="Query" icon="/icons/query.png" />')
-            ->assertSee('<img src="/icons/query.png" alt="Query icon">', false);
+            ->assertSee('<img src="/icons/query.png" alt="">', false);
     }
 
     #[Test]
@@ -191,7 +204,7 @@ class SearchTest extends TestCase
 
         $this->withViewErrors([])
             ->blade('<x-form::search name="query" title="Query" />')
-            ->assertSee('<img src="/icons/clear.png" alt="Query icon">', false);
+            ->assertSee('<img src="/icons/clear.png" alt="">', false);
     }
 
     #[Test]

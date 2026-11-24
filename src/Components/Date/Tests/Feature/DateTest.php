@@ -147,7 +147,7 @@ class DateTest extends TestCase
     {
         $this->withViewErrors([])
             ->blade('<x-form::date name="birthday" title="Birthday" icon="/icons/birthday.png" />')
-            ->assertSee('<img src="/icons/birthday.png" alt="Birthday icon">', false);
+            ->assertSee('<img src="/icons/birthday.png" alt="">', false);
     }
 
     #[Test]

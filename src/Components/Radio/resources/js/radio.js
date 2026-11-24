@@ -65,6 +65,14 @@ export default () => ({
     state(state) {
         this.$field.toggleAttribute('invalid', state === 'invalid');
         this.$error.hidden = state === 'valid';
+
+        if (state === 'invalid') {
+            this.$input.setAttribute('aria-invalid', 'true');
+            this.$input.setAttribute('aria-describedby', this.$error.id);
+        } else {
+            this.$input.removeAttribute('aria-invalid');
+            this.$input.removeAttribute('aria-describedby');
+        }
     },
 
     /**

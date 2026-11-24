@@ -11,7 +11,7 @@
         $label,
     ])
     @error($name) invalid @enderror
-    for="{{ $name }}"
+    for="{{ $id }}"
     x-data="form_password"
     @if($interactive) data-interactive @endif
 >
@@ -38,6 +38,9 @@
         name="{{ $name }}"
         placeholder="{{ $title ?: Str::title($name) }}"
         value="{{ $value }}"
+        aria-labelledby="{{ $id }}-title"
+        @error($name) aria-invalid="true" @enderror
+        @error($name) aria-describedby="{{ $id }}-error" @enderror
         x-ref="input"
     >
 
@@ -69,6 +72,7 @@
             'fc:left-2.5 fc:px-2 fc:rounded-full' => $labelType === 'floating' && ! $bottom,
             'fc:left-0' => $labelType === 'floating' && $bottom,
         ])
+        id="{{ $id }}-title"
     >
         {!! $title !!}
     </span>
@@ -82,19 +86,25 @@
             ])
         >
             @if($passwordVisibility)
-                <span
-                    class="fc:flex fc:justify-center fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
+                <button
+                    class="fc:flex fc:justify-center fc:m-0 fc:p-0 fc:border-0 fc:bg-transparent fc:text-inherit fc:cursor-pointer fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
+                    type="button"
+                    aria-label="{{ __('Show password') }}"
+                    aria-controls="{{ $id }}"
                     x-ref="show"
                 >
                     {!! $showPasswordIcon !!}
-                </span>
-                <span
-                    class="fc:flex fc:justify-center fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
+                </button>
+                <button
+                    class="fc:flex fc:justify-center fc:m-0 fc:p-0 fc:border-0 fc:bg-transparent fc:text-inherit fc:cursor-pointer fc:pointer-events-auto fc:*:fill-current fc:[&[hidden]]:hidden"
+                    type="button"
+                    aria-label="{{ __('Hide password') }}"
+                    aria-controls="{{ $id }}"
                     x-ref="hide"
                     hidden
                 >
                     {!! $hidePasswordIcon !!}
-                </span>
+                </button>
             @endif
             @if($hasIcon)
                 {!! $icon !!}
@@ -104,6 +114,7 @@
 
     <x-form::error
         name="{{ $name }}"
+        id="{{ $id }}-error"
         x-ref="error"
     />
 </label>
